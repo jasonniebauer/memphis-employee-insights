@@ -20,76 +20,83 @@ df = initialize_data()
 #     st.session_state.salary_data = load_salary_data()
 
 # Page-specific CSS (only runs here n page)
-st.markdown("""
-<style>
-/* Remove padding from top of page */
-#root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
+st.markdown(
+    """
+    <style>
+    /* Hide GitHub Fork button on public site */
+    [data-testid="stBaseButton-header"] {
+        display: none !important;
+    }
 
-/* Remove white background from header section */
-header { background: transparent !important; }
 
-/* Set background color for active page link */
-[data-testid="stPageLink-NavLink"][href=""] {
-    background-color: #DAE2E5 !important;
-}
+    /* Remove padding from top of page */
+    #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
 
-/* Set background color for active page link */
-[data-testid="stPageLink-NavLink"][href=""],
-[data-testid="stPageLink-NavLink"][href=""]:hover {
-    background: transparent;
-    border-left: 5px solid #9AA0A6;
-    padding-left: 0.2rem;
-}
+    /* Remove white background from header section */
+    header { background: transparent !important; }
 
-.xl-metric {
-    font-weight: 600;
-    line-height: 1.0;
-    font-size: 2.75rem !important;
-    margin-bottom: 0;
-    text-align: center; 
-}
+    /* Set background color for active page link */
+    [data-testid="stPageLink-NavLink"][href=""] {
+        background-color: #DAE2E5 !important;
+    }
 
-[data-testid="stCaptionContainer"] .small-label {
-    font-size: smaller !important;
-    margin-top: 0;
-    line-height: 1.0;
-}
+    /* Set background color for active page link */
+    [data-testid="stPageLink-NavLink"][href=""],
+    [data-testid="stPageLink-NavLink"][href=""]:hover {
+        background: transparent;
+        border-left: 5px solid #9AA0A6;
+        padding-left: 0.2rem;
+    }
 
-.center {
-    text-align: center;        
-}
-.left {
-    text-align: left;        
-}
-        
-.bold {
-    font-weight: 600;        
-}
+    .xl-metric {
+        font-weight: 600;
+        line-height: 1.0;
+        font-size: 2.75rem !important;
+        margin-bottom: 0;
+        text-align: center; 
+    }
 
-.mb-0 {
-    margin-bottom: 0 !important;        
-}
-.pt-0 {
-    padding-top: 0 !important;        
-}
-        
-.red {
-    color: #EA4335;        
-}
-.blue {
-    color: #4285F4;        
-}
-.green {
-    color: #34A853;        
-}
-.yellow {
-    color: #FBBC04;        
-}
-.grey {
-    color: #9AA0A6;
-}
-</style>
-""", unsafe_allow_html=True)
+    [data-testid="stCaptionContainer"] .small-label {
+        font-size: smaller !important;
+        margin-top: 0;
+        line-height: 1.0;
+    }
+
+    .center {
+        text-align: center;        
+    }
+    .left {
+        text-align: left;        
+    }
+            
+    .bold {
+        font-weight: 600;        
+    }
+
+    .mb-0 {
+        margin-bottom: 0 !important;        
+    }
+    .pt-0 {
+        padding-top: 0 !important;        
+    }
+            
+    .red {
+        color: #EA4335;        
+    }
+    .blue {
+        color: #4285F4;        
+    }
+    .green {
+        color: #34A853;        
+    }
+    .yellow {
+        color: #FBBC04;        
+    }
+    .grey {
+        color: #9AA0A6;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 # Main content
 st.title("City of Memphis Employee Salaries")
