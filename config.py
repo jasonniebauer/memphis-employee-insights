@@ -1,6 +1,6 @@
-# ====================
-# config.py - Centralized/Shared Configuration
-# ====================
+# ================================
+# Centralized/Shared Configuration
+# ================================
 PAGE_CONFIG = {
     "page_title": "City of Memphis Employee Salaries",
     "page_icon": ":chart_with_upwards_trend:",
@@ -8,7 +8,6 @@ PAGE_CONFIG = {
     "initial_sidebar_state": "expanded"
 }
 
-# ✅ PERFORMANCE TIP #4: Define constants once
 CACHE_TTL = 3600  # 1 hour
 # MAX_ROWS = 100000
 # CHART_HEIGHT = 400
