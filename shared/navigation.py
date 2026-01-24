@@ -61,10 +61,7 @@ def render_navigation():
         #     size="large"
         # )
         st.image(LOGO_URL, width=50)
-        st.title("Memphis Data")
-        # st.header("Memphis Data")
-        # st.caption("Employee Salary Dashboard")
-        # st.markdown("---")
+        st.markdown('<h1 style="padding-top:0;">Memphis Data</h1>', unsafe_allow_html=True)
         st.subheader("City Insights")
         # Navigation links
         st.page_link("streamlit_app.py", label="Overview", icon=":material/tour:")
@@ -72,12 +69,6 @@ def render_navigation():
         st.page_link("pages/public-works.py", label="Public Works", icon=":material/tram:")  # traffic
         st.page_link("pages/stronger-neighborhoods.py", label="Stronger Neighborhoods", icon=":material/psychiatry:")  # other_houses
         st.page_link("pages/good-government.py", label="Good Government", icon=":material/account_balance:")
-
-        # st.space()
-        # st.sidebar.subheader("About")
-        # st.sidebar.markdown("[FAQ](#faq)")
-        # st.sidebar.markdown("[Support](#support)")
-        # st.sidebar.markdown("[Get in Touch](#contact)")
         
         st.markdown("---")
         st.caption("Last updated: January 2026")
