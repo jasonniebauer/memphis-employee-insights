@@ -23,8 +23,8 @@ df = initialize_data()
 st.markdown(
     """
     <style>
-    /* Hide GitHub Fork button on public site */
-    [data-testid="stToolbarActionButton"]:nth-of-type(1) {
+    /* Hide GitHub buttons on public site */
+    [data-testid="stToolbarActionButton"] {
         display: none !important;
     }
 
