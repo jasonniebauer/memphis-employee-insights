@@ -28,7 +28,6 @@ st.markdown(
         display: none !important;
     }
 
-
     /* Remove padding from top of page */
     #root > div:nth-child(1) > div > div > div > div > section > div {padding-top: 0rem;}
 
@@ -95,6 +94,18 @@ st.markdown(
     .grey {
         color: #9AA0A6;
     }
+
+    .table-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        border-bottom: 1px solid #F1F3F4;
+        padding: 0.2rem 0;
+    }
+    .table-row:last-of-type {
+        border-bottom: none;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -103,12 +114,17 @@ st.title("City of Memphis Employee Salaries")
 # st.markdown("### Overview Dashboard")
 st.caption("Payroll Snapshot - January 28, 2025")
 
-# Introduction
-st.markdown(
-    """This is an analysis of employee salaries for the city of Memphis, Tennessee. """
-    """All employee details have been provided by the City of Memphis and are publicly available on the [City of Memphis website](https://memphistn.gov/finance). """
-    """This dataset contains a list of 8,202 city employees with their job title, division, including employment type, whether the employee is regular or part-time, and the employee's annual salary or hourly rate.""",
-    unsafe_allow_html=False, help=None, width="content", text_alignment="left")
+"""
+This site provides an interactive analysis of employee salaries for the City of Memphis, Tennessee. All data is sourced directly from publicly available records published by the City of Memphis and can be accessed via their official website.
+
+The dataset includes 8,202 city employees and contains the following key details for each:
+- Job title
+- Division
+- Employment type (regular or part-time)
+- Annual salary or hourly rate
+
+The goal is to offer clear, transparent insights into salary distribution, departmental staffing, and compensation patterns across the city's workforce.
+"""
 
 #--------------------------------------------------------
 
@@ -124,17 +140,17 @@ total_city_job_titles = df['Job Title'].nunique()
 #
 average_city_salary = df['Annual Salary'].mean()
 # Get total number of salaried employees
-total_salaried_employees = (df['Category'] == 'Regular').sum()
+total_salaried_employees = (df['Employment Type'] == 'Full-time').sum()
 #
-total_salaried_job_titles = df[df['Category'] == 'Regular']['Job Title'].nunique()
+total_salaried_job_titles = df[df['Employment Type'] == 'Full-time']['Job Title'].nunique()
 
 
 #
 average_city_hourly_pay = df['Hourly/Per Event Rate'].mean()
 # Get total number of part-time employees
-total_part_time_employees = (df['Category'] == 'Part-Time').sum()
+total_part_time_employees = (df['Employment Type'] == 'Part-time').sum()
 #
-total_hourly_job_titles = df[df['Category'] == 'Part-Time']['Job Title'].nunique()
+total_hourly_job_titles = df[df['Employment Type'] == 'Part-time']['Job Title'].nunique()
 
 #
 percent_salaried_employees = total_salaried_employees / total_city_employees
@@ -150,27 +166,24 @@ st.divider()
 st.space()
 
 with st.container():
-    
-    metric1, metric2 = st.columns(2, gap="xlarge")
+    st.markdown('<h2 class="pt-0">Salaries by Division Category</h2>', unsafe_allow_html=True)
 
-    with metric1:
-        st.markdown('<h2 class="pt-0">Salary Overview Dashboard</h2>', unsafe_allow_html=True)
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
         # st.markdown('<p class="bold">Salary Distribution by Division Category</p>', unsafe_allow_html=True)
         st.markdown(
-            """The City of Memphis employees can be grouped into 4 main categories each responsible for related services, operations, or administrative functions. """
-            """Each category contains multiple divisions where employees perform related work, report under shared leadership, and focus on delivering particular public services or support. """
+            """
+            City of Memphis employees are organized into four primary categories, each encompassing multiple divisions that deliver related public services, operations, or administrative functions.
+            
+            Within every category, divisions share common leadership and bring together employees who perform similar work to support the community effectively.
+            """
         )
-        # st.markdown(
-        #     """Salaries, job titles, and payroll data are typically categorized and reported by 17 individual divisions between these 4 categories. """
-        #     """This structure helps ensure clear accountability, efficient resource allocation, and alignment with the city's mission to provide essential services to residents."""
-        # )
-
-        st.markdown("<p style='font-weight: 600;margin-top:1rem;margin-bottom:0.25rem;line-height:1.0;'>Total Salaries</p>", unsafe_allow_html=True)
+        st.markdown("<p style='font-weight: 600;margin-top:1rem;margin-bottom:0.25rem;line-height:1.0;'>Total Salaries of All Divisions</p>", unsafe_allow_html=True)
         st.markdown(f'<p class="xl-metric left">${total_city_salaries_formatted:,.1f}M<span style="font-size:18px;vertical-align:top;margin-left:0.2rem;">*</span></p>', unsafe_allow_html=True)
-        st.caption("<small class='center' style='margin-top:0;line-height:1.0;'>* Does not include part-time, hourly payroll</small>", unsafe_allow_html=True)    
+        st.caption("<small class='center' style='margin-top:0;line-height:1.0;'>* Does not include part-time, hourly payroll</small>", unsafe_allow_html=True)
 
-    with metric2:
-        st.space()
+    with salary_cols[1]:
         # Sort Divisions by the sum of all Salaries in descending order
         division_salary_totals.sort_values(by='Annual Salary', ascending=False, inplace=True)
 
@@ -200,16 +213,15 @@ with st.container():
                 alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Total Salary"),
                 alt.Tooltip("Percentage:Q", format=".1%", title="Percentage")
             ]
+        ).properties(
+            title='Total Salaries by Division Category'
         )
-        # .properties(
-        #     title="Salary Distribution by Division Category"
-        # )
 
         st.altair_chart(salary_distribution_by_division_category, width="stretch")
     
     st.space()
 
-    quad1, quad2, quad3, quad4 = st.columns(4)
+    division_category_cols = st.columns(4)
 
     public_safety_salary = division_salary_totals.loc[
         division_salary_totals['Division Category'] == 'Public Safety', 'Annual Salary'
@@ -227,23 +239,19 @@ with st.container():
         division_salary_totals['Division Category'] == 'Good Government', 'Annual Salary'
     ].values[0] / 1e6
 
-    with quad1:
-        # with st.container(border=True):
+    with division_category_cols[0]:
         st.markdown(f'<p class="xl-metric red">${public_safety_salary:,.1f}M</p>', unsafe_allow_html=True)
         st.markdown('<p class="center bold">Public Safety</p>', unsafe_allow_html=True)
 
-    with quad2:
-        # with st.container(border=True):
+    with division_category_cols[1]:
         st.markdown(f'<p class="xl-metric blue">${public_works_salary:,.1f}M</p>', unsafe_allow_html=True)
         st.markdown('<p class="center bold">Public Works</p>', unsafe_allow_html=True)
 
-    with quad3:
-        # with st.container(border=True):
+    with division_category_cols[2]:
         st.markdown(f'<p class="xl-metric green">${stronger_neighborhoods_salary:,.1f}M</p>', unsafe_allow_html=True)
         st.markdown('<p class="center bold">Stronger Neighborhoods</p>', unsafe_allow_html=True)
 
-    with quad4:
-        # with st.container(border=True):
+    with division_category_cols[3]:
         st.markdown(f'<p class="xl-metric yellow">${good_government_salary:,.1f}M</p>', unsafe_allow_html=True)
         st.markdown('<p class="center bold">Good Government</p>', unsafe_allow_html=True)
 
@@ -312,6 +320,12 @@ with st.container():
                 alt.Tooltip('Division Name'),
                 alt.Tooltip('Annual Salary', format="$,.2f")
             ]
+        ).properties(
+            title=alt.TitleParams(
+                text='Total Salaries by Division',
+                subtitle=['Fiscal Year 2025 | Source: City of Memphis'],
+                anchor='start'
+            )
         )
 
         st.altair_chart(chart, width="stretch")
@@ -322,78 +336,78 @@ st.divider()
 st.space()
 
 with st.container():
-    st.markdown('<h2 class="pt-0">Employee Overview Dashboard</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="pt-0">Employee Workforce Dashboard</h2>', unsafe_allow_html=True)
 
-    overview_col_1, overview_col_2 = st.columns(2)
+    overview_col_1, overview_col_2 = st.columns(2, gap="xlarge")
 
     with overview_col_1:
         st.markdown(
-            f"""The City of Memphis consists of {total_city_job_titles} unique job roles for its employees."""
+            f"""
+            The City of Memphis employs 8,202 individuals across {total_city_job_titles} unique job roles, supporting essential public services throughout the city.
+            
+            Salaried employees account for over 83% of the City's core full-time workforce, while part-time, hourly employees (typically in seasonal, support, or entry-level roles) make up nearly 17%.
+
+            <div class="table-row">
+                <span class="bold">Total employees</span>
+                <span>{total_city_employees:,}</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Full-time (salaried) employees</span>
+                <span>{total_salaried_employees:,}</span>
+            </div>
+            <div class="table-row" style="margin-bottom:1rem;border-bottom:none;">
+                <span class="bold">Part-time employees</span>
+                <span>{total_part_time_employees:,}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Average annual salary (full-time employees)</span>
+                <span>${average_city_salary:,.2f}</span>
+            </div>
+            <div class="table-row" style="margin-bottom:2rem;">
+                <span class="bold">Average hourly rate (part-time employees)</span>
+                <span>${average_city_hourly_pay:.2f}</span>
+            </div>
+            """, unsafe_allow_html=True
         )
-        st.markdown("<p style='font-weight: 600;margin-top:1rem;margin-bottom:0.25rem;line-height:1.0;'>Total Employees</p>", unsafe_allow_html=True)
-        st.markdown(f'<p class="xl-metric left">{total_city_employees:,}</p>', unsafe_allow_html=True)
-        st.caption("<small>Regular and part-time</small>", unsafe_allow_html=True)
+        st.caption("<small>Data as of January 28, 2025</small>", unsafe_allow_html=True)
 
     with overview_col_2:
         source = pd.DataFrame({
-            "Classification": ["Regular", "Part-Time"],
+            "Employment Type": ["Full-time", "Part-time"],
             "Value": [percent_salaried_employees, percent_part_time_employees],
             "Count": [total_salaried_employees, total_part_time_employees]
         })
 
         # Define colors
         employee_classification_color_map = {
-            "Regular": "#202124",
-            "Part-Time": "#9AA0A6"
+            "Full-time": "#202124",
+            "Part-time": "#9AA0A6"
         }
 
         pie_chart_job_category = alt.Chart(source).mark_arc().encode(
             theta="Value",
-            color=alt.Color("Classification", scale=alt.Scale(
+            color=alt.Color("Employment Type", scale=alt.Scale(
                 domain=list(employee_classification_color_map.keys()),
                 range=list(employee_classification_color_map.values())
             )),
             tooltip=[
-                "Classification",
+                "Employment Type",
                 alt.Tooltip("Count:Q", format=",", title="Count"),
                 alt.Tooltip("Value:Q", format=".1%", title="Percentage")
             ]
+        ).properties(
+            title='Employment Type Breakdown'
         )
 
         st.altair_chart(pie_chart_job_category, width="stretch")
-    
-    st.space()
-
-    high_level_summary1, high_level_summary2, high_level_summary3, high_level_summary4 = st.columns(4)
-
-    with high_level_summary1:
-        st.markdown(f'<p class="xl-metric">{total_salaried_employees:,}</p>', unsafe_allow_html=True)
-        st.markdown('<p class="center bold mb-0">Salary Employees</p>', unsafe_allow_html=True)
-        # st.caption('<p class="small-label center">All City Divisions</p>', unsafe_allow_html=True)
-
-    with high_level_summary2:
-        st.markdown(f'<p class="xl-metric">${average_city_salary:,.2f}</p>', unsafe_allow_html=True)
-        st.markdown('<p class="center bold mb-0">Average Salary</p>', unsafe_allow_html=True)
-
-    with high_level_summary3:
-        st.markdown(f'<p class="xl-metric">{total_part_time_employees:,}</p>', unsafe_allow_html=True)
-        st.markdown('<p class="center bold mb-0">Part-Time Employees</p>', unsafe_allow_html=True)
-    
-    with high_level_summary4:
-        st.markdown(f'<p class="xl-metric">${average_city_hourly_pay:.2f}</p>', unsafe_allow_html=True)
-        st.markdown('<p class="center bold mb-0">Average Hourly Rate</p>', unsafe_allow_html=True)    
 
     st.space()
-    st.space()
-
-    # Rename specific columns
-    df = df.rename(columns={'Category': 'Classification'})
 
     result = (
-        df['Classification']
+        df['Employment Type']
         .groupby(df['Division Name'])
         .value_counts()
-        .reset_index(name='Count')          # ← converts to DataFrame with columns: Division Name, Category, Count
+        .reset_index(name='Count')
     )
 
     chart = alt.Chart(result).mark_bar().encode(
@@ -408,21 +422,24 @@ with st.container():
             ),
             axis=alt.Axis(title=None, labelLimit=300)
         ),
-        color=alt.Color('Classification:N',
-            title='Classification',
+        color=alt.Color('Employment Type:N',
+            title='Employment Type',
             scale=alt.Scale(
-                domain=['Regular', 'Part-Time'],
+                domain=['Full-time', 'Part-time'],
                 range=[BLACK, GREY]
                 
             )),
-        # order=alt.Order('Category:N', sort='descending'),
         tooltip=[
             alt.Tooltip('Division Name:N', title='Division'),
-            alt.Tooltip('Category:N', title='Category'),
+            alt.Tooltip('Employment Type:N', title='Employment Type'),
             alt.Tooltip('sum(Count):Q', title='Count', format=',d')
         ]
     ).properties(
-        title='Salary vs Part-Time Employees',
+        title=alt.TitleParams(
+            text='Employee Count by Division: Full-time vs Part-time',
+            subtitle=['Fiscal Year 2025 | Source: City of Memphis'],
+            anchor='start'
+        )
     )
 
     st.altair_chart(chart, width="stretch")
