@@ -3,6 +3,7 @@ import altair as alt
 import pandas as pd
 from shared.navigation import render_navigation
 from shared.data_loader import initialize_data, get_department_summary
+from shared.colors import RED, BLUE, GREEN, YELLOW
 from config import PAGE_CONFIG
 
 
@@ -255,23 +256,23 @@ with st.container(border=True):
                 "Judicial",
             ],
             range=[
-                "#EA4335",
-                "#EA4335",
-                "#4285F4",
-                "#4285F4",
-                "#4285F4",
-                "#34A853",
-                "#34A853",
-                "#4285F4",
-                "#FBBC04",
-                "#FBBC04",
-                "#FBBC04",
-                "#FBBC04",
-                "#FBBC04",
-                "#34A853",
-                "#FBBC04",
-                "#FBBC04",
-                "#FBBC04",
+                RED,
+                RED,
+                BLUE,
+                BLUE,
+                BLUE,
+                GREEN,
+                GREEN,
+                BLUE,
+                YELLOW,
+                YELLOW,
+                YELLOW,
+                YELLOW,
+                YELLOW,
+                GREEN,
+                YELLOW,
+                YELLOW,
+                YELLOW,
             ]
         )
 
