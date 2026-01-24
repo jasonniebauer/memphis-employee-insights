@@ -234,27 +234,7 @@ with st.container(border=True):
         division_salary_totals.sort_values(by='Annual Salary', ascending=False, inplace=True)
 
         # Define colors
-        salary_color_map = {
-            "Police Services": "#202124",
-            "Fire Services": "#9AA0A6",
-            "Public Works": "#000000",
-            "Solid Waste": "#000000",
-            "General Services": "#000000",
-            "Memphis Parks": "#000000",
-            "Library Services": "#000000",
-            "City Engineering": "#000000",
-            "Executive": "#000000",
-            "Finance and Administration": "#000000",
-            "Human Resources": "#000000",
-            "Information Technology": "#000000",
-            "City Attorney": "#000000",
-            "Housing and Community Development": "#000000",
-            "City Court Clerk": "#000000",
-            "Legislative": "#000000",
-            "Judicial": "#000000",
-        }
-
-        color_scale = alt.Scale(
+        division_color_scale = alt.Scale(
             domain=[
                 "Police Services",
                 "Fire Services",
@@ -303,7 +283,7 @@ with st.container(border=True):
                 sort='-x',
                 axis=alt.Axis(title=None, labelLimit=300)
             ),
-            color=alt.Color("Division Name:N", scale=color_scale, legend=None),
+            color=alt.Color("Division Name:N", scale=division_color_scale, legend=None),
             tooltip=[
                 alt.Tooltip('Division Name'),
                 alt.Tooltip('Annual Salary', format="$,.2f")
