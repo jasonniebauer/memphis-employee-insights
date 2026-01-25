@@ -5,25 +5,6 @@ from shared.data_loader import initialize_data
 from config import PAGE_CONFIG
 
 
-# ────────────────────────────────────────────────
-# GOOGLE ANALYTICS 4 (GA4)
-MEASUREMENT_ID = "G-38Z00YDF0V"
-
-ga_script = f"""
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id={MEASUREMENT_ID}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){{dataLayer.push(arguments);}}
-  gtag('js', new Date());
-  gtag('config', '{MEASUREMENT_ID}');
-</script>
-"""
-
-# Inject invisibly (height=0 hides it)
-st.components.v1.html(ga_script, height=0, width=0)
-# ────────────────────────────────────────────────
-
 st.set_page_config(**PAGE_CONFIG)
 
 # Render navigation
