@@ -4,7 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data, get_department_summary
-from shared.colors import TURQOUISE, LIGHT_TURQOUISE, RED, BLUE, GREEN, YELLOW, LIGHT_GREY, GREY, BLACK
+from shared.colors import TEAL, LIGHT_TEAL, MEDIUM_RED, MEDIUM_BLUE, MEDIUM_GREEN, YELLOW, LIGHT_GREY, GREY, BLACK
 from config import PAGE_CONFIG
 
 
@@ -124,9 +124,9 @@ with salary_cols[1]:
 
     # Define colors
     color_map = {
-        "Public Safety": RED,
-        "Public Works": BLUE,
-        "Stronger Neighborhoods": GREEN,
+        "Public Safety": MEDIUM_RED,
+        "Public Works": MEDIUM_BLUE,
+        "Stronger Neighborhoods": MEDIUM_GREEN,
         "Good Government": YELLOW,
     }
     
@@ -217,20 +217,20 @@ with st.container():
             "Judicial",
         ],
         range=[
-            RED,
-            RED,
-            BLUE,
-            BLUE,
-            BLUE,
-            GREEN,
-            GREEN,
-            BLUE,
+            MEDIUM_RED,
+            MEDIUM_RED,
+            MEDIUM_BLUE,
+            MEDIUM_BLUE,
+            MEDIUM_BLUE,
+            MEDIUM_GREEN,
+            MEDIUM_GREEN,
+            MEDIUM_BLUE,
             YELLOW,
             YELLOW,
             YELLOW,
             YELLOW,
             YELLOW,
-            GREEN,
+            MEDIUM_GREEN,
             YELLOW,
             YELLOW,
             YELLOW,
@@ -356,7 +356,7 @@ chart = alt.Chart(result).mark_bar().encode(
         title='Employment Type',
         scale=alt.Scale(
             domain=['Full-time', 'Part-time'],
-            range=[TURQOUISE, LIGHT_TURQOUISE]
+            range=[TEAL, LIGHT_TEAL]
             
         )),
     tooltip=[
