@@ -30,7 +30,7 @@ def render_navigation():
         }
         
         a[href=""]:hover {
-            background: #9AA0A6 !important;        
+            background: #0097A7 !important; /* #9AA0A6 */      
         }
         a[href="public-safety"]:hover {
             background: #EA4335 !important;
@@ -72,6 +72,7 @@ def render_navigation():
         
         st.markdown("---")
         st.caption("Last updated: January 2026")
+        # st.caption("<small>Data as of January 28, 2025</small>", unsafe_allow_html=True)
         st.markdown(
             '<h6>Made by <a href="https://jasonniebauer.com" style="text-decoration:underline;">Jason Niebauer</a></h6>',
             unsafe_allow_html=True,
