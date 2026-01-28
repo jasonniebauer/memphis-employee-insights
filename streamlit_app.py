@@ -52,6 +52,12 @@ st.markdown(
         background: #80DEEA !important;
         color: #202124 !important;
     }
+
+    /* Override Badge colors */
+    span.stMarkdownBadge {
+        background-color: #80DEEA !important;
+        color: #202124 !important;
+    }
     </style>
     """, unsafe_allow_html=True)
 
@@ -468,32 +474,38 @@ st.space()
 
 st.markdown('### Employees by Division Category')
 
-employment_type_division_category_cols = st.columns(2, gap="xlarge")
+employees_by_division_category_cols = st.columns(2, gap="xlarge")
 
-with employment_type_division_category_cols[0]:
+with employees_by_division_category_cols[0]:
+    st.badge(
+        "Public Safety Dominates the Memphis Workforce",
+        icon=":material/local_police:"
+    )
+    
     st.markdown(
         """
-        Public Safety accounts for more than 54% of all employees for the city.
+        Public Safety (including Police, Fire, and related services) accounts for more than 54% of all City of Memphis employees, making it by far the largest workforce category. This reflects the city's significant investment in law enforcement, emergency response, and public protection. These areas often require higher headcounts due to 24/7 operations and shift-based staffing.
         """
     )
 
     st.space()
 
-    st.metric(
-        label="Public Safety Employees",
-        # value=f"{public_safety_employee_percentage:.1f}%",
-        value="4,466",
-        # delta="Largest Division Category",
-        delta=None,
-    )
+    employees_by_division_category_summary_cols = st.columns(2)
 
-    st.metric(
-        label="Public Safety Percent of City Employees",
-        value="54.5%",
-        delta=None,
-    )
+    with employees_by_division_category_summary_cols[0]:
+        st.metric(
+            label="Public Safety Employees",
+            value="4,466",  
+            delta=None,
+        )
+    with employees_by_division_category_summary_cols[1]:
+        st.metric(
+            label="Percent of City Employees",
+            value=f"{public_safety_employee_percentage*100:.1f}%",
+            delta=None,
+        )
 
-with employment_type_division_category_cols[1]:
+with employees_by_division_category_cols[1]:
     chart = alt.Chart(counts_df).mark_bar(color=TEAL).encode(
         x=alt.X(
             'Division Category',
@@ -611,7 +623,6 @@ with employement_division_cols[2]:
         value=f"{divison_employee_percentage:.1f}%",
         delta="Largest Part-time Division"
     )
-
 
 st.space()
 # st.space()
