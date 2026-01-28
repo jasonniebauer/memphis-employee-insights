@@ -6,6 +6,9 @@ from shared.data_loader import initialize_data
 from config import PAGE_CONFIG
 
 
+##################################################
+# Page initialization and setup
+##################################################
 st.set_page_config(**PAGE_CONFIG)
 
 # Render navigation
@@ -29,8 +32,13 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+##################################################
+# Data Preparation and Processing
+##################################################
 
-# Main content
+##################################################
+# UI Content
+##################################################
 st.space()
 st.info(
     'Building Better Transparency: Under Active Development – Check Back for More Soon!',
