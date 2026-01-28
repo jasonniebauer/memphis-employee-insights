@@ -8,6 +8,9 @@ from shared.colors import TEAL, LIGHT_TEAL, MEDIUM_RED, MEDIUM_BLUE, MEDIUM_GREE
 from config import PAGE_CONFIG
 
 
+##################################################
+# Page initialization and setup
+##################################################
 st.set_page_config(**PAGE_CONFIG)
 
 # Render navigation sidebar
@@ -47,7 +50,10 @@ st.markdown(
     </style>
     """, unsafe_allow_html=True)
 
-#--------------------------------------------------------
+##################################################
+# Data Preparation and Processing
+##################################################
+
 #
 total_divisions = df['Division Name'].nunique()
 
@@ -80,9 +86,11 @@ percent_part_time_employees = total_part_time_employees / total_city_employees
 
 # Calculating the sum of all Salaries in each Division
 division_salary_totals = pd.DataFrame(df.groupby('Division Category')['Annual Salary'].sum()).reset_index()
-#--------------------------------------------------------
 
-# Main content
+##################################################
+# UI Content
+##################################################
+
 st.space()
 st.info(
     'Building Better Transparency: Under Active Development – Check Back for More Soon!',
