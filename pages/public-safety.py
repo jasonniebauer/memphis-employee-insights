@@ -30,6 +30,10 @@ st.markdown("""
 
 # Main content
 st.space()
+st.info(
+    'Building Better Transparency: Under Active Development – Check Back for More Soon!',
+    icon=":material/build:"
+)
 st.title("Public Safety")
 st.markdown("### Police, Fire, and Emergency Services")
 

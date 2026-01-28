@@ -32,5 +32,9 @@ st.markdown("""
 
 # Main content
 st.space()
+st.info(
+    'Building Better Transparency: Under Active Development – Check Back for More Soon!',
+    icon=":material/build:"
+)
 st.title("Good Government")
 st.markdown("### Administration, Finance, HR, IT, Legal, and Governance")
