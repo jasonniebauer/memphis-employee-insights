@@ -2,7 +2,7 @@
 # Centralized/Shared Configuration
 # ================================
 PAGE_CONFIG = {
-    "page_title": "City of Memphis Employee Salaries",
+    "page_title": "City of Memphis Employee Insights",
     "page_icon": ":chart_with_upwards_trend:",
     "layout": "wide",
     "initial_sidebar_state": "expanded"

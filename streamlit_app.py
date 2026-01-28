@@ -88,7 +88,7 @@ st.info(
     'This site is currently under construction. Stay tuned!',
     icon=":material/build:"
 )
-st.title("City of Memphis Employee Salaries")
+st.title("City of Memphis Employee Insights")
 st.caption("Payroll Snapshot - January 28, 2025")
 
 """
