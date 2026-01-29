@@ -763,8 +763,6 @@ with employement_division_cols[0]:
         Police Services leads the full-time workforce, accounting for nearly 36% of all salaried City of Memphis employees. This reflects the need for stable staff in law enforcement roles. In contrast, Memphis Parks dominates the part-time/hourly workforce, representing more than 46% of all part-time employees. Seasonal or flexible roles (such as lifeguards, park attendants, recreation staff, and event support) likely drive this concentration.
 
         Notably, three divisions have zero part-time or hourly employees: City Attorney, Legislative, and Judicial. These functions typically rely exclusively on full-time, salaried positions.
-
-        This breakdown shows how divisions balance staffing: public safety favors full-time stability, while parks and recreation lean on part-time flexibility for peak-season needs.
         """
     )
 
