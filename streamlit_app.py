@@ -213,6 +213,7 @@ employment_type_by_division_category = (
     .groupby(df['Division Category'])
     .value_counts()
     .reset_index(name='Count')
+    .sort_values(by='Count', ascending=False)
 )
 
 # RESUSABLE SNIPPET - utils.py
@@ -238,6 +239,9 @@ result = (
     .value_counts()
     .reset_index(name='Count')
 )
+
+#
+employees_by_division = df.groupby('Division Name').size().reset_index(name="Count").sort_values(by='Count', ascending=False)
 
 ##################################################
 # UI Content
@@ -299,7 +303,6 @@ with salary_cols[1]:
             domain=list(color_map.keys()),
             range=list(color_map.values())
         )),
-        # order=alt.Order("Annual Salary", sort="descending"),
         tooltip=[
             alt.Tooltip("Division Category:N", title="Category"),
             alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Total Salary"),
@@ -382,7 +385,7 @@ with st.container():
         x=alt.X('Annual Salary', axis=alt.Axis(title='Annual Salary Total', format='$,s')),
         y=alt.Y(
             'Division Name',
-            sort='-x',
+            sort=None,
             axis=alt.Axis(title=None, labelLimit=300)
         ),
         color=alt.Color("Division Name:N", scale=division_color_scale, legend=None),
@@ -457,7 +460,7 @@ with overview_col_2:
         )),
         tooltip=[
             "Employment Type",
-            alt.Tooltip("Count:Q", format=",", title="Count"),
+            alt.Tooltip("Count:Q", format=",", title="Employees"),
             alt.Tooltip("Value:Q", format=".1%", title="Percentage")
         ]
     )
@@ -507,13 +510,17 @@ with employees_by_division_category_cols[1]:
         x=alt.X(
             'Division Category',
             axis=alt.Axis(labelAngle=0),  # Rotate labels
-            sort='-y',  # Sort in descending order
+            sort=None,
             title=None,
         ),
         y=alt.Y(
             'Total Employees',
             axis=alt.Axis(format=',d'),  # Format numbers with comma 
-        )
+        ),
+        tooltip=[
+            alt.Tooltip("Division Category:N", title="Category"),
+            alt.Tooltip("Total Employees:Q", format=",d", title="Employees")
+        ]
     )
     st.altair_chart(chart)
 
@@ -535,7 +542,7 @@ with employment_type_by_division_category_cols[1]:
     st.metric(
         label=":material/local_police: Public Safety",
         value=f"{public_safety_full_time_employee_percentage:.1f}%",
-        delta="Largest Full-time Category"
+        delta="Largest Full-time Division Category"
     )
 
     st.space()
@@ -543,7 +550,7 @@ with employment_type_by_division_category_cols[1]:
     st.metric(
         label=':material/psychiatry: Stronger Neighborhoods',
         value=f"{stronger_neighborhoods_part_time_employee_percentage:.1f}%",
-        delta="Largest Part-time Category"
+        delta="Largest Part-time Division Category"
     )
 
 st.space()
@@ -552,18 +559,14 @@ employment_type_by_division_category_chart = alt.Chart(employment_type_by_divisi
     x=alt.X(
         'Division Category:N',
         axis=alt.Axis(labelAngle=0),  # Rotate labels
-        sort=alt.EncodingSortField(
-            field='Count',
-            op='sum',
-            order='descending'
-        ),
+        sort=None,
         title=None,
     ),
     y=alt.Y(
         'sum(Count):Q',
         axis=alt.Axis(
             format=',d',
-            title='Number of Employees',
+            title='Total Employees',
         ),
         
     ),
@@ -591,7 +594,7 @@ employment_type_by_division_category_chart = alt.Chart(employment_type_by_divisi
     tooltip=[
         alt.Tooltip('Division Category:N', title='Category'),
         alt.Tooltip('Employment Type:N', title='Employment Type'),
-        alt.Tooltip('sum(Count):Q', title='Count', format=',d')
+        alt.Tooltip('sum(Count):Q', title='Employees', format=',d')
     ]
 ).properties(
     title=alt.TitleParams(
@@ -602,6 +605,162 @@ employment_type_by_division_category_chart = alt.Chart(employment_type_by_divisi
 )
 
 st.altair_chart(employment_type_by_division_category_chart, width="stretch")
+
+st.space()
+
+st.markdown('### Employees by Division')
+
+new_cols = st.columns(2, gap="xlarge")
+
+with new_cols[0]:
+    st.badge(
+        "Police and Fire Lead City Workforce Headcount",
+        icon=":material/local_police:"
+    )
+    
+    st.markdown(
+        """
+        More than 1/3 (over 33%) of all City of Memphis employees work in Police Services, the single largest division by headcount. Fire Services follows closely, representing more than 1/5 (over 20%) of the total workforce. Together, these two core public safety functions account for a majority of city staffing, reflecting the priority on law enforcement, emergency response, and round-the-clock protection needs.
+        """
+    )
+
+    employees_by_division_chart = alt.Chart(employees_by_division).mark_bar(color=TEAL).encode(
+        x=alt.X(
+            'Count',
+            title='Total Employees'
+        ),
+        y=alt.Y(
+            'Division Name',
+            sort=None,
+            axis=alt.Axis(title=None, labelLimit=300)
+        ),
+        tooltip=[
+            alt.Tooltip('Division Name:N', title='Division'),
+            alt.Tooltip('Count:Q', title='Total Employees', format=',d')
+        ]
+    ).properties(
+        title=alt.TitleParams(
+            text='Employees by Division',
+            subtitle=['Fiscal Year 2025 | Source: City of Memphis'],
+            anchor='start'
+        )
+    )
+
+    st.altair_chart(
+        employees_by_division_chart,
+        use_container_width=True
+    )
+
+with new_cols[1]:
+    st.markdown(
+        f"""
+        <div class="table-row">
+            <span class="bold">Division</span>
+            <span class="bold">Percent of Memphis Workforce</span>
+        </div>
+        <div class="table-row">
+            <span>Police Services</span>
+            <span>33.1%</span>
+        </div>
+        <div class="table-row"">
+            <span>Fire Services</span>
+            <span>21.3%</span>
+        </div>
+        <div class="table-row">
+            <span>Memphis Parks</span>
+            <span>10.6%</span>
+        </div>
+        <div class="table-row">
+            <span>Public Works</span>
+            <span>9.4%</span>
+        </div>
+        <div class="table-row">
+            <span>Solid Waste</span>
+            <span>7.0%</span>
+        </div>
+        <div class="table-row">
+            <span>General Services</span>
+            <span>3.8%</span>
+        </div>
+        <div class="table-row">
+            <span>Library Services</span>
+            <span>3.8%</span>
+        </div>
+        <div class="table-row">
+            <span>Executive</span>
+            <span>2.7%</span>
+        </div>
+        <div class="table-row">
+            <span>City Engineering</span>
+            <span>1.8%</span>
+        </div>
+        <div class="table-row">
+            <span>Human Resource</span>
+            <span>1.5%</span>
+        </div>
+        <div class="table-row">
+            <span>Finance and Administration</span>
+            <span>1.4%</span>
+        </div>
+        <div class="table-row">
+            <span>Housing and Community Development</span>
+            <span>0.8%</span>
+        </div>
+        <div class="table-row">
+            <span>Information Technology</span>
+            <span>0.8%</span>
+        </div>
+        <div class="table-row">
+            <span>City Court Clerk</span>
+            <span>0.8%</span>
+        </div>
+        <div class="table-row">
+            <span>City Attorney</span>
+            <span>0.7%</span>
+        </div>
+        <div class="table-row">
+            <span>Legislative</span>
+            <span>0.4%</span>
+        </div>
+        <div class="table-row">
+            <span>Judicial</span>
+            <span>0.1%</span>
+        </div>
+        <div class="table-row">
+            <span class="bold">Total</span>
+            <span class="bold">100%</span>
+        </div>
+        """, unsafe_allow_html=True
+    )
+
+st.space()
+
+# employees_by_division_chart = alt.Chart(employees_by_division).mark_bar(color=TEAL).encode(
+#     x=alt.X(
+#         'Count',
+#         title='Total Employees'
+#     ),
+#     y=alt.Y(
+#         'Division Name',
+#         sort=None,
+#         axis=alt.Axis(title=None, labelLimit=300)
+#     ),
+#     tooltip=[
+#         alt.Tooltip('Division Name:N', title='Division'),
+#         alt.Tooltip('Count:Q', title='Total Employees', format=',d')
+#     ]
+# ).properties(
+#     title=alt.TitleParams(
+#         text='Employees by Division',
+#         subtitle=['Fiscal Year 2025 | Source: City of Memphis'],
+#         anchor='start'
+#     )
+# )
+
+# st.altair_chart(
+#     employees_by_division_chart,
+#     use_container_width=True
+# )
 
 st.space()
 
