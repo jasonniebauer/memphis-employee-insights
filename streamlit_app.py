@@ -284,7 +284,7 @@ with salary_cols[0]:
         Within every category, divisions share common leadership and bring together employees who perform similar work to support the community effectively.
         """
     )
-    st.markdown("<p style='font-weight: 600;margin-top:1rem;margin-bottom:0.25rem;line-height:1.0;'>Total Salaries of All Divisions</p>", unsafe_allow_html=True)
+    st.markdown("<p style='font-weight: 600;margin-top:1rem;margin-bottom:0.25rem;line-height:1.0;'>Total Salaries of Memphis Workforce</p>", unsafe_allow_html=True)
     st.markdown(f'<p class="xl-metric left">${total_city_salaries_formatted:,.1f}M<span style="font-size:18px;vertical-align:top;margin-left:0.2rem;">*</span></p>', unsafe_allow_html=True)
     st.caption("<small class='center' style='margin-top:0;line-height:1.0;'>* Does not include part-time, hourly payroll</small>", unsafe_allow_html=True)
 
