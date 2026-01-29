@@ -755,26 +755,32 @@ st.space()
 
 st.markdown('### Employment Type by Division')
 
-employement_division_cols = st.columns(3)
+employement_division_cols = st.columns(2, gap="xlarge")
 
 with employement_division_cols[0]:
-    st.metric(
-        label=division,
-        value=f"{divison_employee_percentage:.1f}%",
-        delta="Largest Employment Division"
+    st.markdown(
+        """
+        Police Services leads the full-time workforce, accounting for nearly 36% of all salaried City of Memphis employees. This reflects the need for stable staff in law enforcement roles. In contrast, Memphis Parks dominates the part-time/hourly workforce, representing more than 46% of all part-time employees. Seasonal or flexible roles (such as lifeguards, park attendants, recreation staff, and event support) likely drive this concentration.
+
+        Notably, three divisions have zero part-time or hourly employees: City Attorney, Legislative, and Judicial. These functions typically rely exclusively on full-time, salaried positions.
+
+        This breakdown shows how divisions balance staffing: public safety favors full-time stability, while parks and recreation lean on part-time flexibility for peak-season needs.
+        """
     )
 
 with employement_division_cols[1]:
     st.metric(
-        label=division,
+        label=f":material/local_police: Police Services",
+        # value=f"{divison_employee_percentage:.1f}%",
         value=f"{police_services_full_time_employee_percentage:.1f}%",
         delta="Largest Full-time Division"
     )
 
-with employement_division_cols[2]:
+    st.space()
+
     st.metric(
-        label="Memphis Parks",
-        value=f"{divison_employee_percentage:.1f}%",
+        label=":material/park: Memphis Parks",
+        value="46.2%",
         delta="Largest Part-time Division"
     )
 
