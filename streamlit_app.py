@@ -276,17 +276,18 @@ st.markdown('<h2 class="pt-0">Salaries by Division Category</h2>', unsafe_allow_
 salary_cols = st.columns(2, gap="xlarge")
 
 with salary_cols[0]:
-    # st.markdown('<p class="bold">Salary Distribution by Division Category</p>', unsafe_allow_html=True)
     st.markdown(
         """
-        City of Memphis employees are organized into four primary categories, each encompassing multiple divisions that deliver related public services, operations, or administrative functions.
+        City of Memphis employees are organized into four primary categories: Public Safety, Public Works, Stronger Neighborhoods, and Good Government. Each category groups related divisions that deliver similar public services, operations, or administrative functions under shared leadership to support the community efficiently.
         
-        Within every category, divisions share common leadership and bring together employees who perform similar work to support the community effectively.
+        Public Safety accounts for more than 66% of the total salaries across the Memphis workforce. This dominant share reflects the high personnel demands of law enforcement, fire services, and emergency response, including shift-based staffing and overtime.
         """
     )
     st.markdown("<p style='font-weight: 600;margin-top:1rem;margin-bottom:0.25rem;line-height:1.0;'>Total Salaries of Memphis Workforce</p>", unsafe_allow_html=True)
     st.markdown(f'<p class="xl-metric left">${total_city_salaries_formatted:,.1f}M<span style="font-size:18px;vertical-align:top;margin-left:0.2rem;">*</span></p>', unsafe_allow_html=True)
     st.caption("<small class='center' style='margin-top:0;line-height:1.0;'>* Does not include part-time, hourly payroll</small>", unsafe_allow_html=True)
+
+st.space()
 
 with salary_cols[1]:
     # Define colors
