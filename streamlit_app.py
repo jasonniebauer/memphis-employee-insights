@@ -570,17 +570,6 @@ employment_type_by_division_category_chart = alt.Chart(employment_type_by_divisi
         ),
         
     ),
-    # x=alt.X('sum(Count):Q',
-    #     axis=alt.Axis(format=',d', title='Number of Employees')
-    # ),
-    # y=alt.Y('Division Category:N',
-    #     sort=alt.EncodingSortField(
-    #         field='Count',
-    #         op='sum',
-    #         order='descending'
-    #     ),
-    #     axis=alt.Axis(title=None, labelLimit=300)
-    # ),
     # Sort the segments within each bar by the 'Employment Type' field in descending order
     order=alt.Order('Employment Type', sort='ascending'),
     color=alt.Color('Employment Type:N',
@@ -617,7 +606,7 @@ with new_cols[0]:
         "Police and Fire Lead City Workforce Headcount",
         icon=":material/local_police:"
     )
-    
+
     st.markdown(
         """
         More than 1/3 (over 33%) of all City of Memphis employees work in Police Services, the single largest division by headcount. Fire Services follows closely, representing more than 1/5 (over 20%) of the total workforce. Together, these two core public safety functions account for a majority of city staffing, reflecting the priority on law enforcement, emergency response, and round-the-clock protection needs.
