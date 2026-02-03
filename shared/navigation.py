@@ -1,7 +1,7 @@
 import streamlit as st
 
 
-LOGO_URL = "https://files.catbox.moe/eu60ff.png"
+LOGO_URL = "https://i.imgur.com/iUhtm5p.png"
 
 def render_navigation():
     """Render consistent navigation sidebar across all pages"""
