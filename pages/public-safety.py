@@ -52,6 +52,33 @@ with st.spinner('Loading data and calculations...'):
     st.title("Public Safety")
     st.markdown("### Police, Fire, and Emergency Services")
 
+    st.markdown(
+        """
+        **To do:**
+        - SECTION: Salaries by Division Category / Divisions
+            - Total Salary of Public Safety Workforce
+            - Total Salaries by Division
+            - Employee Workforce
+                - Total full-time vs part-time employees across division category
+                - Total employee breakdown by division
+                - Percent of workforce by division
+        - SECTION: Police Services
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        - SECTION: Fire Services
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        """
+    )
+
     # # Filter to public safety departments
     # safety_depts = ['Police', 'Fire', 'EMS', '911 Communications']
     # safety_df = df[df['department'].isin(safety_depts)]
