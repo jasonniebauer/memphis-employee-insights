@@ -248,6 +248,7 @@ employees_by_division = df.groupby('Division Name').size().reset_index(name="Cou
 ##################################################
 
 st.space()
+
 with st.spinner('Loading data and calculations...'):
     st.info(
         'Building Better Transparency: Under Active Development – Check Back for More Soon!',
