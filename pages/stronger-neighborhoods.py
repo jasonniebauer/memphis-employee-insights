@@ -52,3 +52,37 @@ with st.spinner('Loading data and calculations...'):
     )
     st.title("Stronger Neighborhoods")
     st.markdown("### Parks, Libraries, and Housing & Community Development")
+
+    st.markdown(
+        """
+        **To do:**
+        - SECTION: Salaries by Division Category / Divisions
+            - Total Salary of Stronger Neighborhoods Workforce
+            - Total Salaries by Division
+            - Employee Workforce
+                - Total full-time vs part-time employees across division category
+                - Total employee breakdown by division
+                - Percent of workforce by division
+        - SECTION: Parks
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        - SECTION: Libraries
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        - SECTION: Housing & Community Development
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        """
+    )
