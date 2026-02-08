@@ -42,10 +42,12 @@ st.markdown("""
 # Get data from session state
 df = initialize_data()
 
-# Public Safety divisions
-public_safety_divisions = ['Police Services', 'Fire Services']
-# Filter DataFrame to Public Safety divisions
-df = df[df['Division Name'].isin(public_safety_divisions)]
+# # Public Safety divisions
+# public_safety_divisions = ['Police Services', 'Fire Services']
+# # Filter DataFrame to Public Safety divisions
+# df = df[df['Division Name'].isin(public_safety_divisions)]
+
+df = df[df['Division Category'] == 'Public Safety']
 
 # Calculating the sum of all salaries in each division
 division_salary_totals = pd.DataFrame(
