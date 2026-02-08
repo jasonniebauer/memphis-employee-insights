@@ -77,7 +77,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
     st.space()
     st.divider()
@@ -91,7 +91,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
     st.space()
     st.divider()
@@ -105,7 +105,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
     st.space()
     st.divider()
@@ -119,7 +119,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
     st.space()
     st.divider()
@@ -133,7 +133,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
     # st.markdown(
     #     """
