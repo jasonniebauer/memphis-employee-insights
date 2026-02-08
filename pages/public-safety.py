@@ -42,17 +42,17 @@ st.markdown("""
 # Get data from session state
 df = initialize_data()
 
-# Public safety divisions
+# Public Safety divisions
 public_safety_divisions = ['Police Services', 'Fire Services']
 # Filter DataFrame to Public Safety divisions
 df = df[df['Division Name'].isin(public_safety_divisions)]
 
-# Calculating the sum of all Salaries in each Division Category
+# Calculating the sum of all salaries in each division
 division_salary_totals = pd.DataFrame(
     df.groupby('Division Name')['Annual Salary'].sum()
 ).reset_index()
 
-# Sort Division Categories by the sum of all Salaries in descending order
+# Sort divisions by the sum of all salaries in descending order
 division_salary_totals.sort_values(
     by='Annual Salary',
     ascending=False,
