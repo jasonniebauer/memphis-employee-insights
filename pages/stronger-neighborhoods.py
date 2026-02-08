@@ -4,6 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.colors import MEDIUM_GREEN, LIGHT_GREEN
 
 
 ##################################################
@@ -42,7 +43,7 @@ st.markdown("""
 df = initialize_data()
 
 # Filter DataFrame to Stronger Neighborhood divisions
-df = df[df['Division Category'] == 'Stronger Neighborhood']
+df = df[df['Division Category'] == 'Stronger Neighborhoods']
 
 # Calculating the sum of all salaries in each division
 division_salary_totals = pd.DataFrame(
@@ -84,7 +85,26 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        chart = alt.Chart(division_salary_totals).mark_bar(color=MEDIUM_GREEN).encode(
+            x=alt.X(
+                'Division Name',
+                axis=alt.Axis(labelAngle=0),  # Rotate labels
+                sort=None,
+                title=None,
+            ),
+            y=alt.Y(
+                'Annual Salary',
+                axis=alt.Axis(
+                    title='Annual Salary Total',
+                    format='$,s'  # Format numbers
+                ),
+            ),
+            tooltip=[
+                alt.Tooltip("Division Name:N", title="Division"),
+                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries")
+            ]
+        )
+        st.altair_chart(chart)
 
     st.space()
     st.divider()
@@ -126,7 +146,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        chart = alt.Chart(division_salary_totals).mark_bar(color=MEDIUM_RED).encode(
+        chart = alt.Chart(division_salary_totals).mark_bar(color=MEDIUM_GREEN).encode(
             x=alt.X(
                 'Division Name',
                 axis=alt.Axis(labelAngle=0),  # Rotate labels
