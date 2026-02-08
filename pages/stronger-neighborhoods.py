@@ -65,36 +65,78 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR PIE CHART]")
 
-    st.markdown(
-        """
-        **To do:**
-        - SECTION: Salaries by Division Category / Divisions
-            - Total Salary of Stronger Neighborhoods Workforce
-            - Total Salaries by Division
-            - Employee Workforce
-                - Total full-time vs part-time employees across division category
-                - Total employee breakdown by division
-                - Percent of workforce by division
-        - SECTION: Parks
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - SECTION: Libraries
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - SECTION: Housing & Community Development
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        """
-    )
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">Memphis Parks</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">Libraries</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">Housing and Community Development</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    # st.markdown(
+    #     """
+    #     **To do:**
+    #     - SECTION: Salaries by Division Category / Divisions
+    #         - Total Salary of Stronger Neighborhoods Workforce
+    #         - Total Salaries by Division
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees across division category
+    #             - Total employee breakdown by division
+    #             - Percent of workforce by division
+    #     - ~~SECTION: Memphis Parks~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: Libraries~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: Housing & Community Development~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     """
+    # )
