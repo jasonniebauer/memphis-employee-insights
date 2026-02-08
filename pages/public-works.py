@@ -105,32 +105,6 @@ with st.spinner('Loading data and calculations...'):
             ]
         )
         st.altair_chart(chart)
-        # # Define colors
-        # color_map = {
-        #     'Public Works': BLUE,
-        #     'Solid Waste': MEDIUM_BLUE,
-        #     'General Services': '#64B5F6',
-        #     'City Engineering': LIGHT_BLUE,
-        # }
-
-        # pie_chart_job_category = alt.Chart(division_salary_totals).mark_arc().encode(
-        #     theta="Annual Salary:Q",
-        #     color=alt.Color(
-        #         "Division Name:N",
-        #         title="Division",
-        #         scale=alt.Scale(
-        #             domain=list(color_map.keys()),
-        #             range=list(color_map.values())
-        #         )
-        #     ),
-        #     tooltip=[
-        #         "Division Name",
-        #         alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries"),
-        #         alt.Tooltip("Percentage:Q", format=".1%", title="Percentage")
-        #     ]
-        # )
-
-        # st.altair_chart(pie_chart_job_category, width="stretch")
 
     st.space()
     st.divider()
