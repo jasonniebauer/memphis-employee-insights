@@ -1,8 +1,10 @@
 import streamlit as st
+import altair as alt
 import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.colors import BLUE, MEDIUM_BLUE, LIGHT_BLUE
 
 
 ##################################################
@@ -21,9 +23,6 @@ render_navigation()
 # Render reusable styles
 render_reusable_styles()
 
-# Get data from session state
-df = initialize_data()
-
 # Page-specific CSS (only runs here on page)
 st.markdown("""
 <style>
@@ -39,6 +38,29 @@ st.markdown("""
 ##################################################
 # Data Preparation
 ##################################################
+
+# Get data from session state
+df = initialize_data()
+
+# Filter DataFrame to Good Government divisions
+df = df[df['Division Category'] == 'Public Works']
+
+# Calculating the sum of all salaries in each division
+division_salary_totals = pd.DataFrame(
+    df.groupby('Division Name')['Annual Salary'].sum()
+).reset_index()
+
+# Sort divisions by the sum of all salaries in descending order
+division_salary_totals.sort_values(
+    by='Annual Salary',
+    ascending=False,
+    inplace=True
+)
+
+# Calculate division salary percentage of total
+division_salary_totals['Percentage'] = (
+    division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
+)
 
 ##################################################
 # UI Content
@@ -63,7 +85,32 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        # Define colors
+        color_map = {
+            'Public Works': BLUE,
+            'Solid Waste': MEDIUM_BLUE,
+            'General Services': '#64B5F6',
+            'City Engineering': LIGHT_BLUE,
+        }
+
+        pie_chart_job_category = alt.Chart(division_salary_totals).mark_arc().encode(
+            theta="Annual Salary:Q",
+            color=alt.Color(
+                "Division Name:N",
+                title="Division",
+                scale=alt.Scale(
+                    domain=list(color_map.keys()),
+                    range=list(color_map.values())
+                )
+            ),
+            tooltip=[
+                "Division Name",
+                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries"),
+                alt.Tooltip("Percentage:Q", format=".1%", title="Percentage")
+            ]
+        )
+
+        st.altair_chart(pie_chart_job_category, width="stretch")
 
     st.space()
     st.divider()
