@@ -1,7 +1,10 @@
 import streamlit as st
+import altair as alt
+import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.colors import MEDIUM_RED, LIGHT_RED
 
 
 ##################################################
@@ -20,9 +23,6 @@ render_navigation()
 # Render reusable styles
 render_reusable_styles()
 
-# Get data from session state
-df = initialize_data()
-
 # Page-specific CSS (only runs here on page)
 st.markdown("""
 <style>
@@ -39,59 +39,34 @@ st.markdown("""
 # Data Preparation
 ##################################################
 
+# Get data from session state
+df = initialize_data()
+
+# Public safety divisions
+public_safety_divisions = ['Police Services', 'Fire Services']
+# Filter DataFrame to Public Safety divisions
+df = df[df['Division Name'].isin(public_safety_divisions)]
+
+# Calculating the sum of all Salaries in each Division Category
+division_salary_totals = pd.DataFrame(
+    df.groupby('Division Name')['Annual Salary'].sum()
+).reset_index()
+
+# Sort Division Categories by the sum of all Salaries in descending order
+division_salary_totals.sort_values(
+    by='Annual Salary',
+    ascending=False,
+    inplace=True
+)
+
+# Calculate division salary percentage of total
+division_salary_totals['Percentage'] = (
+    division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
+)
+
 ##################################################
 # UI Content
 ##################################################
-
-# # Filter to public safety departments
-# safety_depts = ['Police', 'Fire', 'EMS', '911 Communications']
-# safety_df = df[df['department'].isin(safety_depts)]
-
-# # Sidebar filters (page-specific)
-# with st.sidebar:
-#     st.markdown("---")
-#     st.subheader("Department Filters")
-#     selected_depts = st.multiselect(
-#         "Select Departments",
-#         # safety_depts,
-#         # default=safety_depts,
-#         df,
-#         default=df,
-#         # key="safety_dept_filter"
-#     )
-
-# # Apply filters
-# if selected_depts:
-#     safety_df = safety_df[safety_df['department'].isin(selected_depts)]
-
-# # Metrics
-# col1, col2, col3 = st.columns(3)
-
-# with col1:
-#     st.metric("Total Employees", f"{len(safety_df):,}")
-
-# with col2:
-#     avg_salary = safety_df['salary'].mean()
-#     st.metric("Average Salary", f"${avg_salary:,.0f}")
-
-# with col3:
-#     total_cost = safety_df['salary'].sum()
-#     st.metric("Total Cost", f"${total_cost/1e6:.1f}M")
-
-# # Department breakdown
-# st.subheader("By Department")
-# dept_stats = safety_df.groupby('department').agg({
-#     'salary': ['count', 'mean', 'median']
-# }).round(0)
-# st.dataframe(dept_stats, use_container_width=True)
-
-# # Detailed data
-# with st.expander("View Employee Details"):
-#     st.dataframe(
-#         safety_df[['name', 'department', 'title', 'salary']].head(100),
-#         use_container_width=True,
-#         height=400
-#     )
 
 st.space()
 
@@ -113,7 +88,30 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        # Define colors
+        color_map = {
+            "Police Services": MEDIUM_RED,
+            "Fire Services": LIGHT_RED
+        }
+
+        pie_chart_job_category = alt.Chart(division_salary_totals).mark_arc().encode(
+            theta="Annual Salary:Q",
+            color=alt.Color(
+                "Division Name:N",
+                title="Division",
+                scale=alt.Scale(
+                    domain=list(color_map.keys()),
+                    range=list(color_map.values())
+                )
+            ),
+            tooltip=[
+                "Division Name",
+                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries"),
+                alt.Tooltip("Percentage:Q", format=".1%", title="Percentage")
+            ]
+        )
+
+        st.altair_chart(pie_chart_job_category, width="stretch")
     
     st.space()
     st.divider()
