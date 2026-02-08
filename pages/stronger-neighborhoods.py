@@ -1,4 +1,5 @@
 import streamlit as st
+import altair as alt
 import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
@@ -21,9 +22,6 @@ render_navigation()
 # Render reusable styles
 render_reusable_styles()
 
-# Get data from session state
-df = initialize_data()
-
 # Page-specific CSS (only runs here on page)
 st.markdown("""
 <style>
@@ -39,6 +37,29 @@ st.markdown("""
 ##################################################
 # Data Preparation
 ##################################################
+
+# Get data from session state
+df = initialize_data()
+
+# Filter DataFrame to Stronger Neighborhood divisions
+df = df[df['Division Category'] == 'Stronger Neighborhood']
+
+# Calculating the sum of all salaries in each division
+division_salary_totals = pd.DataFrame(
+    df.groupby('Division Name')['Annual Salary'].sum()
+).reset_index()
+
+# Sort divisions by the sum of all salaries in descending order
+division_salary_totals.sort_values(
+    by='Annual Salary',
+    ascending=False,
+    inplace=True
+)
+
+# Calculate division salary percentage of total
+division_salary_totals['Percentage'] = (
+    division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
+)
 
 ##################################################
 # UI Content
@@ -105,7 +126,26 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        chart = alt.Chart(division_salary_totals).mark_bar(color=MEDIUM_RED).encode(
+            x=alt.X(
+                'Division Name',
+                axis=alt.Axis(labelAngle=0),  # Rotate labels
+                sort=None,
+                title=None,
+            ),
+            y=alt.Y(
+                'Annual Salary',
+                axis=alt.Axis(
+                    title='Annual Salary Total',
+                    format='$,s'  # Format numbers
+                ),
+            ),
+            tooltip=[
+                alt.Tooltip("Division Name:N", title="Division"),
+                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries")
+            ]
+        )
+        st.altair_chart(chart)
 
     # st.markdown(
     #     """
