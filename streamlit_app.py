@@ -389,13 +389,26 @@ with st.spinner('Loading data and calculations...'):
         )
 
         chart = alt.Chart(division_salary_totals).mark_bar().encode(
-            x=alt.X('Annual Salary', axis=alt.Axis(title='Annual Salary Total', format='$,s')),
+            x=alt.X(
+                'Annual Salary',
+                axis=alt.Axis(
+                    title='Annual Salary Total',
+                    format='$,s'
+                )
+            ),
             y=alt.Y(
                 'Division Name',
                 sort=None,
-                axis=alt.Axis(title=None, labelLimit=300)
+                axis=alt.Axis(
+                    title=None,
+                    labelLimit=300
+                )
             ),
-            color=alt.Color("Division Name:N", scale=division_color_scale, legend=None),
+            color=alt.Color(
+                'Division Name:N',
+                scale=division_color_scale,
+                legend=None
+            ),
             tooltip=[
                 alt.Tooltip('Division Name'),
                 alt.Tooltip('Annual Salary', format="$,.2f")
