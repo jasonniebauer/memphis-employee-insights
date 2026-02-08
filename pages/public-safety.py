@@ -42,6 +42,57 @@ st.markdown("""
 ##################################################
 # UI Content
 ##################################################
+
+# # Filter to public safety departments
+# safety_depts = ['Police', 'Fire', 'EMS', '911 Communications']
+# safety_df = df[df['department'].isin(safety_depts)]
+
+# # Sidebar filters (page-specific)
+# with st.sidebar:
+#     st.markdown("---")
+#     st.subheader("Department Filters")
+#     selected_depts = st.multiselect(
+#         "Select Departments",
+#         # safety_depts,
+#         # default=safety_depts,
+#         df,
+#         default=df,
+#         # key="safety_dept_filter"
+#     )
+
+# # Apply filters
+# if selected_depts:
+#     safety_df = safety_df[safety_df['department'].isin(selected_depts)]
+
+# # Metrics
+# col1, col2, col3 = st.columns(3)
+
+# with col1:
+#     st.metric("Total Employees", f"{len(safety_df):,}")
+
+# with col2:
+#     avg_salary = safety_df['salary'].mean()
+#     st.metric("Average Salary", f"${avg_salary:,.0f}")
+
+# with col3:
+#     total_cost = safety_df['salary'].sum()
+#     st.metric("Total Cost", f"${total_cost/1e6:.1f}M")
+
+# # Department breakdown
+# st.subheader("By Department")
+# dept_stats = safety_df.groupby('department').agg({
+#     'salary': ['count', 'mean', 'median']
+# }).round(0)
+# st.dataframe(dept_stats, use_container_width=True)
+
+# # Detailed data
+# with st.expander("View Employee Details"):
+#     st.dataframe(
+#         safety_df[['name', 'department', 'title', 'salary']].head(100),
+#         use_container_width=True,
+#         height=400
+#     )
+
 st.space()
 
 with st.spinner('Loading data and calculations...'):
@@ -64,79 +115,57 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR PIE CHART]")
     
-    st.markdown(
-        """
-        **To do:**
-        - ~~SECTION: Salaries by Division Category / Divisions~~
-            - Total Salary of Public Safety Workforce
-            - Total Salaries by Division
-            - Employee Workforce
-                - Total full-time vs part-time employees across division category
-                - Total employee breakdown by division
-                - Percent of workforce by division
-        - SECTION: Police Services
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - SECTION: Fire Services
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        """
-    )
+    st.space()
+    st.divider()
+    st.space()
 
-    # # Filter to public safety departments
-    # safety_depts = ['Police', 'Fire', 'EMS', '911 Communications']
-    # safety_df = df[df['department'].isin(safety_depts)]
+    st.markdown('<h2 class="pt-0">Police Services</h2>', unsafe_allow_html=True)
 
-    # # Sidebar filters (page-specific)
-    # with st.sidebar:
-    #     st.markdown("---")
-    #     st.subheader("Department Filters")
-    #     selected_depts = st.multiselect(
-    #         "Select Departments",
-    #         # safety_depts,
-    #         # default=safety_depts,
-    #         df,
-    #         default=df,
-    #         # key="safety_dept_filter"
-    #     )
+    salary_cols = st.columns(2, gap="xlarge")
 
-    # # Apply filters
-    # if selected_depts:
-    #     safety_df = safety_df[safety_df['department'].isin(selected_depts)]
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
-    # # Metrics
-    # col1, col2, col3 = st.columns(3)
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+    
+    st.space()
+    st.divider()
+    st.space()
 
-    # with col1:
-    #     st.metric("Total Employees", f"{len(safety_df):,}")
+    st.markdown('<h2 class="pt-0">Fire Services</h2>', unsafe_allow_html=True)
 
-    # with col2:
-    #     avg_salary = safety_df['salary'].mean()
-    #     st.metric("Average Salary", f"${avg_salary:,.0f}")
+    salary_cols = st.columns(2, gap="xlarge")
 
-    # with col3:
-    #     total_cost = safety_df['salary'].sum()
-    #     st.metric("Total Cost", f"${total_cost/1e6:.1f}M")
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
-    # # Department breakdown
-    # st.subheader("By Department")
-    # dept_stats = safety_df.groupby('department').agg({
-    #     'salary': ['count', 'mean', 'median']
-    # }).round(0)
-    # st.dataframe(dept_stats, use_container_width=True)
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
-    # # Detailed data
-    # with st.expander("View Employee Details"):
-    #     st.dataframe(
-    #         safety_df[['name', 'department', 'title', 'salary']].head(100),
-    #         use_container_width=True,
-    #         height=400
-    #     )
+    # st.markdown(
+    #     """
+    #     **To do:**
+    #     - ~~SECTION: Salaries by Division Category / Divisions~~
+    #         - Total Salary of Public Safety Workforce
+    #         - Total Salaries by Division
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees across division category
+    #             - Total employee breakdown by division
+    #             - Percent of workforce by division
+    #     - ~~SECTION: Police Services~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: Fire Services~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     """
+    # )
