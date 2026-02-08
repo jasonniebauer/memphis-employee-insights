@@ -471,9 +471,6 @@ with st.spinner('Loading data and calculations...'):
                 alt.Tooltip("Value:Q", format=".1%", title="Percentage")
             ]
         )
-        # .properties(
-        #     title='Employees by Employment Type'
-        # )
 
         st.altair_chart(pie_chart_job_category, width="stretch")
 
