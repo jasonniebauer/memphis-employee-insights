@@ -119,33 +119,26 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        # Define colors
-        color_map = {
-            "Governance": ORANGE,
-            "Finance": YELLOW,
-            "Legal": LIGHT_YELLOW,
-            'HR': '#FFCC80',
-            'IT': '#FF9800'
-        }
-
-        pie_chart_job_category = alt.Chart(division_salary_totals).mark_arc().encode(
-            theta="Annual Salary:Q",
-            color=alt.Color(
-                "Category:N",
-                title="Category",
-                scale=alt.Scale(
-                    domain=list(color_map.keys()),
-                    range=list(color_map.values())
-                )
+        chart = alt.Chart(division_salary_totals).mark_bar(color=YELLOW).encode(
+            x=alt.X(
+                'Category',
+                axis=alt.Axis(labelAngle=0),  # Rotate labels
+                sort=None,
+                title=None,
+            ),
+            y=alt.Y(
+                'Annual Salary',
+                axis=alt.Axis(
+                    title='Annual Salary Total',
+                    format='$,s'  # Format numbers
+                ),
             ),
             tooltip=[
-                "Category",
-                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries"),
-                alt.Tooltip("Percentage:Q", format=".1%", title="Percentage")
+                alt.Tooltip("Category:N", title="Category"),
+                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries")
             ]
         )
-
-        st.altair_chart(pie_chart_job_category, width="stretch")
+        st.altair_chart(chart)
 
     st.space()
     st.divider()
