@@ -1,8 +1,10 @@
 import streamlit as st
+import altair as alt
 import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.colors import ORANGE, YELLOW, LIGHT_YELLOW
 
 
 ##################################################
@@ -21,9 +23,6 @@ render_navigation()
 # Render reusable styles
 render_reusable_styles()
 
-# Get data from session state
-df = initialize_data()
-
 # Page-specific CSS (only runs here on page)
 st.markdown("""
 <style>
@@ -40,6 +39,63 @@ st.markdown("""
 # Data Preparation
 ##################################################
 
+# Get data from session state
+df = initialize_data()
+
+# # Good Government divisions
+# good_government_divisions = [
+#     'Executive',
+#     'Finance and Administration',
+#     'Human Resources',
+#     'Information Technology',
+#     'City Attorney',
+#     'City Court Clerk',
+#     'Legislative',
+#     'Judicial',
+# ]
+
+# Filter DataFrame to Good Government divisions
+# df = df[df['Division Name'].isin(good_government_divisions)]
+df = df[df['Division Category'] == 'Good Government']
+
+def get_category(row):
+    division = row['Division Name']
+    governance = ['Executive', 'Legislative', 'Judicial']
+    legal = ['City Attorney', 'City Court Clerk']
+
+    if division in governance:
+        return 'Governance'
+    elif division in legal:
+        return 'Legal'
+    elif division == 'Finance and Administration':
+        return 'Finance'
+    elif division == 'Human Resources':
+        return 'HR'
+    elif division == 'Information Technology':
+        return 'IT'
+    else:
+        return
+
+# Define category to group divisions
+df['Category'] = df.apply(get_category, axis=1)
+
+# Calculating the sum of all salaries in each division
+division_salary_totals = pd.DataFrame(
+    df.groupby('Category')['Annual Salary'].sum()
+).reset_index()
+
+# Sort divisions by the sum of all salaries in descending order
+division_salary_totals.sort_values(
+    by='Annual Salary',
+    ascending=False,
+    inplace=True
+)
+
+# Calculate division salary percentage of total
+division_salary_totals['Percentage'] = (
+    division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
+)
+
 ##################################################
 # UI Content
 ##################################################
@@ -51,7 +107,7 @@ with st.spinner('Loading data and calculations...'):
         icon=":material/build:"
     )
     st.title("Good Government")
-    st.markdown('<h3 class="pt-0">Governance, Finance, HR, IT, and Legal</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="pt-0">Finance, HR, IT, Legal, and Governance</h3>', unsafe_allow_html=True)
 
     st.space()
 
@@ -63,7 +119,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR PIE CHART]")
+        # Define colors
+        color_map = {
+            "Governance": ORANGE,
+            "Finance": YELLOW,
+            "Legal": LIGHT_YELLOW,
+            'HR': '#FFCC80',
+            'IT': '#FF9800'
+        }
+
+        pie_chart_job_category = alt.Chart(division_salary_totals).mark_arc().encode(
+            theta="Annual Salary:Q",
+            color=alt.Color(
+                "Category:N",
+                title="Category",
+                scale=alt.Scale(
+                    domain=list(color_map.keys()),
+                    range=list(color_map.values())
+                )
+            ),
+            tooltip=[
+                "Category",
+                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries"),
+                alt.Tooltip("Percentage:Q", format=".1%", title="Percentage")
+            ]
+        )
+
+        st.altair_chart(pie_chart_job_category, width="stretch")
 
     st.space()
     st.divider()
