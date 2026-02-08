@@ -65,43 +65,99 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR PIE CHART]")
 
-    st.markdown(
-        """
-        **To do:**
-        - SECTION: Salaries by Division Category / Divisions
-            - Total Salary of Public Works Workforce
-            - Total Salaries by Division
-            - Employee Workforce
-                - Total full-time vs part-time employees across division category
-                - Total employee breakdown by division
-                - Percent of workforce by division
-        - SECTION: Public Works
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - SECTION: Solid Waste Management
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - SECTION: City Engineering
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - SECTION: General Services
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        """
-    )
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">Public Works</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">Solid Waste Management</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">General Services</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+    st.divider()
+    st.space()
+
+    st.markdown('<h2 class="pt-0">City Engineering</h2>', unsafe_allow_html=True)
+
+    salary_cols = st.columns(2, gap="xlarge")
+
+    with salary_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+    with salary_cols[1]:
+        st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    # st.markdown(
+    #     """
+    #     **To do:**
+    #     - SECTION: Salaries by Division Category / Divisions
+    #         - Total Salary of Public Works Workforce
+    #         - Total Salaries by Division
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees across division category
+    #             - Total employee breakdown by division
+    #             - Percent of workforce by division
+    #     - ~~SECTION: Public Works~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: Solid Waste Management~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: General Services~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: City Engineering~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     """
+    # )
