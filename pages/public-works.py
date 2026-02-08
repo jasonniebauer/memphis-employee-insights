@@ -42,7 +42,7 @@ st.markdown("""
 # Get data from session state
 df = initialize_data()
 
-# Filter DataFrame to Good Government divisions
+# Filter DataFrame to Public Works divisions
 df = df[df['Division Category'] == 'Public Works']
 
 # Calculating the sum of all salaries in each division
