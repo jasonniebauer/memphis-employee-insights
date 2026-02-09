@@ -61,10 +61,10 @@ division_salary_totals.sort_values(
     inplace=True
 )
 
-# Calculate division salary percentage of total
-division_salary_totals['Percentage'] = (
-    division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
-)
+# # Calculate division salary percentage of total
+# division_salary_totals['Percentage'] = (
+#     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
+# )
 
 ##################################################
 # UI Content
@@ -88,6 +88,27 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[0]:
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            """
+            <div class="table-row">
+                <span class="bold">Division</span>
+                <span class="bold">Percent of Public Safety Salaries</span>
+            </div>
+            <div class="table-row">
+                <span>Police Services</span>
+                <span>57.7%</span>
+            </div>
+            <div class="table-row"">
+                <span>Fire Services</span>
+                <span>42.3%</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Total</span>
+                <span class="bold">100%</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
 
     with salary_cols[1]:
         chart = alt.Chart(division_salary_totals).mark_bar(color=MEDIUM_RED).encode(
