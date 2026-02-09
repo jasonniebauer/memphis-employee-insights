@@ -91,10 +91,10 @@ division_salary_totals.sort_values(
     inplace=True
 )
 
-# Calculate division salary percentage of total
-division_salary_totals['Percentage'] = (
-    division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
-)
+# # Calculate division salary percentage of total
+# division_salary_totals['Percentage'] = (
+#     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
+# )
 
 ##################################################
 # UI Content
