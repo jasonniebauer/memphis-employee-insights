@@ -1,4 +1,4 @@
-# City of Memphis Employee Salaries
+# Memphis Employee Insights
 Interactive analysis of employee salaries for the City of Memphis, Tennessee.
 
 ## View it in one click
