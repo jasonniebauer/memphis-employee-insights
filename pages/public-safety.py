@@ -66,6 +66,9 @@ division_salary_totals.sort_values(
 #     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
 # )
 
+# Get the total salary of Public Safety workforce (in millions)
+public_safety_total_salary = df['Annual Salary'].sum() / 1e6
+
 ##################################################
 # UI Content
 ##################################################
@@ -108,6 +111,14 @@ with st.spinner('Loading data and calculations...'):
                 <span class="bold">100%</span>
             </div>
             """, unsafe_allow_html=True
+        )
+
+        st.space()
+
+        st.metric(
+            label=":material/local_police: Total Salaries of Public Safety Workforce",
+            value=f"${public_safety_total_salary:,.1f}M",  
+            delta=None,
         )
 
     with salary_cols[1]:
