@@ -99,6 +99,20 @@ division_salary_totals.sort_values(
 # Get the total salary of Good Government workforce (in millions)
 good_government_total_salary = df['Annual Salary'].sum() / 1e6
 
+# Get total number of employees
+total_employees = len(df)
+# Get total number of full-time employees
+total_full_time_employees = (df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_employees = (df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing division category's employees by employment type
+employment_type_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [total_full_time_employees / total_employees, total_part_time_employees / total_employees],
+    "Count": [total_full_time_employees, total_part_time_employees]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -183,6 +197,54 @@ with st.spinner('Loading data and calculations...'):
             ]
         )
         st.altair_chart(chart)
+
+    st.space()
+
+    st.markdown('### Employment Breakdown')
+    
+    salary_row2_cols = st.columns(2, gap="xlarge")
+
+    with salary_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            f"""
+            <div class="table-row">
+                <span class="bold">Full-time (salaried) employees</span>
+                <span>{total_full_time_employees:,}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Part-time employees</span>
+                <span>{total_part_time_employees:,}</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Total employees</span>
+                <span class="bold">{total_employees:,}</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+    with salary_row2_cols[1]:
+        # Define colors
+        employee_classification_color_map = {
+            "Full-time": ORANGE,
+            "Part-time": YELLOW
+        }
+
+        pie_chart_job_category = alt.Chart(employment_type_totals_df).mark_arc().encode(
+            theta="Value",
+            color=alt.Color("Employment Type", scale=alt.Scale(
+                domain=list(employee_classification_color_map.keys()),
+                range=list(employee_classification_color_map.values())
+            )),
+            tooltip=[
+                "Employment Type",
+                alt.Tooltip("Count:Q", format=",", title="Employees"),
+                alt.Tooltip("Value:Q", format=".1%", title="Percentage")
+            ]
+        )
+
+        st.altair_chart(pie_chart_job_category, width="stretch")
 
     st.space()
     st.divider()
