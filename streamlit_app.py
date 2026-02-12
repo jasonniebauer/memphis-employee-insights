@@ -448,7 +448,7 @@ with st.spinner('Loading data and calculations...'):
             </div>
             <div class="table-row">
                 <span class="bold">Total employees</span>
-                <span>{total_city_employees:,}</span>
+                <span class="bold">{total_city_employees:,}</span>
             </div>
             """, unsafe_allow_html=True
         )
