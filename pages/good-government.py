@@ -96,6 +96,9 @@ division_salary_totals.sort_values(
 #     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
 # )
 
+# Get the total salary of Good Government workforce (in millions)
+good_government_total_salary = df['Annual Salary'].sum() / 1e6
+
 ##################################################
 # UI Content
 ##################################################
@@ -117,6 +120,47 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[0]:
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            """
+            <div class="table-row">
+                <span class="bold">Division</span>
+                <span class="bold">Percent of Good Government Salaries</span>
+            </div>
+            <div class="table-row">
+                <span>Governance</span>
+                <span>29.4%</span>
+            </div>
+            <div class="table-row"">
+                <span>Finance</span>
+                <span>20.9%</span>
+            </div>
+            <div class="table-row"">
+                <span>Legal</span>
+                <span>20.6%</span>
+            </div>
+            <div class="table-row"">
+                <span>HR</span>
+                <span>14.9%</span>
+            </div>
+            <div class="table-row"">
+                <span>IT</span>
+                <span>14.2%</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Total</span>
+                <span class="bold">100%</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+        st.space()
+
+        st.metric(
+            label=":material/account_balance: Good Government Workforce Salaries",
+            value=f"${good_government_total_salary:,.1f}M",  
+            delta=None,
+        )
 
     with salary_cols[1]:
         chart = alt.Chart(division_salary_totals).mark_bar(color=YELLOW).encode(
