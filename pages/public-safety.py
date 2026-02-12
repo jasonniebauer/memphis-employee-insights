@@ -116,7 +116,7 @@ with st.spinner('Loading data and calculations...'):
         st.space()
 
         st.metric(
-            label=":material/local_police: Total Salaries of Public Safety Workforce",
+            label=":material/local_police: Public Safety Workforce Salaries",
             value=f"${public_safety_total_salary:,.1f}M",  
             delta=None,
         )
@@ -171,29 +171,29 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
 
-    # st.markdown(
-    #     """
-    #     **To do:**
-    #     - ~~SECTION: Salaries by Division Category / Divisions~~
-    #         - Total Salary of Public Safety Workforce
-    #         - Total Salaries by Division
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees across division category
-    #             - Total employee breakdown by division
-    #             - Percent of workforce by division
-    #     - ~~SECTION: Police Services~~
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees
-    #         - Unique roles + average salary for role
-    #         - Top paying position
-    #         - Average salary across division
-    #         - Average hourly rate across division (if applicable)
-    #     - ~~SECTION: Fire Services~~
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees
-    #         - Unique roles + average salary for role
-    #         - Top paying position
-    #         - Average salary across division
-    #         - Average hourly rate across division (if applicable)
-    #     """
-    # )
+    st.markdown(
+        """
+        **To do:**
+        - ~~SECTION: Salaries by Division Category / Divisions~~
+            - ~~Total Salary of Public Safety Workforce~~
+            - Total Salaries by Division
+            - Employee Workforce
+                - Total full-time vs part-time employees across division category
+                - Total employee breakdown by division
+                - Percent of workforce by division
+        - ~~SECTION: Police Services~~
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        - ~~SECTION: Fire Services~~
+            - Employee Workforce
+                - Total full-time vs part-time employees
+            - Unique roles + average salary for role
+            - Top paying position
+            - Average salary across division
+            - Average hourly rate across division (if applicable)
+        """
+    )
