@@ -69,6 +69,23 @@ division_salary_totals.sort_values(
 # Get the total salary of Public Safety workforce (in millions)
 public_safety_total_salary = df['Annual Salary'].sum() / 1e6
 
+# Calculating the sum of full-time and part-time employees
+employment_type_totals = df.groupby('Employment Type').size()
+
+# Get total number of employees
+total_employees = len(df)
+# Get total number of full-time employees
+total_full_time_employees = employment_type_totals['Full-time']
+# Get total number of part-time employees
+total_part_time_employees = employment_type_totals['Part-time']
+
+# Create DataFrame for categorizing division category's employees by employment type
+employment_type_totals_chart_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [total_full_time_employees / total_employees, total_part_time_employees / total_employees],
+    "Count": [total_full_time_employees, total_part_time_employees]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -141,7 +158,56 @@ with st.spinner('Loading data and calculations...'):
                 alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries")
             ]
         )
+
         st.altair_chart(chart)
+
+    st.space()
+
+    st.markdown('### Employment Breakdown')
+    
+    salary_row2_cols = st.columns(2, gap="xlarge")
+
+    with salary_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            f"""
+            <div class="table-row">
+                <span class="bold">Full-time (salaried) employees</span>
+                <span>{total_full_time_employees:,}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Part-time employees</span>
+                <span>{total_part_time_employees:,}</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Total employees</span>
+                <span>{total_employees:,}</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+    with salary_row2_cols[1]:
+        # Define colors
+        employee_classification_color_map = {
+            "Full-time": MEDIUM_RED,
+            "Part-time": LIGHT_RED
+        }
+
+        pie_chart_job_category = alt.Chart(employment_type_totals_chart_df).mark_arc().encode(
+            theta="Value",
+            color=alt.Color("Employment Type", scale=alt.Scale(
+                domain=list(employee_classification_color_map.keys()),
+                range=list(employee_classification_color_map.values())
+            )),
+            tooltip=[
+                "Employment Type",
+                alt.Tooltip("Count:Q", format=",", title="Employees"),
+                alt.Tooltip("Value:Q", format=".1%", title="Percentage")
+            ]
+        )
+
+        st.altair_chart(pie_chart_job_category, width="stretch")
     
     st.space()
     st.divider()
@@ -171,29 +237,29 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
 
-    st.markdown(
-        """
-        **To do:**
-        - ~~SECTION: Salaries by Division Category / Divisions~~
-            - ~~Total Salary of Public Safety Workforce~~
-            - Total Salaries by Division
-            - Employee Workforce
-                - Total full-time vs part-time employees across division category
-                - Total employee breakdown by division
-                - Percent of workforce by division
-        - ~~SECTION: Police Services~~
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        - ~~SECTION: Fire Services~~
-            - Employee Workforce
-                - Total full-time vs part-time employees
-            - Unique roles + average salary for role
-            - Top paying position
-            - Average salary across division
-            - Average hourly rate across division (if applicable)
-        """
-    )
+    # st.markdown(
+    #     """
+    #     **To do:**
+    #     - ~~SECTION: Salaries by Division Category / Divisions~~
+    #         - ~~Total Salary of Public Safety Workforce~~
+    #         - Total Salaries by Division
+    #         - Employee Workforce
+    #             - ~~Total full-time vs part-time employees across division category~~
+    #             - Total employee breakdown by division
+    #             - Percent of workforce by division
+    #     - ~~SECTION: Police Services~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     - ~~SECTION: Fire Services~~
+    #         - Employee Workforce
+    #             - Total full-time vs part-time employees
+    #         - Unique roles + average salary for role
+    #         - Top paying position
+    #         - Average salary across division
+    #         - Average hourly rate across division (if applicable)
+    #     """
+    # )
