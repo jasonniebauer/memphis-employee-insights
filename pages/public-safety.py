@@ -69,18 +69,15 @@ division_salary_totals.sort_values(
 # Get the total salary of Public Safety workforce (in millions)
 public_safety_total_salary = df['Annual Salary'].sum() / 1e6
 
-# Calculating the sum of full-time and part-time employees
-employment_type_totals = df.groupby('Employment Type').size()
-
 # Get total number of employees
 total_employees = len(df)
 # Get total number of full-time employees
-total_full_time_employees = employment_type_totals['Full-time']
+total_full_time_employees = (df['Employment Type'] == 'Full-time').sum()
 # Get total number of part-time employees
-total_part_time_employees = employment_type_totals['Part-time']
+total_part_time_employees = (df['Employment Type'] == 'Part-time').sum()
 
 # Create DataFrame for categorizing division category's employees by employment type
-employment_type_totals_chart_df = pd.DataFrame({
+employment_type_totals_df = pd.DataFrame({
     "Employment Type": ["Full-time", "Part-time"],
     "Value": [total_full_time_employees / total_employees, total_part_time_employees / total_employees],
     "Count": [total_full_time_employees, total_part_time_employees]
@@ -194,7 +191,7 @@ with st.spinner('Loading data and calculations...'):
             "Part-time": LIGHT_RED
         }
 
-        pie_chart_job_category = alt.Chart(employment_type_totals_chart_df).mark_arc().encode(
+        pie_chart_job_category = alt.Chart(employment_type_totals_df).mark_arc().encode(
             theta="Value",
             color=alt.Color("Employment Type", scale=alt.Scale(
                 domain=list(employee_classification_color_map.keys()),
