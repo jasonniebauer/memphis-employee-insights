@@ -130,6 +130,31 @@ employment_type_library_totals_df = pd.DataFrame({
     ]
 })
 
+# Make a copy of the original DataFrame
+housing_df = df.copy()
+# Filter employees to only those in Housing and Community Development
+housing_df = housing_df[housing_df['Division Name'] == 'Housing and Community Development']
+
+# Get total number of Housing and Community Development employees
+total_housing_employees = len(housing_df)
+# Get total number of full-time employees
+total_full_time_housing_employees = (housing_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_housing_employees = (housing_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Housing and Community Development employees by employment type
+employment_type_housing_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_housing_employees / total_housing_employees,
+        total_part_time_housing_employees / total_housing_employees
+    ],
+    "Count": [
+        total_full_time_housing_employees,
+        total_part_time_housing_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -287,6 +312,8 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
 
+    st.space()
+
     st.markdown('### Library Services Employment Breakdown')
     
     library_row2_cols = st.columns(2, gap="xlarge")
@@ -325,6 +352,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### Housing and Community Development Employment Breakdown')
+    
+    housing_row2_cols = st.columns(2, gap="xlarge")
+
+    with housing_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_housing_employees,
+                total_part_time_housing_employees,
+                total_housing_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with housing_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_housing_totals_df,
+            MEDIUM_GREEN,
+            LIGHT_GREEN
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     # st.markdown(
     #     """
