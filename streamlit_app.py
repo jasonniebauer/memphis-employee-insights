@@ -4,6 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data, get_department_summary
+from shared.utilities import employment_type_pie_chart
 from shared.colors import TEAL, LIGHT_TEAL, MEDIUM_RED, MEDIUM_BLUE, MEDIUM_GREEN, YELLOW, LIGHT_GREY, GREY, BLACK
 
 
@@ -134,7 +135,7 @@ division_salary_totals = pd.DataFrame(df.groupby('Division Name')['Annual Salary
 division_salary_totals.sort_values(by='Annual Salary', ascending=False, inplace=True)
 
 #
-source = pd.DataFrame({
+employment_type_totals_df = pd.DataFrame({
     "Employment Type": ["Full-time", "Part-time"],
     "Value": [percent_salaried_employees, percent_part_time_employees],
     "Count": [total_salaried_employees, total_part_time_employees]
@@ -466,26 +467,13 @@ with st.spinner('Loading data and calculations...'):
         # )
 
     with overview_col_2:
-        # Define colors
-        employee_classification_color_map = {
-            "Full-time": TEAL,
-            "Part-time": LIGHT_TEAL
-        }
-
-        pie_chart_job_category = alt.Chart(source).mark_arc().encode(
-            theta="Value",
-            color=alt.Color("Employment Type", scale=alt.Scale(
-                domain=list(employee_classification_color_map.keys()),
-                range=list(employee_classification_color_map.values())
-            )),
-            tooltip=[
-                "Employment Type",
-                alt.Tooltip("Count:Q", format=",", title="Employees"),
-                alt.Tooltip("Value:Q", format=".1%", title="Percentage")
-            ]
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_totals_df,
+            TEAL,
+            LIGHT_TEAL
         )
 
-        st.altair_chart(pie_chart_job_category, width="stretch")
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
 
