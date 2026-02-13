@@ -80,6 +80,31 @@ employment_type_totals_df = pd.DataFrame({
     "Count": [total_full_time_employees, total_part_time_employees]
 })
 
+# Make a copy of the original DataFrame
+public_works_df = df.copy()
+# Filter employees to only those in Fire Services
+public_works_df = public_works_df[public_works_df['Division Name'] == 'Public Works']
+
+# Get total number of Fire Services employees
+total_public_works_employees = len(public_works_df)
+# Get total number of full-time employees
+total_full_time_public_works_employees = (public_works_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_public_works_employees = (public_works_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Fire Service's employees by employment type
+employment_type_public_works_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_public_works_employees / total_public_works_employees,
+        total_part_time_public_works_employees / total_public_works_employees
+    ],
+    "Count": [
+        total_full_time_public_works_employees,
+        total_part_time_public_works_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -202,6 +227,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### Public Works Employment Breakdown')
+    
+    public_works_row2_cols = st.columns(2, gap="xlarge")
+
+    with public_works_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_public_works_employees,
+                total_part_time_public_works_employees,
+                total_public_works_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with public_works_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_public_works_totals_df,
+            MEDIUM_BLUE,
+            LIGHT_BLUE
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
