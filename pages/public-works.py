@@ -155,6 +155,31 @@ employment_type_general_services_totals_df = pd.DataFrame({
     ]
 })
 
+# Make a copy of the original DataFrame
+city_engineering_df = df.copy()
+# Filter employees to only those in City Engineering
+city_engineering_df = city_engineering_df[city_engineering_df['Division Name'] == 'City Engineering']
+
+# Get total number of City Engineering employees
+total_city_engineering_employees = len(city_engineering_df)
+# Get total number of full-time employees
+total_full_time_city_engineering_employees = (city_engineering_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_city_engineering_employees = (city_engineering_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing City Engineering employees by employment type
+employment_type_city_engineering_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_city_engineering_employees / total_city_engineering_employees,
+        total_part_time_city_engineering_employees / total_city_engineering_employees
+    ],
+    "Count": [
+        total_full_time_city_engineering_employees,
+        total_part_time_city_engineering_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -400,6 +425,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### City Engineering Employment Breakdown')
+    
+    city_engineering_row2_cols = st.columns(2, gap="xlarge")
+
+    with city_engineering_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_city_engineering_employees,
+                total_part_time_city_engineering_employees,
+                total_city_engineering_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with city_engineering_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_city_engineering_totals_df,
+            MEDIUM_BLUE,
+            LIGHT_BLUE
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     # st.markdown(
     #     """
