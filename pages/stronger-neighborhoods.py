@@ -80,6 +80,31 @@ employment_type_totals_df = pd.DataFrame({
     "Count": [total_full_time_employees, total_part_time_employees]
 })
 
+# Make a copy of the original DataFrame
+memphis_parks_df = df.copy()
+# Filter employees to only those in Memphis Parks
+memphis_parks_df = memphis_parks_df[memphis_parks_df['Division Name'] == 'Memphis Parks']
+
+# Get total number of Memphis Parks employees
+total_memphis_parks_employees = len(memphis_parks_df)
+# Get total number of full-time employees
+total_full_time_memphis_parks_employees = (memphis_parks_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_memphis_parks_employees = (memphis_parks_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Memphis Parks employees by employment type
+employment_type_memphis_parks_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_memphis_parks_employees / total_memphis_parks_employees,
+        total_part_time_memphis_parks_employees / total_memphis_parks_employees
+    ],
+    "Count": [
+        total_full_time_memphis_parks_employees,
+        total_part_time_memphis_parks_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -197,6 +222,31 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.markdown('### Memphis Parks Employment Breakdown')
+    
+    memphis_parks_row2_cols = st.columns(2, gap="xlarge")
+
+    with memphis_parks_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_memphis_parks_employees,
+                total_part_time_memphis_parks_employees,
+                total_memphis_parks_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with memphis_parks_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_memphis_parks_totals_df,
+            MEDIUM_GREEN,
+            LIGHT_GREEN
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
