@@ -82,17 +82,17 @@ employment_type_totals_df = pd.DataFrame({
 
 # Make a copy of the original DataFrame
 public_works_df = df.copy()
-# Filter employees to only those in Fire Services
+# Filter employees to only those in Public Works Services
 public_works_df = public_works_df[public_works_df['Division Name'] == 'Public Works']
 
-# Get total number of Fire Services employees
+# Get total number of Public Works employees
 total_public_works_employees = len(public_works_df)
 # Get total number of full-time employees
 total_full_time_public_works_employees = (public_works_df['Employment Type'] == 'Full-time').sum()
 # Get total number of part-time employees
 total_part_time_public_works_employees = (public_works_df['Employment Type'] == 'Part-time').sum()
 
-# Create DataFrame for categorizing Fire Service's employees by employment type
+# Create DataFrame for categorizing Public Works employees by employment type
 employment_type_public_works_totals_df = pd.DataFrame({
     "Employment Type": ["Full-time", "Part-time"],
     "Value": [
@@ -102,6 +102,56 @@ employment_type_public_works_totals_df = pd.DataFrame({
     "Count": [
         total_full_time_public_works_employees,
         total_part_time_public_works_employees
+    ]
+})
+
+# Make a copy of the original DataFrame
+solid_waste_df = df.copy()
+# Filter employees to only those in Solid Waste Management
+solid_waste_df = solid_waste_df[solid_waste_df['Division Name'] == 'Solid Waste']
+
+# Get total number of Solid Waste Management employees
+total_solid_waste_employees = len(solid_waste_df)
+# Get total number of full-time employees
+total_full_time_solid_waste_employees = (solid_waste_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_solid_waste_employees = (solid_waste_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Solid Waste Management employees by employment type
+employment_type_solid_waste_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_solid_waste_employees / total_solid_waste_employees,
+        total_part_time_solid_waste_employees / total_solid_waste_employees
+    ],
+    "Count": [
+        total_full_time_solid_waste_employees,
+        total_part_time_solid_waste_employees
+    ]
+})
+
+# Make a copy of the original DataFrame
+general_services_df = df.copy()
+# Filter employees to only those in General Services
+general_services_df = general_services_df[general_services_df['Division Name'] == 'General Services']
+
+# Get total number of General Services employees
+total_general_services_employees = len(general_services_df)
+# Get total number of full-time employees
+total_full_time_general_services_employees = (general_services_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_general_services_employees = (general_services_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing General Services employees by employment type
+employment_type_general_services_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_general_services_employees / total_general_services_employees,
+        total_part_time_general_services_employees / total_general_services_employees
+    ],
+    "Count": [
+        total_full_time_general_services_employees,
+        total_part_time_general_services_employees
     ]
 })
 
@@ -270,6 +320,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR CHART]")
 
     st.space()
+
+    st.markdown('### Solid Waste Management Employment Breakdown')
+    
+    solid_waste_row2_cols = st.columns(2, gap="xlarge")
+
+    with solid_waste_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_solid_waste_employees,
+                total_part_time_solid_waste_employees,
+                total_solid_waste_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with solid_waste_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_solid_waste_totals_df,
+            MEDIUM_BLUE,
+            LIGHT_BLUE
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
+
+    st.space()
     st.divider()
     st.space()
 
@@ -282,6 +359,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### General Services Employment Breakdown')
+    
+    general_services_row2_cols = st.columns(2, gap="xlarge")
+
+    with general_services_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_general_services_employees,
+                total_part_time_general_services_employees,
+                total_general_services_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with general_services_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_general_services_totals_df,
+            MEDIUM_BLUE,
+            LIGHT_BLUE
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
