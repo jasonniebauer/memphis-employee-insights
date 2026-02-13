@@ -139,6 +139,31 @@ employment_type_governance_totals_df = pd.DataFrame({
     ]
 })
 
+# Make a copy of the original DataFrame
+finance_df = df.copy()
+# Filter employees to only those in Finance
+finance_df = finance_df[finance_df['Category'] == 'Finance']
+
+# Get total number of Finance employees
+total_finance_employees = len(finance_df)
+# Get total number of full-time employees
+total_full_time_finance_employees = (finance_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_finance_employees = (finance_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Finance employees by employment type
+employment_type_finance_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_finance_employees / total_finance_employees,
+        total_part_time_finance_employees / total_finance_employees
+    ],
+    "Count": [
+        total_full_time_finance_employees,
+        total_part_time_finance_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -305,6 +330,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### Finance Employment Breakdown')
+    
+    finance_row2_cols = st.columns(2, gap="xlarge")
+
+    with finance_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_finance_employees,
+                total_part_time_finance_employees,
+                total_finance_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with finance_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_finance_totals_df,
+            YELLOW,
+            LIGHT_YELLOW
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
