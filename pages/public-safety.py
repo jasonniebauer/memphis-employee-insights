@@ -4,7 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
-from shared.utilities import employment_type_pie_chart
+from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_RED, LIGHT_RED
 
 
@@ -219,20 +219,12 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
         st.markdown(
-            f"""
-            <div class="table-row">
-                <span class="bold">Full-time (salaried) employees</span>
-                <span>{total_full_time_employees:,}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Part-time employees</span>
-                <span>{total_part_time_employees:,}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Total employees</span>
-                <span class="bold">{total_employees:,}</span>
-            </div>
-            """, unsafe_allow_html=True
+            employment_type_table(
+                total_full_time_employees,
+                total_part_time_employees,
+                total_employees
+            ),
+            unsafe_allow_html=True
         )
 
     with salary_row2_cols[1]:
@@ -268,20 +260,12 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
         st.markdown(
-            f"""
-            <div class="table-row">
-                <span class="bold">Full-time (salaried) employees</span>
-                <span>{total_full_time_police_employees:,}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Part-time employees</span>
-                <span>{total_part_time_police_employees:,}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Total employees</span>
-                <span class="bold">{total_police_employees:,}</span>
-            </div>
-            """, unsafe_allow_html=True
+            employment_type_table(
+                total_full_time_police_employees,
+                total_part_time_police_employees,
+                total_police_employees
+            ),
+            unsafe_allow_html=True
         )
 
     with police_row2_cols[1]:
@@ -317,20 +301,12 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
         st.markdown(
-            f"""
-            <div class="table-row">
-                <span class="bold">Full-time (salaried) employees</span>
-                <span>{total_full_time_fire_employees:,}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Part-time employees</span>
-                <span>{total_part_time_fire_employees:,}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Total employees</span>
-                <span class="bold">{total_fire_employees:,}</span>
-            </div>
-            """, unsafe_allow_html=True
+            employment_type_table(
+                total_full_time_fire_employees,
+                total_part_time_fire_employees,
+                total_fire_employees
+            ),
+            unsafe_allow_html=True
         )
 
     with fire_row2_cols[1]:
