@@ -272,17 +272,12 @@ with st.spinner('Loading data and calculations...'):
         )
 
     with police_row2_cols[1]:
-        # Define colors
-        employee_classification_color_map = {
-            "Full-time": MEDIUM_RED,
-            "Part-time": LIGHT_RED
-        }
 
         pie_chart_job_category = alt.Chart(employment_type_police_totals_df).mark_arc().encode(
             theta="Value",
             color=alt.Color("Employment Type", scale=alt.Scale(
-                domain=list(employee_classification_color_map.keys()),
-                range=list(employee_classification_color_map.values())
+                domain=['Full-time', 'Part-time'],
+                range=[MEDIUM_RED, LIGHT_RED]
             )),
             tooltip=[
                 "Employment Type",
