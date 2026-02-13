@@ -105,6 +105,31 @@ employment_type_memphis_parks_totals_df = pd.DataFrame({
     ]
 })
 
+# Make a copy of the original DataFrame
+library_df = df.copy()
+# Filter employees to only those in Library Services
+library_df = library_df[library_df['Division Name'] == 'Library Services']
+
+# Get total number of Library Services employees
+total_library_employees = len(library_df)
+# Get total number of full-time employees
+total_full_time_library_employees = (library_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_library_employees = (library_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Library Servicess employees by employment type
+employment_type_library_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_library_employees / total_library_employees,
+        total_part_time_library_employees / total_library_employees
+    ],
+    "Count": [
+        total_full_time_library_employees,
+        total_part_time_library_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -252,7 +277,7 @@ with st.spinner('Loading data and calculations...'):
     st.divider()
     st.space()
 
-    st.markdown('<h2 class="pt-0">Libraries</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="pt-0">Library Services</h2>', unsafe_allow_html=True)
 
     salary_cols = st.columns(2, gap="xlarge")
 
@@ -261,6 +286,31 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.markdown('### Library Services Employment Breakdown')
+    
+    library_row2_cols = st.columns(2, gap="xlarge")
+
+    with library_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_library_employees,
+                total_part_time_library_employees,
+                total_library_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with library_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_library_totals_df,
+            MEDIUM_GREEN,
+            LIGHT_GREEN
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
