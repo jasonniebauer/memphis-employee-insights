@@ -109,6 +109,31 @@ employment_type_police_totals_df = pd.DataFrame({
     ]
 })
 
+# Make a copy of the original DataFrame
+fire_df = df.copy()
+# Filter employees to only those in Fire Services
+fire_df = fire_df[fire_df['Division Name'] == 'Fire Services']
+
+# Get total number of Fire Services employees
+total_fire_employees = len(fire_df)
+# Get total number of full-time employees
+total_full_time_fire_employees = (fire_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_fire_employees = (fire_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Fire Service's employees by employment type
+employment_type_fire_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_fire_employees / total_fire_employees,
+        total_part_time_fire_employees / total_fire_employees
+    ],
+    "Count": [
+        total_full_time_fire_employees,
+        total_part_time_fire_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -281,6 +306,41 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### Fire Services Employment Breakdown')
+    
+    fire_row2_cols = st.columns(2, gap="xlarge")
+
+    with fire_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            f"""
+            <div class="table-row">
+                <span class="bold">Full-time (salaried) employees</span>
+                <span>{total_full_time_fire_employees:,}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Part-time employees</span>
+                <span>{total_part_time_fire_employees:,}</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Total employees</span>
+                <span class="bold">{total_fire_employees:,}</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
+    with fire_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_fire_totals_df,
+            MEDIUM_RED,
+            LIGHT_RED
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     # st.markdown(
     #     """
