@@ -4,6 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.utilities import employment_type_pie_chart
 from shared.colors import BLUE, MEDIUM_BLUE, LIGHT_BLUE
 
 
@@ -188,26 +189,13 @@ with st.spinner('Loading data and calculations...'):
         )
 
     with salary_row2_cols[1]:
-        # Define colors
-        employee_classification_color_map = {
-            "Full-time": MEDIUM_BLUE,
-            "Part-time": LIGHT_BLUE
-        }
-
-        pie_chart_job_category = alt.Chart(employment_type_totals_df).mark_arc().encode(
-            theta="Value",
-            color=alt.Color("Employment Type", scale=alt.Scale(
-                domain=list(employee_classification_color_map.keys()),
-                range=list(employee_classification_color_map.values())
-            )),
-            tooltip=[
-                "Employment Type",
-                alt.Tooltip("Count:Q", format=",", title="Employees"),
-                alt.Tooltip("Value:Q", format=".1%", title="Percentage")
-            ]
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_totals_df,
+            MEDIUM_BLUE,
+            LIGHT_BLUE
         )
 
-        st.altair_chart(pie_chart_job_category, width="stretch")
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
