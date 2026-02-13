@@ -214,6 +214,31 @@ employment_type_it_totals_df = pd.DataFrame({
     ]
 })
 
+# Make a copy of the original DataFrame
+legal_df = df.copy()
+# Filter employees to only those in Legal
+legal_df = legal_df[legal_df['Category'] == 'Legal']
+
+# Get total number of Legal employees
+total_legal_employees = len(legal_df)
+# Get total number of full-time employees
+total_full_time_legal_employees = (legal_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_legal_employees = (legal_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Legal employees by employment type
+employment_type_legal_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_legal_employees / total_legal_employees,
+        total_part_time_legal_employees / total_legal_employees
+    ],
+    "Count": [
+        total_full_time_legal_employees,
+        total_part_time_legal_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -424,7 +449,7 @@ with st.spinner('Loading data and calculations...'):
 
     st.space()
 
-    st.markdown('### Human Resources Employment Breakdown')
+    st.markdown('### HR Employment Breakdown')
     
     hr_row2_cols = st.columns(2, gap="xlarge")
 
@@ -503,6 +528,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### Legal Employment Breakdown')
+    
+    legal_row2_cols = st.columns(2, gap="xlarge")
+
+    with legal_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_legal_employees,
+                total_part_time_legal_employees,
+                total_legal_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with legal_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_legal_totals_df,
+            YELLOW,
+            LIGHT_YELLOW
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     # st.markdown(
     #     """
