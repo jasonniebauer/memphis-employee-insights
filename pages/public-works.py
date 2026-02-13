@@ -106,7 +106,7 @@ with st.spinner('Loading data and calculations...'):
             """
             <div class="table-row">
                 <span class="bold">Division</span>
-                <span class="bold">Percent of Stronger Neighborhood Salaries</span>
+                <span class="bold">Percent of Stronger Neighborhoods Salaries</span>
             </div>
             <div class="table-row">
                 <span>Public Works</span>
