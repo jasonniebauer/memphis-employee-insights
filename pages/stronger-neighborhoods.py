@@ -4,7 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
-from shared.utilities import employment_type_pie_chart
+from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_GREEN, LIGHT_GREEN
 
 
@@ -167,20 +167,12 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
         st.markdown(
-            f"""
-            <div class="table-row">
-                <span class="bold">Full-time (salaried) employees</span>
-                <span>{total_full_time_employees:,}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Part-time employees</span>
-                <span>{total_part_time_employees:,}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Total employees</span>
-                <span class="bold">{total_employees:,}</span>
-            </div>
-            """, unsafe_allow_html=True
+            employment_type_table(
+                total_full_time_employees,
+                total_part_time_employees,
+                total_employees
+            ),
+            unsafe_allow_html=True
         )
 
     with salary_row2_cols[1]:
@@ -232,26 +224,7 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        chart = alt.Chart(division_salary_totals).mark_bar(color=MEDIUM_GREEN).encode(
-            x=alt.X(
-                'Division Name',
-                axis=alt.Axis(labelAngle=0),  # Rotate labels
-                sort=None,
-                title=None,
-            ),
-            y=alt.Y(
-                'Annual Salary',
-                axis=alt.Axis(
-                    title='Annual Salary Total',
-                    format='$,s'  # Format numbers
-                ),
-            ),
-            tooltip=[
-                alt.Tooltip("Division Name:N", title="Division"),
-                alt.Tooltip("Annual Salary:Q", format="$,.2f", title="Salaries")
-            ]
-        )
-        st.altair_chart(chart)
+        st.markdown("[ PLACEHOLDER FOR CHART]")
 
     # st.markdown(
     #     """
