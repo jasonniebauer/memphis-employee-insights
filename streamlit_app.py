@@ -4,7 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data, get_department_summary
-from shared.utilities import employment_type_pie_chart
+from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import TEAL, LIGHT_TEAL, MEDIUM_RED, MEDIUM_BLUE, MEDIUM_GREEN, YELLOW, LIGHT_GREY, GREY, BLACK
 
 
@@ -435,36 +435,16 @@ with st.spinner('Loading data and calculations...'):
     overview_col_1, overview_col_2 = st.columns(2, gap="xlarge")
 
     with overview_col_1:
-        st.markdown(
-            f"""
-            The City of Memphis employs 8,202 individuals across {total_divisions} divisions supporting essential public services throughout the city. Salaried employees account for over 83% of the City's core full-time workforce, while part-time, hourly employees (typically in seasonal, support, or entry-level roles) make up nearly 17%.
+        st.markdown(f"""The City of Memphis employs 8,202 individuals across {total_divisions} divisions supporting essential public services throughout the city. Salaried employees account for over 83% of the City's core full-time workforce, while part-time, hourly employees (typically in seasonal, support, or entry-level roles) make up nearly 17%.""")
 
-            <div class="table-row">
-                <span class="bold">Full-time (salaried) employees</span>
-                <span>{total_salaried_employees:,}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Part-time employees</span>
-                <span>{total_part_time_employees:,}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Total employees</span>
-                <span class="bold">{total_city_employees:,}</span>
-            </div>
-            """, unsafe_allow_html=True
+        st.markdown(
+            employment_type_table(
+                total_salaried_employees,
+                total_part_time_employees,
+                total_city_employees
+            ),
+            unsafe_allow_html=True
         )
-        # st.markdown(
-        #     f"""
-        #     <div class="table-row"">
-        #         <span class="bold">Average annual salary (full-time employees)</span>
-        #         <span>${average_city_salary:,.2f}</span>
-        #     </div>
-        #     <div class="table-row" style="margin-bottom:2rem;">
-        #         <span class="bold">Average hourly rate (part-time employees)</span>
-        #         <span>${average_city_hourly_pay:.2f}</span>
-        #     </div>
-        #     """, unsafe_allow_html=True
-        # )
 
     with overview_col_2:
         pie_chart_employment_type = employment_type_pie_chart(
