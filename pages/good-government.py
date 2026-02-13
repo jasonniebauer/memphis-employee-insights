@@ -114,6 +114,31 @@ employment_type_totals_df = pd.DataFrame({
     "Count": [total_full_time_employees, total_part_time_employees]
 })
 
+# Make a copy of the original DataFrame
+governance_df = df.copy()
+# Filter employees to only those in Governance
+governance_df = governance_df[governance_df['Category'] == 'Governance']
+
+# Get total number of Governance employees
+total_governance_employees = len(governance_df)
+# Get total number of full-time employees
+total_full_time_governance_employees = (governance_df['Employment Type'] == 'Full-time').sum()
+# Get total number of part-time employees
+total_part_time_governance_employees = (governance_df['Employment Type'] == 'Part-time').sum()
+
+# Create DataFrame for categorizing Governance employees by employment type
+employment_type_governance_totals_df = pd.DataFrame({
+    "Employment Type": ["Full-time", "Part-time"],
+    "Value": [
+        total_full_time_governance_employees / total_governance_employees,
+        total_part_time_governance_employees / total_governance_employees
+    ],
+    "Count": [
+        total_full_time_governance_employees,
+        total_part_time_governance_employees
+    ]
+})
+
 ##################################################
 # UI Content
 ##################################################
@@ -220,8 +245,8 @@ with st.spinner('Loading data and calculations...'):
     with salary_row2_cols[1]:
         pie_chart_employment_type = employment_type_pie_chart(
             employment_type_totals_df,
-            ORANGE,
-            YELLOW
+            YELLOW,
+            LIGHT_YELLOW
         )
 
         st.altair_chart(pie_chart_employment_type, width="stretch")
@@ -239,6 +264,33 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
+
+    st.space()
+
+    st.markdown('### Governance Employment Breakdown')
+    
+    governance_row2_cols = st.columns(2, gap="xlarge")
+
+    with governance_row2_cols[0]:
+        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+
+        st.markdown(
+            employment_type_table(
+                total_full_time_governance_employees,
+                total_part_time_governance_employees,
+                total_governance_employees
+            ),
+            unsafe_allow_html=True
+        )
+
+    with governance_row2_cols[1]:
+        pie_chart_employment_type = employment_type_pie_chart(
+            employment_type_governance_totals_df,
+            YELLOW,
+            LIGHT_YELLOW
+        )
+
+        st.altair_chart(pie_chart_employment_type, width="stretch")
 
     st.space()
     st.divider()
