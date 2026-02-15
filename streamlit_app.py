@@ -255,7 +255,7 @@ with st.spinner('Loading data and calculations...'):
         'Building Better Transparency: Under Active Development – Check Back for More Soon!',
         icon=":material/build:"
     )
-    st.title("City of Memphis Employee Insights")
+    st.title("Memphis Employee Insights")
     st.caption("Payroll Snapshot - January 28, 2025")
 
     """
