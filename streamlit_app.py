@@ -60,7 +60,8 @@ st.markdown(
         color: #202124 !important;
     }
     </style>
-    """, unsafe_allow_html=True)
+    """, unsafe_allow_html=True
+)
 
 ##################################################
 # Data Preparation
