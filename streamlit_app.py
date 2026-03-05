@@ -49,6 +49,7 @@ st.markdown(
         padding-left: 0.2rem;
     }
 
+    /* Override metric delta colors */
     [data-testid="stMetricDelta"] {
         background: #80DEEA !important;
         color: #202124 !important;
