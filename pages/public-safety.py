@@ -7,6 +7,8 @@ from shared.data_loader import initialize_data
 from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_RED, LIGHT_RED
 
+from shared.processing import get_division_employment_breakdown
+
 
 ##################################################
 # Page initialization and setup
@@ -84,55 +86,19 @@ employment_type_totals_df = pd.DataFrame({
     "Count": [total_full_time_employees, total_part_time_employees]
 })
 
-# Make a copy of the original DataFrame
-police_df = df.copy()
-# Filter employees to only those in Police Services
-police_df = police_df[police_df['Division Name'] == 'Police Services']
+(
+    total_police_employees,
+    total_full_time_police_employees,
+    total_part_time_police_employees,
+    employment_type_police_totals_df
+) = get_division_employment_breakdown('Police Services')
 
-# Get total number of Police employees
-total_police_employees = len(police_df)
-# Get total number of full-time employees
-total_full_time_police_employees = (police_df['Employment Type'] == 'Full-time').sum()
-# Get total number of part-time employees
-total_part_time_police_employees = (police_df['Employment Type'] == 'Part-time').sum()
-
-# Create DataFrame for categorizing Police Service's employees by employment type
-employment_type_police_totals_df = pd.DataFrame({
-    "Employment Type": ["Full-time", "Part-time"],
-    "Value": [
-        total_full_time_police_employees / total_police_employees,
-        total_part_time_police_employees / total_police_employees
-    ],
-    "Count": [
-        total_full_time_police_employees,
-        total_part_time_police_employees
-    ]
-})
-
-# Make a copy of the original DataFrame
-fire_df = df.copy()
-# Filter employees to only those in Fire Services
-fire_df = fire_df[fire_df['Division Name'] == 'Fire Services']
-
-# Get total number of Fire Services employees
-total_fire_employees = len(fire_df)
-# Get total number of full-time employees
-total_full_time_fire_employees = (fire_df['Employment Type'] == 'Full-time').sum()
-# Get total number of part-time employees
-total_part_time_fire_employees = (fire_df['Employment Type'] == 'Part-time').sum()
-
-# Create DataFrame for categorizing Fire Service's employees by employment type
-employment_type_fire_totals_df = pd.DataFrame({
-    "Employment Type": ["Full-time", "Part-time"],
-    "Value": [
-        total_full_time_fire_employees / total_fire_employees,
-        total_part_time_fire_employees / total_fire_employees
-    ],
-    "Count": [
-        total_full_time_fire_employees,
-        total_part_time_fire_employees
-    ]
-})
+(
+    total_fire_employees,
+    total_full_time_fire_employees,
+    total_part_time_fire_employees,
+    employment_type_fire_totals_df
+) = get_division_employment_breakdown('Fire Services')
 
 ##################################################
 # UI Content
