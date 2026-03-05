@@ -18,11 +18,10 @@ def get_division_details(division):
     # Get the 'Job Title' corresponding to the max 'Annual Salary'
     max_salary = df['Annual Salary'].max()
     top_paying_job = df.loc[df['Annual Salary'].idxmax(), 'Job Title']
-    #
+    # Get the highest salary
     max_hourly_rate = df['Hourly/Per Event Rate'].max()
+    # Get the job paying the highest salary
     top_paying_part_time_job = df.loc[df['Hourly/Per Event Rate'].idxmax(), 'Job Title']
-    # Get the 'Job Title' corresponding to the minimum 'Annual Salary'
-    lowest_paying_job = df.loc[df['Annual Salary'].idxmin(), 'Job Title']
     # Get the average of all annual salaries
     average_salary = df['Annual Salary'].mean()
     # Get the average of all hourly rates
@@ -43,7 +42,6 @@ def get_division_details(division):
         max_salary,
         top_paying_part_time_job,
         max_hourly_rate,
-        lowest_paying_job,
         average_salary,
         average_hourly_rate,
         total_unique_jobs,
