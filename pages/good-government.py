@@ -560,15 +560,16 @@ with st.spinner('Loading data and calculations...'):
     #     """
     #     **To do:**
     #     - ~~SECTION: Salaries by Division Category / Divisions~~
-    #         - Total Salary of Good Government Workforce
-    #         - Total Salaries by Division
+    #         - ~~Total Salary of Good Government Workforce~~
+    #         - ~~Total Salaries by Division~~
     #         - Employee Workforce
     #             - Total full-time vs part-time employees across division category
     #             - Total employee breakdown by division
     #             - Percent of workforce by division
     #     - ~~SECTION: Governance~~
     #         - Employee Workforce
-    #             - Total full-time vs part-time employees
+    #             - Summary
+    #             - ~~Total full-time vs part-time employees~~
     #         - Unique roles + average salary for role
     #         - Top paying position
     #         - Average salary across division
