@@ -247,6 +247,31 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[0]:
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
+        st.markdown(
+            """
+            <div class="table-row">
+                <span class="bold">Top paying job</span>
+                <span>-</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Lowest paying job</span>
+                <span>-</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Average salary</span>
+                <span>-</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Average hourly rate</span>
+                <span>-</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Total unique jobs</span>
+                <span class="bold">-</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
     with salary_cols[1]:
         st.markdown("[ PLACEHOLDER FOR CHART]")
 
