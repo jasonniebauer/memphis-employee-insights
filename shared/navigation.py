@@ -53,13 +53,7 @@ def render_navigation():
     </style>
     """, unsafe_allow_html=True)
 
-    with st.sidebar:
-        # st.logo(
-        #     LOGO_URL,
-        #     # link="/", # Optional: adds a hyperlink when clicked
-        #     icon_image=LOGO_URL, # Optional: a smaller icon for when the sidebar is collapsed
-        #     size="large"
-        # )
+    with st.sidebar:    
         st.image(LOGO_URL, width=50)
         st.markdown('<h1 style="padding-top:0;">City of Memphis</h1>', unsafe_allow_html=True)
         st.subheader("Employee Insights")
@@ -69,12 +63,8 @@ def render_navigation():
         st.page_link("pages/public-works.py", label="Public Works", icon=":material/tram:")  # traffic
         st.page_link("pages/stronger-neighborhoods.py", label="Stronger Neighborhoods", icon=":material/psychiatry:")  # other_houses
         st.page_link("pages/good-government.py", label="Good Government", icon=":material/account_balance:")
-        
         st.markdown("---")
-        st.caption("Last updated: February 2026")
-        # st.caption("<small>Data as of January 28, 2025</small>", unsafe_allow_html=True)
         st.markdown(
             '<h6>Made by <a href="https://jasonniebauer.com" style="text-decoration:underline;">Jason Niebauer</a></h6>',
             unsafe_allow_html=True,
         )
-        
