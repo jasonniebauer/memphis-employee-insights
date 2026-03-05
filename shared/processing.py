@@ -33,7 +33,10 @@ def get_division_details(division):
     average_hourly_rate = df['Hourly/Per Event Rate'].mean()
     # Get the total number of unique jobs
     total_unique_jobs = len(df['Job Title'].unique())
-
+    # Get the total number of unique full-time jobs
+    total_unique_ft_jobs = len(df[df['Employment Type'] == 'Full-time']['Job Title'].unique())
+    # Get the total number of unique part-time jobs
+    total_unique_pt_jobs = total_unique_jobs - total_unique_ft_jobs
     # Get total number of employees
     total_employees = len(df)
     # Get total number of full-time employees
@@ -52,6 +55,8 @@ def get_division_details(division):
         average_salary,
         average_hourly_rate,
         total_unique_jobs,
+        total_unique_ft_jobs,
+        total_unique_pt_jobs,
         total_employees,
         total_full_time_employees,
         total_part_time_employees,
