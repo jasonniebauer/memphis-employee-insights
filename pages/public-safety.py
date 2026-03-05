@@ -97,7 +97,6 @@ employment_type_totals_df = pd.DataFrame({
     max_police_salary,
     top_paying_police_part_time_job,
     max_police_hourly_rate,
-    lowest_paying_police_job,
     average_police_salary,
     average_police_hourly_rate,
     total_unique_police_jobs,
@@ -112,7 +111,6 @@ employment_type_totals_df = pd.DataFrame({
     max_fire_salary,
     top_paying_fire_part_time_job,
     max_fire_hourly_rate,
-    lowest_paying_fire_job,
     average_fire_salary,
     average_fire_hourly_rate,
     total_unique_fire_jobs,
@@ -311,14 +309,6 @@ with st.spinner('Loading data and calculations...'):
 
         st.markdown(
             f"""
-            <div class="table-row">
-                <span class="bold">Top paid role</span>
-                <span>{top_paying_fire_job}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Lowest paid role</span>
-                <span>{lowest_paying_fire_job}</span>
-            </div>
             <div class="table-row"">
                 <span class="bold">Average salary</span>
                 <span>${average_fire_salary:,.2f}</span>
@@ -342,7 +332,7 @@ with st.spinner('Loading data and calculations...'):
         )
 
         st.metric(
-            label=f":material/e911_avatar: {top_paying_fire_part_time_job}".replace("Oper", "Operator"),
+            label=f":material/health_and_safety: {top_paying_fire_part_time_job}".replace("RN", "Registered Nurse").replace("Oper", "Operator"),
             value=f"${max_fire_hourly_rate:.0f}/hr",  
             delta="Top Part-Time Rate",
         )
