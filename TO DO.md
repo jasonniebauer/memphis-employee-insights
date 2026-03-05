@@ -9,59 +9,15 @@
 [ ] number of unique jobs/roles per division
 
 
-TOP 20 PERFORMANCE OPTIMIZATIONS:
+PERFORMANCE OPTIMIZATIONS:
 
-1. ✅ Use st.navigation() (modern, lightweight approach)
-2. ✅ Initialize session state once at app start
-3. ✅ Add static sidebar content before navigation
-4. ✅ Define configuration constants once
-5. ✅ Use @st.cache_data for data loading with TTL
-6. ✅ Optimize pandas dtypes (category, int32 vs int64)
-7. ✅ Cache expensive computations separately
-8. ✅ Use @st.cache_resource for connections
-9. ✅ Lazy load heavy dependencies
-10. ✅ Store data in session_state to avoid reloading
-11. ✅ Use categorical.categories for filter options
-12. ✅ Use boolean indexing for filtering
-13. ✅ Prefer st.columns over containers
-14. ✅ Use tabs to defer rendering
-15. ✅ Limit dataframe rows with height parameter
-16. ✅ Provide downloads for large datasets
-17. ✅ Create reusable chart templates
-18. ✅ Aggregate data before plotting
-19. ✅ Sample large datasets for visualization
-20. ✅ Use parquet instead of CSV for large files
-
-AVOID:
-❌ Old pages/ folder approach (slower imports)
-❌ Loading data on every rerun
-❌ Using classes for pages (adds overhead)
-❌ Rendering thousands of rows in dataframes
-❌ Creating charts from raw data without aggregation
-❌ Importing heavy libraries at module level
-❌ Using st.experimental_rerun() unnecessarily
-❌ Deep nesting of containers
-❌ Displaying all data when filtering is needed
-
-# ====================
-# WHY page_modules/ IS MOST PERFORMANT
-# ====================
-
-OLD APPROACH (pages/ folder):
-❌ Streamlit auto-discovers .py files in pages/
-❌ Each file runs on import (slower)
-❌ Files named like: pages/1_📊_Dashboard.py
-❌ Less control over execution
-❌ Can't easily share state between pages
-
-NEW APPROACH (st.navigation() + modules):
-✅ You explicitly import only what you need
-✅ Functions, not full file execution
-✅ Better control over when code runs
-✅ Easier to share data via session_state
-✅ Cleaner organization
-✅ FASTER - only imports function references
-
+✅ Initialize session state once at app start
+✅ Use @st.cache_data for data loading with TTL
+✅ Optimize pandas dtypes (category, int32 vs int64)
+✅ Cache expensive computations separately
+✅ Use @st.cache_resource for connections
+✅ Store data in session_state to avoid reloading
+✅ Create reusable chart templates
 
 # ====================
 # pages/dashboard.py - Efficient Page Structure
