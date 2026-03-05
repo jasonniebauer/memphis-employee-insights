@@ -95,8 +95,10 @@ employment_type_totals_df = pd.DataFrame({
 (
     top_paying_police_job,
     max_police_salary,
+    min_police_salary,
     top_paying_police_part_time_job,
     max_police_hourly_rate,
+    min_police_hourly_rate,
     average_police_salary,
     average_police_hourly_rate,
     total_unique_police_jobs,
@@ -109,8 +111,10 @@ employment_type_totals_df = pd.DataFrame({
 (
     top_paying_fire_job,
     max_fire_salary,
+    min_fire_salary,
     top_paying_fire_part_time_job,
     max_fire_hourly_rate,
+    min_fire_hourly_rate,
     average_fire_salary,
     average_fire_hourly_rate,
     total_unique_fire_jobs,
@@ -231,27 +235,23 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-        st.markdown(
-            """
-            Salaries range from XXk - XXXk, 
-            Hourly rates range from XX - XX
+        st.text(
+            f"""
+            Salaries in the Memphis Police Department range widely. They start from a low of roughly ${round(min_police_salary, -3):,.0f} annually for certain support or entry-level non-sworn roles (such as Communication Safety Equipment Installer). They extend upward through career progression in sworn and specialized roles, with top earners in supervisory, command, and leadership positions exceeding ${round(max_police_salary, -3):,.0f} per year.
+            
+            Part-time or hourly support roles often start around $12 per hour, while some specialized or higher-skilled part-time/contract positions can reach up to $50 per hour depending on the role. 
             """
         )
 
         st.markdown(
             f"""
             <div class="table-row"">
-                <span class="bold">Average salary</span>
+                <span class="bold">Average salary (full-time)</span>
                 <span>${average_police_salary:,.2f}</span>
             </div>
             <div class="table-row"">
-                <span class="bold">Average hourly rate</span>
+                <span class="bold">Average hourly rate (part-time)</span>
                 <span>${average_police_hourly_rate:,.2f}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Unique roles</span>
-                <span>{total_unique_police_jobs}</span>
             </div>
             """, unsafe_allow_html=True
         )
@@ -262,7 +262,7 @@ with st.spinner('Loading data and calculations...'):
             value=f"${max_police_salary/1e3:,.1f}k",  
             delta="Top Full-Time Salary",
         )
-
+        st.space()
         st.metric(
             label=f":material/assignment: {top_paying_police_part_time_job}",
             value=f"${max_police_hourly_rate:.0f}/hr",  
@@ -276,8 +276,12 @@ with st.spinner('Loading data and calculations...'):
     police_row2_cols = st.columns(2, gap="xlarge")
 
     with police_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.markdown(
+            f"""
+            The Police Services workforce is made up of {total_unique_police_jobs} unique roles
+            with the the majority (77) of jobs being offered as full-time whereas a smaller portion (17) are offered as part-time, hourly roles.
+            """
+        )
         st.markdown(
             employment_type_table(
                 total_full_time_police_employees,
@@ -305,7 +309,9 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.markdown(
+            f"""Salaries for full-time employees range from ${min_fire_salary/1e3:,.1f}k to {max_fire_salary/1e3:,.1f}k annually."""
+        )
 
         st.markdown(
             f"""
