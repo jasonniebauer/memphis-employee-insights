@@ -5,7 +5,7 @@ from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
 from shared.processing import get_division_details
-from shared.utilities import employment_type_table, employment_type_pie_chart
+from shared.utilities import employee_pay_averages, employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_RED, LIGHT_RED
 
 
@@ -242,20 +242,15 @@ with st.spinner('Loading data and calculations...'):
             Part-time or hourly support roles often start around $12 per hour, while some specialized or higher-skilled part-time/contract positions can reach up to $50 per hour depending on the role. 
             """
         )
-
         st.markdown(
-            f"""
-            <div class="table-row"">
-                <span class="bold">Average salary (full-time)</span>
-                <span>${average_police_salary:,.2f}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Average hourly rate (part-time)</span>
-                <span>${average_police_hourly_rate:,.2f}</span>
-            </div>
-            """, unsafe_allow_html=True
+            employee_pay_averages(
+                average_police_salary,
+                average_police_hourly_rate
+            ),
+            unsafe_allow_html=True
         )
 
+    st.space()
     with salary_cols[1]:
         st.metric(
             label=f":material/local_police: {top_paying_police_job}".replace("Svcs", "Services"),
@@ -312,22 +307,12 @@ with st.spinner('Loading data and calculations...'):
         st.markdown(
             f"""Salaries for full-time employees range from ${min_fire_salary/1e3:,.1f}k to {max_fire_salary/1e3:,.1f}k annually."""
         )
-
         st.markdown(
-            f"""
-            <div class="table-row"">
-                <span class="bold">Average salary</span>
-                <span>${average_fire_salary:,.2f}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Average hourly rate</span>
-                <span>${average_fire_hourly_rate:,.2f}</span>
-            </div>
-            <div class="table-row">
-                <span class="bold">Unique jobs</span>
-                <span>{total_unique_fire_jobs}</span>
-            </div>
-            """, unsafe_allow_html=True
+            employee_pay_averages(
+                average_fire_salary,
+                average_fire_hourly_rate
+            ),
+            unsafe_allow_html=True
         )
 
     with salary_cols[1]:
