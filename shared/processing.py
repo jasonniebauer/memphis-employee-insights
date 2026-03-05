@@ -18,7 +18,7 @@ def get_division_details(division):
     # Get the 'Job Title' corresponding to the max 'Annual Salary'
     max_salary = df['Annual Salary'].max()
     top_paying_job = df.loc[df['Annual Salary'].idxmax(), 'Job Title']
-    # Get the highest salary
+    # Get the highest hourly rate
     max_hourly_rate = df['Hourly/Per Event Rate'].max()
     # Get the job paying the highest salary
     top_paying_part_time_job = df.loc[df['Hourly/Per Event Rate'].idxmax(), 'Job Title']
