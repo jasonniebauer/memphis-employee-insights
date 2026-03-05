@@ -4,10 +4,9 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.processing import get_division_details
 from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_RED, LIGHT_RED
-
-from shared.processing import get_division_employment_breakdown
 
 
 ##################################################
@@ -27,16 +26,23 @@ render_navigation()
 render_reusable_styles()
 
 # Page-specific CSS (only runs here on page)
-st.markdown("""
-<style>
-    /* Set background color for active page link */
-    [data-testid="stPageLink-NavLink"][href="public-safety"] {
-        background: #FAD2CF;
-        border-left: 5px solid #EA4335;
-        padding-left: 0.2rem;
-    }
-</style>
-""", unsafe_allow_html=True)
+st.markdown(
+    """
+    <style>
+        /* Set background color for active page link */
+        [data-testid="stPageLink-NavLink"][href="public-safety"] {
+            background: #FAD2CF;
+            border-left: 5px solid #EA4335;
+            padding-left: 0.2rem;
+        }
+
+        [data-testid="stMetricDelta"] {
+            background: #FAD2CF !important;
+            color: #202124 !important;
+        }
+    </style>
+    """, unsafe_allow_html=True
+)
 
 ##################################################
 # Data Preparation
@@ -87,18 +93,34 @@ employment_type_totals_df = pd.DataFrame({
 })
 
 (
+    top_paying_police_job,
+    max_police_salary,
+    top_paying_police_part_time_job,
+    max_police_hourly_rate,
+    lowest_paying_police_job,
+    average_police_salary,
+    average_police_hourly_rate,
+    total_unique_police_jobs,
     total_police_employees,
     total_full_time_police_employees,
     total_part_time_police_employees,
     employment_type_police_totals_df
-) = get_division_employment_breakdown('Police Services')
+) = get_division_details('Police Services')
 
 (
+    top_paying_fire_job,
+    max_fire_salary,
+    top_paying_fire_part_time_job,
+    max_fire_hourly_rate,
+    lowest_paying_fire_job,
+    average_fire_salary,
+    average_fire_hourly_rate,
+    total_unique_fire_jobs,
     total_fire_employees,
     total_full_time_fire_employees,
     total_part_time_fire_employees,
     employment_type_fire_totals_df
-) = get_division_employment_breakdown('Fire Services')
+) = get_division_details('Fire Services')
 
 ##################################################
 # UI Content
@@ -212,34 +234,42 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[0]:
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
         st.markdown(
             """
-            <div class="table-row">
-                <span class="bold">Top paying job</span>
-                <span>-</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Lowest paying job</span>
-                <span>-</span>
-            </div>
+            Salaries range from XXk - XXXk, 
+            Hourly rates range from XX - XX
+            """
+        )
+
+        st.markdown(
+            f"""
             <div class="table-row"">
                 <span class="bold">Average salary</span>
-                <span>-</span>
+                <span>${average_police_salary:,.2f}</span>
             </div>
             <div class="table-row"">
                 <span class="bold">Average hourly rate</span>
-                <span>-</span>
+                <span>${average_police_hourly_rate:,.2f}</span>
             </div>
             <div class="table-row">
-                <span class="bold">Total unique jobs</span>
-                <span class="bold">-</span>
+                <span class="bold">Unique roles</span>
+                <span>{total_unique_police_jobs}</span>
             </div>
             """, unsafe_allow_html=True
         )
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        st.metric(
+            label=f":material/local_police: {top_paying_police_job}".replace("Svcs", "Services"),
+            value=f"${max_police_salary/1e3:,.1f}k",  
+            delta="Top Full-Time Salary",
+        )
+
+        st.metric(
+            label=f":material/assignment: {top_paying_police_part_time_job}",
+            value=f"${max_police_hourly_rate:.0f}/hr",  
+            delta="Top Part-Time Rate",
+        )
 
     st.space()
 
@@ -279,8 +309,43 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[0]:
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
+        st.markdown(
+            f"""
+            <div class="table-row">
+                <span class="bold">Top paid role</span>
+                <span>{top_paying_fire_job}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Lowest paid role</span>
+                <span>{lowest_paying_fire_job}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Average salary</span>
+                <span>${average_fire_salary:,.2f}</span>
+            </div>
+            <div class="table-row"">
+                <span class="bold">Average hourly rate</span>
+                <span>${average_fire_hourly_rate:,.2f}</span>
+            </div>
+            <div class="table-row">
+                <span class="bold">Unique jobs</span>
+                <span>{total_unique_fire_jobs}</span>
+            </div>
+            """, unsafe_allow_html=True
+        )
+
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        st.metric(
+            label=f":material/local_fire_department: {top_paying_fire_job}".replace("Svcs", "Services"),
+            value=f"${max_fire_salary/1e3:,.1f}k",  
+            delta="Top Full-Time Salary",
+        )
+
+        st.metric(
+            label=f":material/e911_avatar: {top_paying_fire_part_time_job}".replace("Oper", "Operator"),
+            value=f"${max_fire_hourly_rate:.0f}/hr",  
+            delta="Top Part-Time Rate",
+        )
 
     st.space()
 
