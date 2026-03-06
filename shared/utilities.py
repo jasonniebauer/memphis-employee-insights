@@ -1,25 +1,6 @@
 import altair as alt
 
 
-def employee_pay_averages(avg_salary, avg_hourly):
-    """
-    Table for display average salary and hourly pay rates.
-
-    :param avg_salary: Salary average
-    :param avg_hourly: Hourly average
-
-    """
-    return f"""
-            <div class="table-row"">
-                <span class="bold">Average salary (full-time)</span>
-                <span>${avg_salary:,.2f}</span>
-            </div>
-            <div class="table-row"">
-                <span class="bold">Average hourly rate (part-time)</span>
-                <span>${avg_hourly:,.2f}</span>
-            </div>
-            """
-
 def employment_type_table(total_employees, total_full_time, total_part_time):
     """
     Table for displaying employee counts by employment type.
