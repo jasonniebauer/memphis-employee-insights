@@ -5,7 +5,7 @@ from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
 from shared.processing import get_division_details
-from shared.utilities import employee_pay_averages, employment_type_table, employment_type_pie_chart
+from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_RED, LIGHT_RED
 
 
@@ -102,6 +102,8 @@ employment_type_totals_df = pd.DataFrame({
     average_police_salary,
     average_police_hourly_rate,
     total_unique_police_jobs,
+    total_unique_police_ft_jobs,
+    total_unique_police_pt_jobs,
     total_police_employees,
     total_full_time_police_employees,
     total_part_time_police_employees,
@@ -118,6 +120,8 @@ employment_type_totals_df = pd.DataFrame({
     average_fire_salary,
     average_fire_hourly_rate,
     total_unique_fire_jobs,
+    total_unique_fire_ft_jobs,
+    total_unique_fire_pt_jobs,
     total_fire_employees,
     total_full_time_fire_employees,
     total_part_time_fire_employees,
@@ -242,27 +246,33 @@ with st.spinner('Loading data and calculations...'):
             Part-time or hourly support roles often start around $12 per hour, while some specialized or higher-skilled part-time/contract positions can reach up to $50 per hour depending on the role. 
             """
         )
-        st.markdown(
-            employee_pay_averages(
-                average_police_salary,
-                average_police_hourly_rate
-            ),
-            unsafe_allow_html=True
-        )
 
     st.space()
+
     with salary_cols[1]:
-        st.metric(
-            label=f":material/local_police: {top_paying_police_job}".replace("Svcs", "Services"),
-            value=f"${max_police_salary/1e3:,.1f}k",  
-            delta="Top Full-Time Salary",
-        )
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_police_job}".replace("Svcs", "Services"),
+                value=f"${max_police_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_police_part_time_job}",
+                value=f"${max_police_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
         st.space()
-        st.metric(
-            label=f":material/assignment: {top_paying_police_part_time_job}",
-            value=f"${max_police_hourly_rate:.0f}/hr",  
-            delta="Top Part-Time Rate",
-        )
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_police_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_police_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
@@ -273,8 +283,10 @@ with st.spinner('Loading data and calculations...'):
     with police_row2_cols[0]:
         st.markdown(
             f"""
-            The Police Services workforce is made up of {total_unique_police_jobs} unique roles
-            with the the majority (77) of jobs being offered as full-time whereas a smaller portion (17) are offered as part-time, hourly roles.
+            The Memphis Police Department employs {total_police_employees:,} individuals across {total_unique_police_jobs} unique jobs 
+            comprising sworn officers, supervisors, command staff, and essential civilian support roles to ensure consistent, 
+            round-the-clock public safety operations. Full-time employees account for over 90% of the department's 
+            core workforce, while part-time, hourly employees (supplemental positions) make up nearly 10%.
             """
         )
         st.markdown(
@@ -307,26 +319,31 @@ with st.spinner('Loading data and calculations...'):
         st.markdown(
             f"""Salaries for full-time employees range from ${min_fire_salary/1e3:,.1f}k to {max_fire_salary/1e3:,.1f}k annually."""
         )
-        st.markdown(
-            employee_pay_averages(
-                average_fire_salary,
-                average_fire_hourly_rate
-            ),
-            unsafe_allow_html=True
-        )
 
     with salary_cols[1]:
-        st.metric(
-            label=f":material/local_fire_department: {top_paying_fire_job}".replace("Svcs", "Services"),
-            value=f"${max_fire_salary/1e3:,.1f}k",  
-            delta="Top Full-Time Salary",
-        )
-
-        st.metric(
-            label=f":material/health_and_safety: {top_paying_fire_part_time_job}".replace("RN", "Registered Nurse").replace("Oper", "Operator"),
-            value=f"${max_fire_hourly_rate:.0f}/hr",  
-            delta="Top Part-Time Rate",
-        )
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_fire_department: {top_paying_fire_job}".replace("Svcs", "Services"),
+                value=f"${max_fire_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/health_and_safety: {top_paying_fire_part_time_job}".replace("Oper", "Operator"),
+                value=f"${max_fire_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_fire_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_fire_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
