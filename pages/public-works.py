@@ -203,6 +203,54 @@ employment_type_city_engineering_totals_df = pd.DataFrame({
     employment_type_public_works_totals_df
 ) = get_division_details('Public Works')
 
+(
+    top_paying_solid_waste_job,
+    max_solid_waste_salary,
+    min_solid_waste_salary,
+    top_paying_solid_waste_part_time_job,
+    max_solid_waste_hourly_rate,
+    min_solid_waste_hourly_rate,
+    average_solid_waste_salary,
+    average_solid_waste_hourly_rate,
+    total_unique_solid_waste_jobs,
+    total_solid_waste_employees,
+    total_full_time_solid_waste_employees,
+    total_part_time_solid_waste_employees,
+    employment_type_solid_waste_totals_df
+) = get_division_details('Solid Waste')
+
+(
+    top_paying_general_services_job,
+    max_general_services_salary,
+    min_general_services_salary,
+    top_paying_general_services_part_time_job,
+    max_general_services_hourly_rate,
+    min_general_services_hourly_rate,
+    average_general_services_salary,
+    average_general_services_hourly_rate,
+    total_unique_general_services_jobs,
+    total_general_services_employees,
+    total_full_time_general_services_employees,
+    total_part_time_general_services_employees,
+    employment_type_general_services_totals_df
+) = get_division_details('General Services')
+
+(
+    top_paying_city_engineering_job,
+    max_city_engineering_salary,
+    min_city_engineering_salary,
+    top_paying_city_engineering_part_time_job,
+    max_city_engineering_hourly_rate,
+    min_city_engineering_hourly_rate,
+    average_city_engineering_salary,
+    average_city_engineering_hourly_rate,
+    total_unique_city_engineering_jobs,
+    total_city_engineering_employees,
+    total_full_time_city_engineering_employees,
+    total_part_time_city_engineering_employees,
+    employment_type_city_engineering_totals_df
+) = get_division_details('City Engineering')
+
 ##################################################
 # UI Content
 ##################################################
@@ -326,12 +374,12 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_public_works_job}".replace("Svcs", "Services"),
+                label=f":material/local_police: {top_paying_public_works_job}",
                 value=f"${max_public_works_salary/1e3:,.1f}k",  
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_public_works_part_time_job}",
+                label=f":material/assignment: {top_paying_public_works_part_time_job}".replace("Oper", "Operator").replace("Crewperson", ""),
                 value=f"${max_public_works_hourly_rate:.0f}/hr",  
                 delta="Top Part-Time Rate",
             )
@@ -387,7 +435,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_solid_waste_job}",
+                value=f"${max_solid_waste_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_solid_waste_part_time_job}",
+                value=f"${max_solid_waste_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_solid_waste_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_solid_waste_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
@@ -428,7 +498,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_general_services_job}".replace("Svcs", "Services"),
+                value=f"${max_general_services_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_general_services_part_time_job}",
+                value=f"${max_general_services_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_general_services_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_general_services_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
@@ -469,7 +561,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_city_engineering_job}",
+                value=f"${max_city_engineering_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_city_engineering_part_time_job}",
+                value=f"${max_city_engineering_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_city_engineering_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_city_engineering_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
