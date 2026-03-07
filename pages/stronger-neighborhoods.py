@@ -4,6 +4,7 @@ import pandas as pd
 from shared.navigation import render_navigation
 from shared.styles import render_reusable_styles
 from shared.data_loader import initialize_data
+from shared.processing import get_division_details
 from shared.utilities import employment_type_table, employment_type_pie_chart
 from shared.colors import MEDIUM_GREEN, LIGHT_GREEN
 
