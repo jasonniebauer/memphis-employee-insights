@@ -34,6 +34,12 @@ st.markdown("""
         border-left: 5px solid #4285F4;
         padding-left: 0.2rem;
     }
+            
+    /* Override metric delta colors */
+    [data-testid="stMetricDelta"] {
+        background: #D2E3FC !important;
+        color: #202124 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
@@ -181,6 +187,22 @@ employment_type_city_engineering_totals_df = pd.DataFrame({
     ]
 })
 
+(
+    top_paying_public_works_job,
+    max_public_works_salary,
+    min_public_works_salary,
+    top_paying_public_works_part_time_job,
+    max_public_works_hourly_rate,
+    min_public_works_hourly_rate,
+    average_public_works_salary,
+    average_public_works_hourly_rate,
+    total_unique_public_works_jobs,
+    total_public_works_employees,
+    total_full_time_public_works_employees,
+    total_part_time_public_works_employees,
+    employment_type_public_works_totals_df
+) = get_division_details('Public Works')
+
 ##################################################
 # UI Content
 ##################################################
@@ -302,7 +324,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_public_works_job}".replace("Svcs", "Services"),
+                value=f"${max_public_works_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_public_works_part_time_job}",
+                value=f"${max_public_works_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_public_works_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_public_works_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
