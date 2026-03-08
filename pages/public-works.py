@@ -375,24 +375,28 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_public_works_job}",
-                value=f"${max_public_works_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_public_works_salary/1e3:,.0f}k"
+                    if round(max_public_works_salary)%1000 == 0
+                    else f"${max_public_works_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_public_works_part_time_job}".replace("Oper", "Operator").replace("Crewperson", ""),
-                value=f"${max_public_works_hourly_rate:.0f}/hr",  
+                value=f"${max_public_works_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
         with st.container(horizontal=True):
             st.metric(
                 label=f"Average full-time salary",
-                value=f"${average_public_works_salary/1e3:,.1f}k",  
+                value=f"${average_public_works_salary/1e3:,.1f}k",
                 delta=None,
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_public_works_hourly_rate:.0f}/hr",  
+                value=f"${average_public_works_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
@@ -438,24 +442,28 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_solid_waste_job}",
-                value=f"${max_solid_waste_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_solid_waste_salary/1e3:,.0f}k"
+                    if round(max_solid_waste_salary)%1000 == 0
+                    else f"${max_solid_waste_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_solid_waste_part_time_job}",
-                value=f"${max_solid_waste_hourly_rate:.0f}/hr",  
+                value=f"${max_solid_waste_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
         with st.container(horizontal=True):
             st.metric(
                 label=f"Average full-time salary",
-                value=f"${average_solid_waste_salary/1e3:,.1f}k",  
+                value=f"${average_solid_waste_salary/1e3:,.1f}k",
                 delta=None,
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_solid_waste_hourly_rate:.0f}/hr",  
+                value=f"${average_solid_waste_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
@@ -501,24 +509,28 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_general_services_job}".replace("Svcs", "Services"),
-                value=f"${max_general_services_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_general_services_salary/1e3:,.0f}k"
+                    if round(max_general_services_salary)%1000 == 0
+                    else f"${max_general_services_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_general_services_part_time_job}",
-                value=f"${max_general_services_hourly_rate:.0f}/hr",  
+                value=f"${max_general_services_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
         with st.container(horizontal=True):
             st.metric(
                 label=f"Average full-time salary",
-                value=f"${average_general_services_salary/1e3:,.1f}k",  
+                value=f"${average_general_services_salary/1e3:,.1f}k",
                 delta=None,
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_general_services_hourly_rate:.0f}/hr",  
+                value=f"${average_general_services_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
@@ -564,24 +576,28 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_city_engineering_job}",
-                value=f"${max_city_engineering_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_city_engineering_salary/1e3:,.0f}k"
+                    if round(max_city_engineering_salary)%1000 == 0
+                    else f"${max_city_engineering_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_city_engineering_part_time_job}",
-                value=f"${max_city_engineering_hourly_rate:.0f}/hr",  
+                value=f"${max_city_engineering_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
         with st.container(horizontal=True):
             st.metric(
                 label=f"Average full-time salary",
-                value=f"${average_city_engineering_salary/1e3:,.1f}k",  
+                value=f"${average_city_engineering_salary/1e3:,.1f}k",
                 delta=None,
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_city_engineering_hourly_rate:.0f}/hr",  
+                value=f"${average_city_engineering_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
