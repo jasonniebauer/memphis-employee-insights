@@ -12,8 +12,21 @@ def get_division_details(division):
     """"""
     # Make a copy of the original DataFrame
     df = SOURCE_DF.copy()
-    # Filter employees to only those in the division specified
-    df = df[df['Division Name'] == division]
+
+    # Check if division a category from Good Government
+    if division in ['Governance', 'Legal']:
+        # Define Governance and Legal category groups of divisions
+        governance = ['Executive', 'Legislative', 'Judicial']
+        legal = ['City Attorney', 'City Court Clerk']
+
+        # Filter employees to only those in the category specified
+        if division == 'Governance':
+            df = df[df['Division Name'].isin(governance)]
+        elif division == 'Legal':
+            df = df[df['Division Name'].isin(legal)]
+    else:    
+        # Filter employees to only those in the division specified
+        df = df[df['Division Name'] == division]
 
     # Get the highest salary for the division
     max_salary = df['Annual Salary'].max()
