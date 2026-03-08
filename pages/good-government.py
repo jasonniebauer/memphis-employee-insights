@@ -240,6 +240,86 @@ employment_type_legal_totals_df = pd.DataFrame({
     ]
 })
 
+(
+    top_paying_governance_job,
+    max_governance_salary,
+    min_governance_salary,
+    top_paying_governance_part_time_job,
+    max_governance_hourly_rate,
+    min_governance_hourly_rate,
+    average_governance_salary,
+    average_governance_hourly_rate,
+    total_unique_governance_jobs,
+    total_governance_employees,
+    total_full_time_governance_employees,
+    total_part_time_governance_employees,
+    employment_type_governance_totals_df
+) = get_division_details('Governance')
+
+(
+    top_paying_finance_job,
+    max_finance_salary,
+    min_finance_salary,
+    top_paying_finance_part_time_job,
+    max_finance_hourly_rate,
+    min_finance_hourly_rate,
+    average_finance_salary,
+    average_finance_hourly_rate,
+    total_unique_finance_jobs,
+    total_finance_employees,
+    total_full_time_finance_employees,
+    total_part_time_finance_employees,
+    employment_type_finance_totals_df
+) = get_division_details('Finance and Administration')
+
+(
+    top_paying_legal_job,
+    max_legal_salary,
+    min_legal_salary,
+    top_paying_legal_part_time_job,
+    max_legal_hourly_rate,
+    min_legal_hourly_rate,
+    average_legal_salary,
+    average_legal_hourly_rate,
+    total_unique_legal_jobs,
+    total_legal_employees,
+    total_full_time_legal_employees,
+    total_part_time_legal_employees,
+    employment_type_legal_totals_df
+) = get_division_details('Legal')
+
+(
+    top_paying_human_resources_job,
+    max_human_resources_salary,
+    min_human_resources_salary,
+    top_paying_human_resources_part_time_job,
+    max_human_resources_hourly_rate,
+    min_human_resources_hourly_rate,
+    average_human_resources_salary,
+    average_human_resources_hourly_rate,
+    total_unique_human_resources_jobs,
+    total_human_resources_employees,
+    total_full_time_human_resources_employees,
+    total_part_time_human_resources_employees,
+    employment_type_human_resources_totals_df
+) = get_division_details('Human Resources')
+
+(
+    top_paying_info_tech_job,
+    max_info_tech_salary,
+    min_info_tech_salary,
+    top_paying_info_tech_part_time_job,
+    max_info_tech_hourly_rate,
+    min_info_tech_hourly_rate,
+    average_info_tech_salary,
+    average_info_tech_hourly_rate,
+    total_unique_info_tech_jobs,
+    total_info_tech_employees,
+    total_full_time_info_tech_employees,
+    total_part_time_info_tech_employees,
+    employment_type_info_tech_totals_df
+) = get_division_details('Information Technology')
+
 ##################################################
 # UI Content
 ##################################################
@@ -364,7 +444,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_governance_job}",
+                value=(
+                    f"${max_governance_salary/1e3:,.0f}k"
+                    if round(max_governance_salary)%1000 == 0
+                    else f"${max_governance_salary/1e3:,.1f}k"
+                ),
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_governance_part_time_job}",
+                value=f"${max_governance_hourly_rate:.0f}/hr",
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_governance_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_governance_hourly_rate:.0f}/hr",
+                delta=None,
+            )
 
     st.space()
 
@@ -405,7 +511,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_finance_job}",
+                value=(
+                    f"${max_finance_salary/1e3:,.0f}k"
+                    if round(max_finance_salary)%1000 == 0
+                    else f"${max_finance_salary/1e3:,.1f}k"
+                ),
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_finance_part_time_job}",
+                value=f"${max_finance_hourly_rate:.0f}/hr",
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_finance_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_finance_hourly_rate:.0f}/hr",
+                delta=None,
+            )
 
     st.space()
 
@@ -446,7 +578,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_human_resources_job}",
+                value=(
+                    f"${max_human_resources_salary/1e3:,.0f}k"
+                    if round(max_human_resources_salary)%1000 == 0
+                    else f"${max_human_resources_salary/1e3:,.1f}k"
+                ),
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_human_resources_part_time_job}".replace("Compensation Coord Sr", "Sr. Compensation Coordinator"),
+                value=f"${max_human_resources_hourly_rate:.0f}/hr",
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_human_resources_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_human_resources_hourly_rate:.0f}/hr",
+                delta=None,
+            )
 
     st.space()
 
@@ -487,7 +645,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_info_tech_job}".replace("Info", "IT"),
+                value=(
+                    f"${max_info_tech_salary/1e3:,.0f}k"
+                    if round(max_info_tech_salary)%1000 == 0
+                    else f"${max_info_tech_salary/1e3:,.1f}k"
+                ),
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_info_tech_part_time_job}".replace("Internship Urban Fellow", "Internship (Urban Fellow)"),
+                value=f"${max_info_tech_hourly_rate:.0f}/hr",
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_info_tech_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_info_tech_hourly_rate:.0f}/hr",
+                delta=None,
+            )
 
     st.space()
 
@@ -528,7 +712,33 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_legal_job}",
+                value=(
+                    f"${max_legal_salary/1e3:,.0f}k"
+                    if round(max_legal_salary)%1000 == 0
+                    else f"${max_legal_salary/1e3:,.1f}k"
+                ),
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_legal_part_time_job}".replace("Rec", "Records"),
+                value=f"${max_legal_hourly_rate:.0f}/hr",
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_legal_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_legal_hourly_rate:.0f}/hr",
+                delta=None,
+            )
 
     st.space()
 
