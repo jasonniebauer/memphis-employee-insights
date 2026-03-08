@@ -34,6 +34,12 @@ st.markdown("""
         border-left: 5px solid #FBBC04;
         padding-left: 0.2rem;
     }
+
+    /* Override metric delta colors */
+    [data-testid="stMetricDelta"] {
+        background: #FEEFC3 !important;
+        color: #202124 !important;
+    }
 </style>
 """, unsafe_allow_html=True)
 
