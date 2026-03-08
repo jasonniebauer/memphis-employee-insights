@@ -323,24 +323,28 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_memphis_parks_job}",
-                value=f"${max_memphis_parks_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_memphis_parks_salary/1e3:,.0f}k"
+                    if round(max_memphis_parks_salary)%1000 == 0
+                    else f"${max_memphis_parks_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_memphis_parks_part_time_job}",
-                value=f"${max_memphis_parks_hourly_rate:.0f}/hr",  
+                value=f"${max_memphis_parks_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
         with st.container(horizontal=True):
             st.metric(
                 label=f"Average full-time salary",
-                value=f"${average_memphis_parks_salary/1e3:,.1f}k",  
+                value=f"${average_memphis_parks_salary/1e3:,.1f}k",
                 delta=None,
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_memphis_parks_hourly_rate:.0f}/hr",  
+                value=f"${average_memphis_parks_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
@@ -384,12 +388,16 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_library_services_job}",
-                value=f"${max_library_services_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_library_services_salary/1e3:,.0f}k"
+                    if round(max_library_services_salary)%1000 == 0
+                    else f"${max_library_services_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_library_services_part_time_job}",
-                value=f"${max_library_services_hourly_rate:.0f}/hr",  
+                value=f"${max_library_services_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
@@ -401,7 +409,7 @@ with st.spinner('Loading data and calculations...'):
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_library_services_hourly_rate:.0f}/hr",  
+                value=f"${average_library_services_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
@@ -447,24 +455,28 @@ with st.spinner('Loading data and calculations...'):
         with st.container(horizontal=True):
             st.metric(
                 label=f":material/local_police: {top_paying_housing_community_job}".replace("Hcd", "HCD"),
-                value=f"${max_housing_community_salary/1e3:,.1f}k",  
+                value=(
+                    f"${max_housing_community_salary/1e3:,.0f}k"
+                    if round(max_housing_community_salary)%1000 == 0
+                    else f"${max_housing_community_salary/1e3:,.1f}k"
+                ),
                 delta="Top Full-Time Salary",
             )
             st.metric(
                 label=f":material/assignment: {top_paying_housing_community_part_time_job}".replace("HCD", ""),
-                value=f"${max_housing_community_hourly_rate:.0f}/hr",  
+                value=f"${max_housing_community_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
         st.space()
         with st.container(horizontal=True):
             st.metric(
                 label=f"Average full-time salary",
-                value=f"${average_housing_community_salary/1e3:,.1f}k",  
+                value=f"${average_housing_community_salary/1e3:,.1f}k",
                 delta=None,
             )
             st.metric(
                 label=f"Average part-time rate ",
-                value=f"${average_housing_community_hourly_rate:.0f}/hr",  
+                value=f"${average_housing_community_hourly_rate:.0f}/hr",
                 delta=None,
             )
 
