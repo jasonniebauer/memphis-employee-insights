@@ -156,6 +156,54 @@ employment_type_housing_totals_df = pd.DataFrame({
     ]
 })
 
+(
+    top_paying_memphis_parks_job,
+    max_memphis_parks_salary,
+    min_memphis_parks_salary,
+    top_paying_memphis_parks_part_time_job,
+    max_memphis_parks_hourly_rate,
+    min_memphis_parks_hourly_rate,
+    average_memphis_parks_salary,
+    average_memphis_parks_hourly_rate,
+    total_unique_memphis_parks_jobs,
+    total_memphis_parks_employees,
+    total_full_time_memphis_parks_employees,
+    total_part_time_memphis_parks_employees,
+    employment_type_memphis_parks_totals_df
+) = get_division_details('Memphis Parks')
+
+(
+    top_paying_library_services_job,
+    max_library_services_salary,
+    min_library_services_salary,
+    top_paying_library_services_part_time_job,
+    max_library_services_hourly_rate,
+    min_library_services_hourly_rate,
+    average_library_services_salary,
+    average_library_services_hourly_rate,
+    total_unique_library_services_jobs,
+    total_library_services_employees,
+    total_full_time_library_services_employees,
+    total_part_time_library_services_employees,
+    employment_type_library_services_totals_df
+) = get_division_details('Library Services')
+
+(
+    top_paying_housing_community_job,
+    max_housing_community_salary,
+    min_housing_community_salary,
+    top_paying_housing_community_part_time_job,
+    max_housing_community_hourly_rate,
+    min_housing_community_hourly_rate,
+    average_housing_community_salary,
+    average_housing_community_hourly_rate,
+    total_unique_housing_community_jobs,
+    total_housing_community_employees,
+    total_full_time_housing_community_employees,
+    total_part_time_housing_community_employees,
+    employment_type_housing_community_totals_df
+) = get_division_details('Housing and Community Development')
+
 ##################################################
 # UI Content
 ##################################################
@@ -272,7 +320,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_memphis_parks_job}",
+                value=f"${max_memphis_parks_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_memphis_parks_part_time_job}",
+                value=f"${max_memphis_parks_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_memphis_parks_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_memphis_parks_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.markdown('### Memphis Parks Employment Breakdown')
     
@@ -311,7 +381,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_library_services_job}",
+                value=f"${max_library_services_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_library_services_part_time_job}",
+                value=f"${max_library_services_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_library_services_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_library_services_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
@@ -352,7 +444,29 @@ with st.spinner('Loading data and calculations...'):
         st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
 
     with salary_cols[1]:
-        st.markdown("[ PLACEHOLDER FOR CHART]")
+        with st.container(horizontal=True):
+            st.metric(
+                label=f":material/local_police: {top_paying_housing_community_job}".replace("Hcd", "HCD"),
+                value=f"${max_housing_community_salary/1e3:,.1f}k",  
+                delta="Top Full-Time Salary",
+            )
+            st.metric(
+                label=f":material/assignment: {top_paying_housing_community_part_time_job}".replace("HCD", ""),
+                value=f"${max_housing_community_hourly_rate:.0f}/hr",  
+                delta="Top Part-Time Rate",
+            )
+        st.space()
+        with st.container(horizontal=True):
+            st.metric(
+                label=f"Average full-time salary",
+                value=f"${average_housing_community_salary/1e3:,.1f}k",  
+                delta=None,
+            )
+            st.metric(
+                label=f"Average part-time rate ",
+                value=f"${average_housing_community_hourly_rate:.0f}/hr",  
+                delta=None,
+            )
 
     st.space()
 
