@@ -29,6 +29,7 @@ def render_navigation():
             border-radius: 0 0.5rem 0.5rem 0;
         }
         
+        /* Background colors for hovering over navigation links */
         a[href=""]:hover {
             background: #0097A7 !important; /* #9AA0A6 */      
         }
@@ -45,6 +46,8 @@ def render_navigation():
             background: #FBBC04 !important;
         }
 
+        /* Adjust text color for hovering over navigation links */
+        [data-testid="stPageLink-NavLink"][href=""]:hover span,
         [data-testid="stPageLink-NavLink"][href="public-safety"]:hover span,
         [data-testid="stPageLink-NavLink"][href="public-works"]:hover span,
         [data-testid="stPageLink-NavLink"][href="stronger-neighborhoods"]:hover span {
