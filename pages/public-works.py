@@ -450,7 +450,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/cleaning_services: {top_paying_solid_waste_part_time_job}",
+                label=f":material/mop: {top_paying_solid_waste_part_time_job}",
                 value=f"${max_solid_waste_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -508,7 +508,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_general_services_job}".replace("Svcs", "Services"),
+                label=f":material/build: {top_paying_general_services_job}".replace("Svcs", "Services"),
                 value=(
                     f"${max_general_services_salary/1e3:,.0f}k"
                     if round(max_general_services_salary)%1000 == 0
@@ -517,7 +517,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_general_services_part_time_job}",
+                label=f":material/format_paint: {top_paying_general_services_part_time_job}",
                 value=f"${max_general_services_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
