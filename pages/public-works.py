@@ -441,7 +441,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_solid_waste_job}",
+                label=f":material/delete: {top_paying_solid_waste_job}",
                 value=(
                     f"${max_solid_waste_salary/1e3:,.0f}k"
                     if round(max_solid_waste_salary)%1000 == 0
@@ -450,7 +450,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_solid_waste_part_time_job}",
+                label=f":material/cleaning_services: {top_paying_solid_waste_part_time_job}",
                 value=f"${max_solid_waste_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
