@@ -374,7 +374,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_public_works_job}",
+                label=f":material/water_drop: {top_paying_public_works_job}",
                 value=(
                     f"${max_public_works_salary/1e3:,.0f}k"
                     if round(max_public_works_salary)%1000 == 0
@@ -383,7 +383,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_public_works_part_time_job}".replace("Oper", "Operator").replace("Crewperson", ""),
+                label=f":material/agriculture: {top_paying_public_works_part_time_job}".replace("Oper", "Operator").replace("Crewperson", ""),
                 value=f"${max_public_works_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
