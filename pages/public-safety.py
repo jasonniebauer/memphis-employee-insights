@@ -312,9 +312,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown(
-            f"""Salaries for full-time employees range from ${min_fire_salary/1e3:,.1f}k to {max_fire_salary/1e3:,.1f}k annually."""
-        )
+        st.text("Salaries in the Memphis Fire Department vary widely. Entry-level and support roles, such as Communication Safety Equipment Installer and Accounting Clerk, start at approximately $35,000 annually. Compensation progresses significantly through career advancement and specialized positions, with top earners in supervisory, command, and leadership roles exceeding $246,000 per year.")
+        st.text("Part-time and hourly support roles typically begin around $15 per hour, while specialized or higher-skilled part-time and contract positions can reach up to $30 per hour.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -348,8 +347,7 @@ with st.spinner('Loading data and calculations...'):
     fire_row2_cols = st.columns(2, gap="xlarge")
 
     with fire_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("The Memphis Fire Department employs 1,746 individuals across 83 unique job titles, including firefighters, officers, command staff, and essential civilian support roles. This structure ensures consistent, round-the-clock fire suppression, emergency medical response, and public safety operations. Full-time employees make up nearly 100% of the department’s core workforce, while part-time and hourly supplemental positions account for less than 1%.")
         st.markdown(
             employment_type_table(
                 total_full_time_fire_employees,
