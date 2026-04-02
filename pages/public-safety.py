@@ -146,8 +146,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("Public Safety employees are organized into two primary categories: Police Services and Fire Services. Together, these two categories account for more than $316.7 million in total salaries within the city's Public Safety salaried/full-time workforce. Police Services salaries exceeded $182.6 million (nearly 58%), while Fire Services salaries surpassed $134 million (more than 42%). This heavy allocation reflects the substantial personnel demands of law enforcement, firefighting, and emergency response, driven by 24/7 shift coverage and overtime requirements.")
         st.markdown(
             """
             <div class="table-row">
