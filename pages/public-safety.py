@@ -146,7 +146,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Public Safety employees are organized into two primary categories: Police Services and Fire Services. Together, these two categories account for more than $316.7 million in total salaries within the city's Public Safety salaried/full-time workforce. Police Services salaries exceeded $182.6 million (nearly 58%), while Fire Services salaries surpassed $134 million (more than 42%). This heavy allocation reflects the substantial personnel demands of law enforcement, firefighting, and emergency response, driven by 24/7 shift coverage and overtime requirements.")
+        st.text("Public Safety employees are organized into two primary categories: Police Services and Fire Services. Together, these two categories account for more than $316.7 million in total salaries within the city's Public Safety salaried/full-time workforce. Police Services salaries exceeded $182.6 million (nearly 58%), while Fire Services salaries surpassed $134 million (more than 42%).")
         st.markdown(
             """
             <div class="table-row">
@@ -206,7 +206,7 @@ with st.spinner('Loading data and calculations...'):
     salary_row2_cols = st.columns(2, gap="xlarge")
 
     with salary_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Public Safety employs 4,466 individuals supporting law enforcement, firefighting, and emergency response. Salaried full-time employees make up 94% of this workforce, while part-time and hourly employees (typically in support or entry-level roles) account for only 6%. This heavy emphasis on full-time staffing is driven by the need for continuous 24/7 shift coverage and overtime in these critical public safety roles.")
 
         st.markdown(
             employment_type_table(
