@@ -337,8 +337,7 @@ with st.spinner('Loading data and calculations...'):
     salary_row2_cols = st.columns(2, gap="xlarge")
 
     with salary_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("Public Works, Solid Waste, General Services, and City Engineering together employ 1,807 individuals across a wide range of roles supporting infrastructure maintenance, waste collection, fleet services, and engineering functions. Salaried full-time employees make up more than 87% of this workforce, while part-time and hourly employees (typically in support or seasonal roles) account for nearly 13%.")
         st.markdown(
             employment_type_table(
                 total_full_time_employees,
