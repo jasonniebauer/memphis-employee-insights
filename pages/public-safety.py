@@ -312,7 +312,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Salaries in the Memphis Fire Department vary widely. Entry-level and support roles, such as Communication Safety Equipment Installer and Accounting Clerk, start at approximately $35,000 annually. Compensation progresses significantly through career advancement and specialized positions, with top earners in supervisory, command, and leadership roles exceeding $246,000 per year.")
+        st.text("Salaries in the Memphis Fire Department vary widely. Entry-level and support roles, such as Accounting Clerk, typically start at approximately $35,000 annually. Through career progression and specialized positions, compensation increases significantly, with top earners in supervisory, command, and leadership roles exceeding $246,000 per year.")
         st.text("Part-time and hourly support roles typically begin around $15 per hour, while specialized or higher-skilled part-time and contract positions can reach up to $30 per hour.")
 
     with salary_cols[1]:
