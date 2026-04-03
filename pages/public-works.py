@@ -272,7 +272,6 @@ with st.spinner('Loading data and calculations...'):
 
     with salary_cols[0]:
         st.text("Public Works employees are organized into four primary categories: Public Works, Solid Waste, General Services, and City Engineering. These categories together account for more than $93.4 million in total salaries within the city's salaried full-time workforce.")
-
         st.markdown(
             """
             <div class="table-row">
@@ -301,9 +300,7 @@ with st.spinner('Loading data and calculations...'):
             </div>
             """, unsafe_allow_html=True
         )
-
         st.space()
-
         st.metric(
             label=":material/tram: Public Works Workforce Salaries",
             value=f"${public_works_total_salary:,.1f}M",  
