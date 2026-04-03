@@ -258,7 +258,7 @@ with st.spinner('Loading data and calculations...'):
         icon=":material/build:"
     )
     st.title("Memphis Employee Insights")
-    st.caption("Payroll Snapshot - January 28, 2025")
+    st.caption("Payroll Snapshot from January 28, 2025")
 
     """
     This site provides an interactive analysis of employee salaries for the City of Memphis, Tennessee. All data is sourced directly from publicly available records published by the City of Memphis and can be accessed via their official website.
