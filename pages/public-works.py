@@ -365,8 +365,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("Salaries in Memphis Public Works vary widely. Entry-level and support roles, such as Inventory Control Clerk, typically start at approximately $30,000 annually. Compensation increases significantly with career progression and specialized positions, with top earners in supervisory, managerial, and director-level roles exceeding $163,000 per year.")
+        st.text("Part-time and hourly support roles generally start around $15 per hour, while specialized or higher-skilled part-time and contract positions can reach up to $18 per hour.")
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
@@ -403,7 +403,7 @@ with st.spinner('Loading data and calculations...'):
     public_works_row2_cols = st.columns(2, gap="xlarge")
 
     with public_works_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Memphis Public Works employs 771 individuals across 140 unique job titles spanning maintenance, operations, engineering support, and administrative roles. Full-time employees make up over 90% of the core workforce, while part-time and hourly employees account for nearly 10%. These employees maintain critical city infrastructure, including streets, bridges, drainage systems, sanitation facilities, and traffic control systems.")
 
         st.markdown(
             employment_type_table(
