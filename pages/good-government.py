@@ -452,7 +452,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_governance_job}",
+                label=f":material/gavel: {top_paying_governance_job}",
                 value=(
                     f"${max_governance_salary/1e3:,.0f}k"
                     if round(max_governance_salary)%1000 == 0
@@ -461,7 +461,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_governance_part_time_job}",
+                label=f":material/pets: {top_paying_governance_part_time_job}",
                 value=f"${max_governance_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -519,7 +519,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_finance_job}",
+                label=f":material/paid: {top_paying_finance_job}".replace("Financial Officer Chief", "Chief Financial Officer"),
                 value=(
                     f"${max_finance_salary/1e3:,.0f}k"
                     if round(max_finance_salary)%1000 == 0
@@ -528,7 +528,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_finance_part_time_job}",
+                label=f":material/checkbook: {top_paying_finance_part_time_job}",
                 value=f"${max_finance_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -586,7 +586,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_human_resources_job}",
+                label=f":material/person_celebrate: {top_paying_human_resources_job}".replace("Human Resources Officer Chief", "Chief Human Resources Officer"),
                 value=(
                     f"${max_human_resources_salary/1e3:,.0f}k"
                     if round(max_human_resources_salary)%1000 == 0
@@ -595,7 +595,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_human_resources_part_time_job}".replace("Compensation Coord Sr", "Sr. Compensation Coordinator"),
+                label=f":material/universal_currency: {top_paying_human_resources_part_time_job}".replace("Compensation Coord Sr", "Sr. Compensation Coordinator"),
                 value=f"${max_human_resources_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -653,7 +653,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_info_tech_job}".replace("Info", "IT"),
+                label=f":material/badge: {top_paying_info_tech_job}".replace("Info", "IT"),
                 value=(
                     f"${max_info_tech_salary/1e3:,.0f}k"
                     if round(max_info_tech_salary)%1000 == 0
@@ -662,7 +662,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_info_tech_part_time_job}".replace("Internship Urban Fellow", "Internship (Urban Fellow)"),
+                label=f":material/laptop_chromebook: {top_paying_info_tech_part_time_job}".replace("Internship Urban Fellow", "Internship (Urban Fellow)"),
                 value=f"${max_info_tech_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -720,7 +720,7 @@ with st.spinner('Loading data and calculations...'):
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_legal_job}",
+                label=f":material/balance: {top_paying_legal_job}".replace("Legal Officer Chief", "Chief Legal Officer"),
                 value=(
                     f"${max_legal_salary/1e3:,.0f}k"
                     if round(max_legal_salary)%1000 == 0
@@ -729,7 +729,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_legal_part_time_job}".replace("Rec", "Records"),
+                label=f":material/fact_check: {top_paying_legal_part_time_job}".replace("Rec", "Records"),
                 value=f"${max_legal_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
