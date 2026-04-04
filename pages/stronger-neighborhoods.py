@@ -321,12 +321,13 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Memphis Parks offers a wide range of compensation levels depending on the role and experience. The department oversees management of city parks, recreational programs, community centers, and public facilities to promote health, wellness, and neighborhood engagement throughout Memphis. Entry-level positions, such as Park Attendant or Recreation Aide, typically start around $35,000 per year for full-time roles, while experienced professionals in supervisory, managerial, and director-level positions can earn more than $145,000 annually.")
+        st.text("Part-time and hourly staff make up the majority of the workforce. Hourly pay generally begins at $12 per hour for entry-level seasonal and support roles and can reach up to $35 per hour for specialized positions, such as skilled recreation coordinators, program instructors, or seasonal maintenance leads.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_memphis_parks_job}",
+                label=f":material/park: {top_paying_memphis_parks_job}".replace("& Neighborhoods ", ""),
                 value=(
                     f"${max_memphis_parks_salary/1e3:,.0f}k"
                     if round(max_memphis_parks_salary)%1000 == 0
@@ -335,7 +336,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_memphis_parks_part_time_job}",
+                label=f":material/sports_basketball: {top_paying_memphis_parks_part_time_job}",
                 value=f"${max_memphis_parks_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -357,7 +358,7 @@ with st.spinner('Loading data and calculations...'):
     memphis_parks_row2_cols = st.columns(2, gap="xlarge")
 
     with memphis_parks_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Memphis Parks maintains a workforce of 869 individuals spread across 88 unique job titles. These positions include park maintenance, recreation programming, facility operations, and seasonal support roles. Full-time staff make up just under 28% of the department, while part-time and hourly employees form the clear majority at more than 72%.")
 
         st.markdown(
             employment_type_table(
