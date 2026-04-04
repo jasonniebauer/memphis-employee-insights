@@ -346,7 +346,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Good Government employees are organized into five primary categories: Governance, Finance, Legal, HR, and IT. These categories together account for more than $31.7 million in total salaries within the city's salaried full-time workforce.")
 
         st.markdown(
             """
@@ -418,7 +418,7 @@ with st.spinner('Loading data and calculations...'):
     salary_row2_cols = st.columns(2, gap="xlarge")
 
     with salary_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Governance, Finance, Legal, HR, and IT together maintain a workforce of 681 individuals. These roles provide essential backbone support in areas such as financial management, legal counsel, human resources, information technology, and overall city administration. Salaried full-time employees make up more than 73% of the group, while part-time and hourly staff account for nearly 27%.")
 
         st.markdown(
             employment_type_table(
