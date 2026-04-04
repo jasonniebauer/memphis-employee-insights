@@ -230,13 +230,12 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("Stronger Neighborhoods employees are organized into three primary categories: Memphis Parks, Library Services, and Housing & Community Development. These categories together account for more than $30.2 million in total salaries within the city's salaried full-time workforce.")
         st.markdown(
             """
             <div class="table-row">
                 <span class="bold">Division</span>
-                <span class="bold">Percent of Stronger Neighborhood Salaries</span>
+                <span class="bold">Percent of Stronger Neighborhoods Salaries</span>
             </div>
             <div class="table-row">
                 <span>Memphis Parks</span>
@@ -294,8 +293,7 @@ with st.spinner('Loading data and calculations...'):
     salary_row2_cols = st.columns(2, gap="xlarge")
 
     with salary_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("Memphis Parks, Library Services, and Housing & Community Development collectively employ 1,248 individuals across a wide range of roles that support parks and recreation, public libraries, and community housing initiatives. Salaried full-time employees make up just under 46% of this workforce, while part-time and hourly staff, primarily in seasonal and service-oriented positions, account for more than 54%.")
         st.markdown(
             employment_type_table(
                 total_full_time_employees,
