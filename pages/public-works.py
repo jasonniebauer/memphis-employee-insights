@@ -565,7 +565,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("City Engineering offers a wide salary range across its roles. The department handles engineering design, project management, infrastructure planning, and technical support for the city’s capital projects and public works initiatives. Entry-level positions like Painter Apprentice typically start around $32,000 per year, while experienced professionals in supervisory, managerial, and director-level roles can earn more than $145,000 annually.")
+        st.text("City Engineering offers a wide salary range across its roles. The department handles engineering design, project management, infrastructure planning, and technical support for the city's capital projects and public works initiatives. Entry-level positions like Painter Apprentice typically start around $32,000 per year, while experienced professionals in supervisory, managerial, and director-level roles can earn more than $145,000 annually.")
         st.text("Part-time and hourly positions generally begin at $15 per hour and can reach up to $21 per hour for specialized or contract work.")
 
     with salary_cols[1]:
