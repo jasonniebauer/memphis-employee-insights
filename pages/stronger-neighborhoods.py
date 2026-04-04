@@ -221,7 +221,7 @@ with st.spinner('Loading data and calculations...'):
         icon=":material/build:"
     )
     st.title("Stronger Neighborhoods")
-    st.markdown('<h3 class="pt-0">Parks, Libraries, and Housing & Community Development</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="pt-0">Parks, Libraries, and Housing and Community Development</h3>', unsafe_allow_html=True)
 
     st.space()
 
@@ -230,7 +230,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Stronger Neighborhoods employees are organized into three primary categories: Memphis Parks, Library Services, and Housing & Community Development. These categories together account for more than $30.2 million in total salaries within the city's salaried full-time workforce.")
+        st.text("Stronger Neighborhoods employees are organized into three primary categories: Memphis Parks, Library Services, and Housing and Community Development. These categories together account for more than $30.2 million in total salaries within the city's salaried full-time workforce.")
         st.markdown(
             """
             <div class="table-row">
@@ -455,12 +455,13 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Housing and Community Development department focuses on affordable housing programs, community development initiatives, neighborhood revitalization, and grant-funded projects that strengthen Memphis neighborhoods. Entry-level positions such as Office Support Clerk typically start around $35,000 per year. With experience and career progression, compensation can exceed $135,000 annually for supervisory, managerial, and director-level roles.")
+        st.text("Part-time and hourly positions generally start at $12 per hour and can reach up to $22 per hour for more specialized or senior support roles.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_housing_community_job}".replace("Hcd", "HCD"),
+                label=f":material/house: {top_paying_housing_community_job}".replace("Hcd", "HCD"),
                 value=(
                     f"${max_housing_community_salary/1e3:,.0f}k"
                     if round(max_housing_community_salary)%1000 == 0
@@ -469,7 +470,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_housing_community_part_time_job}".replace("HCD", ""),
+                label=f":material/request_quote: {top_paying_housing_community_part_time_job}".replace("HCD", ""),
                 value=f"${max_housing_community_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -493,7 +494,7 @@ with st.spinner('Loading data and calculations...'):
     housing_row2_cols = st.columns(2, gap="xlarge")
 
     with housing_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Housing and Community Development maintains a compact team of 69 individuals working across 53 unique job titles. These roles focus on program administration, housing assistance, community planning, and neighborhood revitalization efforts. Full-time employees make up over 94% of the core workforce, while part-time and hourly staff represent just under 6%.")
 
         st.markdown(
             employment_type_table(
@@ -512,37 +513,3 @@ with st.spinner('Loading data and calculations...'):
         )
 
         st.altair_chart(pie_chart_employment_type, width="stretch")
-
-    # st.markdown(
-    #     """
-    #     **To do:**
-    #     - SECTION: Salaries by Division Category / Divisions
-    #         - Total Salary of Stronger Neighborhoods Workforce
-    #         - Total Salaries by Division
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees across division category
-    #             - Total employee breakdown by division
-    #             - Percent of workforce by division
-    #     - ~~SECTION: Memphis Parks~~
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees
-    #         - Unique roles + average salary for role
-    #         - Top paying position
-    #         - Average salary across division
-    #         - Average hourly rate across division (if applicable)
-    #     - ~~SECTION: Libraries~~
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees
-    #         - Unique roles + average salary for role
-    #         - Top paying position
-    #         - Average salary across division
-    #         - Average hourly rate across division (if applicable)
-    #     - ~~SECTION: Housing & Community Development~~
-    #         - Employee Workforce
-    #             - Total full-time vs part-time employees
-    #         - Unique roles + average salary for role
-    #         - Top paying position
-    #         - Average salary across division
-    #         - Average hourly rate across division (if applicable)
-    #     """
-    # )
