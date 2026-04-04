@@ -447,7 +447,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Governance serves as the central hub for city leadership and legislative operations. The department supports the Mayor’s office, City Council activities, policy development, and coordination across city government. Entry-level positions such as Office Support Clerk typically start around $37,000 per year. With experience and career progression, compensation can exceed $227,000 annually for senior leadership, managerial, and director-level roles")
+        st.text("Part-time and hourly positions generally start at $12 per hour and can reach up to $80 per hour for highly specialized or senior support roles.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -461,7 +462,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/pets: {top_paying_governance_part_time_job}",
+                label=f":material/pets: {top_paying_governance_part_time_job}".replace("Veterinarian", "Vet"),
                 value=f"${max_governance_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -485,7 +486,7 @@ with st.spinner('Loading data and calculations...'):
     governance_row2_cols = st.columns(2, gap="xlarge")
 
     with governance_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Governance maintains a compact team of 254 individuals spread across 105 unique job titles. These positions support core city leadership functions, including mayoral operations, City Council support, policy coordination, and administrative services for city government. Full-time employees make up 61% of the workforce, while part-time and hourly staff account for 39%.")
 
         st.markdown(
             employment_type_table(
