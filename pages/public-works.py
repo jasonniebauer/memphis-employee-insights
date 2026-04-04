@@ -498,7 +498,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Salaries across General Services show a broad range. This department is responsible for providing exemplary customer service and diversified maintenance services. Entry-level positions, such as maintenance distribution technician, typically start around $39,000 per year. Pay scales upward with career advancement and specialized skills, reaching over $145,000 annually for supervisory, managerial, and director-level roles.")
+        st.text("Part-time and hourly roles generally start at $17 per hour, with more specialized or contract positions increasing to $26 per hour.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -536,8 +537,7 @@ with st.spinner('Loading data and calculations...'):
     general_services_row2_cols = st.columns(2, gap="xlarge")
 
     with general_services_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("General Services employs more than 314 individuals across 70 unique job titles, spanning facility maintenance, fleet maintenance, grounds maintenance, and administrative support roles. Full-time employees make up over 90% of the core workforce, while part-time and hourly employees account for nearly 10%.")
         st.markdown(
             employment_type_table(
                 total_full_time_general_services_employees,
