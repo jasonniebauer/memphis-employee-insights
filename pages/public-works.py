@@ -537,7 +537,7 @@ with st.spinner('Loading data and calculations...'):
     general_services_row2_cols = st.columns(2, gap="xlarge")
 
     with general_services_row2_cols[0]:
-        st.text("General Services employs more than 314 individuals across 70 unique job titles, spanning facility maintenance, fleet maintenance, grounds maintenance, and administrative support roles. Full-time employees make up over 90% of the core workforce, while part-time and hourly employees account for nearly 10%.")
+        st.text("General Services employs 314 individuals across 70 unique job titles, spanning facility maintenance, fleet maintenance, grounds maintenance, and administrative support roles. Full-time employees make up over 90% of the core workforce, while part-time and hourly employees account for nearly 10%.")
         st.markdown(
             employment_type_table(
                 total_full_time_general_services_employees,
@@ -604,7 +604,7 @@ with st.spinner('Loading data and calculations...'):
     city_engineering_row2_cols = st.columns(2, gap="xlarge")
 
     with city_engineering_row2_cols[0]:
-        st.text("City Engineering maintains a workforce of more than 147 individuals working across 52 unique job titles. These roles cover a variety of technical and professional positions in engineering design, project management, and infrastructure support. Full-time staff comprise over 91% of the department, with part-time and hourly employees making up the remaining 9%.")
+        st.text("City Engineering maintains a workforce of 147 individuals working across 52 unique job titles. These roles cover a variety of technical and professional positions in engineering design, project management, and infrastructure support. Full-time staff comprise over 91% of the department, with part-time and hourly employees making up the remaining 9%.")
 
         st.markdown(
             employment_type_table(
