@@ -387,12 +387,13 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Library Services offers varied compensation levels shaped by both role and experience. The department manages public libraries, community outreach programs, literacy initiatives, and access to educational resources across Memphis. Entry-level positions such as Library Clerk typically start around $34,000 per year, while salaries climb significantly for those in supervisory, managerial, and director-level roles, exceeding $145,000 annually.")
+        st.text("Part-time and hourly staff, who play a major role in daily library operations, generally earn $12 per hour at entry level, with pay reaching up to $21 per hour for supervisory and managerial positions.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
             st.metric(
-                label=f":material/local_police: {top_paying_library_services_job}",
+                label=f":material/local_library: {top_paying_library_services_job}",
                 value=(
                     f"${max_library_services_salary/1e3:,.0f}k"
                     if round(max_library_services_salary)%1000 == 0
@@ -401,7 +402,7 @@ with st.spinner('Loading data and calculations...'):
                 delta="Top Full-Time Salary",
             )
             st.metric(
-                label=f":material/assignment: {top_paying_library_services_part_time_job}",
+                label=f":material/storefront: {top_paying_library_services_part_time_job}".replace("On-line", "Online"),
                 value=f"${max_library_services_hourly_rate:.0f}/hr",
                 delta="Top Part-Time Rate",
             )
@@ -425,7 +426,7 @@ with st.spinner('Loading data and calculations...'):
     library_row2_cols = st.columns(2, gap="xlarge")
 
     with library_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Library Services employs 310 individuals across 87 unique job titles. These positions range from librarians and library assistants to youth program coordinators, technical services staff, and administrative support roles. Full-time employees make up over 85% of the core workforce, while part-time and hourly employees account for nearly 15%.")
 
         st.markdown(
             employment_type_table(
