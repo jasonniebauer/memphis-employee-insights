@@ -186,7 +186,7 @@ employment_type_city_engineering_totals_df = pd.DataFrame({
         total_part_time_city_engineering_employees
     ]
 })
-
+print()
 (
     top_paying_public_works_job,
     max_public_works_salary,
@@ -404,7 +404,6 @@ with st.spinner('Loading data and calculations...'):
 
     with public_works_row2_cols[0]:
         st.text("Memphis Public Works employs 771 individuals across 140 unique job titles spanning maintenance, operations, engineering support, and administrative roles. Full-time employees make up over 90% of the core workforce, while part-time and hourly employees account for nearly 10%. These employees maintain critical city infrastructure, including streets, bridges, drainage systems, sanitation facilities, and traffic control systems.")
-
         st.markdown(
             employment_type_table(
                 total_full_time_public_works_employees,
@@ -432,7 +431,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Salaries across Solid Waste Management show a broad range. Entry-level positions, such as Office Support Clerk, typically begin around $35,000 per year. With career advancement and specialized skills, pay scales upward, reaching over $145,000 annually for those in supervisory, managerial, and director-level roles.")
+        st.text("Part-time and hourly roles generally pay around $15 per hour, with little variation even for more specialized or contract positions.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -470,8 +470,7 @@ with st.spinner('Loading data and calculations...'):
     solid_waste_row2_cols = st.columns(2, gap="xlarge")
 
     with solid_waste_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
-
+        st.text("Solid Waste Management employs 575 individuals across 39 unique job titles, spanning sanitation operations, equipment maintenance, driver positions, and administrative support roles. Full-time employees make up over 80% of the core workforce, while part-time and hourly employees account for nearly 20%.")
         st.markdown(
             employment_type_table(
                 total_full_time_solid_waste_employees,
