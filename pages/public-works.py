@@ -498,7 +498,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Salaries across General Services show a broad range. This department is responsible for providing exemplary customer service and diversified maintenance services. Entry-level positions, such as maintenance distribution technician, typically start around $39,000 per year. Pay scales upward with career advancement and specialized skills, reaching over $145,000 annually for supervisory, managerial, and director-level roles.")
+        st.text("Salaries across General Services show a broad range. This department is responsible for providing exemplary customer service and Diversified Maintenance Services. Entry-level positions, such as maintenance distribution technician, typically start around $39,000 per year. Pay scales upward with career advancement and specialized skills, reaching over $145,000 annually for supervisory, managerial, and director-level roles.")
         st.text("Part-time and hourly roles generally start at $17 per hour, with more specialized or contract positions increasing to $26 per hour.")
 
     with salary_cols[1]:
@@ -565,7 +565,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("City Engineering offers a wide salary range across its roles. The department handles engineering design, project management, infrastructure planning, and technical support for the city’s capital projects and public works initiatives. Entry-level positions like Painter Apprentice typically start around $32,000 per year, while experienced professionals in supervisory, managerial, and director-level roles can earn more than $145,000 annually.")
+        st.text("Part-time and hourly positions generally begin at $15 per hour and can reach up to $21 per hour for specialized or contract work.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -603,7 +604,7 @@ with st.spinner('Loading data and calculations...'):
     city_engineering_row2_cols = st.columns(2, gap="xlarge")
 
     with city_engineering_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("City Engineering maintains a workforce of more than 147 individuals working across 52 unique job titles. These roles cover a variety of technical and professional positions in engineering design, project management, and infrastructure support. Full-time staff comprise over 91% of the department, with part-time and hourly employees making up the remaining 9%.")
 
         st.markdown(
             employment_type_table(
