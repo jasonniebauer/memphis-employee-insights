@@ -431,8 +431,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Salaries across Solid Waste Management show a broad range. Entry-level positions, such as Office Support Clerk, typically begin around $35,000 per year. With career advancement and specialized skills, pay scales upward, reaching over $145,000 annually for those in supervisory, managerial, and director-level roles.")
-        st.text("Part-time and hourly roles generally pay around $15 per hour, with little variation even for more specialized or contract positions.")
+        st.text("Solid Waste Management offers a broad salary range shaped by role and responsibility level. Entry-level positions such as Office Support Clerk typically start around $35,000 per year, while compensation rises steadily with career advancement and specialized expertise, reaching over $145,000 annually for supervisory, managerial, and director-level roles. Part-time and hourly positions remain fairly consistent, generally paying around $15 per hour with little variation even for more specialized or contract work.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -565,8 +564,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("City Engineering offers a wide salary range across its roles. The department handles engineering design, project management, infrastructure planning, and technical support for the city's capital projects and public works initiatives. Entry-level positions like Painter Apprentice typically start around $32,000 per year, while experienced professionals in supervisory, managerial, and director-level roles can earn more than $145,000 annually.")
-        st.text("Part-time and hourly positions generally begin at $15 per hour and can reach up to $21 per hour for specialized or contract work.")
+        st.text("City Engineering delivers engineering design, project management, infrastructure planning, and technical support for the City’s capital projects and public works initiatives. The department offers a wide salary range, with entry-level roles such as Painter Apprentice typically starting around $32,000 per year. Pay rises significantly with experience and responsibility, reaching more than $145,000 annually for supervisory, managerial, and director-level positions, while part-time and hourly roles generally begin at $15 per hour and can go up to $21 per hour for specialized or contract work.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):

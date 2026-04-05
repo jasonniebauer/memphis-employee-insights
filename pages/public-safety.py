@@ -146,7 +146,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Public Safety employees are organized into two primary categories: Police Services and Fire Services. Together, these two categories account for more than $316.7 million in total salaries within the city's Public Safety salaried/full-time workforce. Police Services salaries exceeded $182.6 million (nearly 58%), while Fire Services salaries surpassed $134 million (more than 42%).")
+        st.text("Public Safety in Memphis is organized into two primary categories: Police Services and Fire Services. Together, these two categories account for more than $316.7 million in total salaries within the city's salaried full-time workforce, making Public Safety the largest single area of personnel spending in Memphis city government.")
         st.markdown(
             """
             <div class="table-row">
@@ -235,13 +235,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text(
-            f"""
-            Salaries in the Memphis Police Department range widely. They start from a low of roughly ${round(min_police_salary, -3):,.0f} annually for certain support or entry-level non-sworn roles (such as Communication Safety Equipment Installer). They extend upward through career progression in sworn and specialized roles, with top earners in supervisory, command, and leadership positions exceeding ${round(max_police_salary, -3):,.0f} per year.
-            
-            Part-time or hourly support roles often start around $12 per hour, while some specialized or higher-skilled part-time/contract positions can reach up to $50 per hour depending on the role. 
-            """
-        )
+        st.text("Salaries in the Memphis Police Department vary widely. They range from roughly $31,000 annually for entry-level non-sworn support roles, such as Communication Safety Equipment Installer, to well over $246,000 per year for top earners in supervisory, command, and leadership positions. Pay increases significantly through career progression and specialized sworn roles.")
+        st.text("Part-time or hourly support roles often start around $12 per hour, while some specialized or higher-skilled part-time/contract positions can reach up to $50 per hour depending on the role. ")
 
     st.space()
 
@@ -312,8 +307,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.text("Salaries in the Memphis Fire Department vary widely. Entry-level and support roles, such as Accounting Clerk, typically start at approximately $35,000 annually. Through career progression and specialized positions, compensation increases significantly, with top earners in supervisory, command, and leadership roles exceeding $246,000 per year.")
-        st.text("Part-time and hourly support roles typically begin around $15 per hour, while specialized or higher-skilled part-time and contract positions can reach up to $30 per hour.")
+        st.text("The Memphis Fire Department offers one of the widest salary ranges in the city. Entry-level and support roles, such as Accounting Clerk, typically start around $35,000 per year, while experienced firefighters and command staff in supervisory and leadership positions can earn more than $246,000 annually as they advance through specialized assignments and career progression.")
+        st.text("Part-time and hourly support roles generally begin at $15 per hour, with specialized or higher-skilled contract positions reaching up to $30 per hour.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
