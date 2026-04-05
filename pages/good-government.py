@@ -583,7 +583,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Human Resources handles recruitment, employee relations, benefits administration, training and development, and compliance across all Memphis city departments. Entry-level roles such as Junior Recruiter typically start around $38,000 per year. Salaries increase substantially with experience and responsibility, exceeding $165,000 annually for supervisory, managerial, and director-level positions.")
+        st.text("Part-time and hourly staff generally start at $15.50 per hour, with rates reaching up to $34 per hour for more senior or specialized positions.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -621,7 +622,7 @@ with st.spinner('Loading data and calculations...'):
     hr_row2_cols = st.columns(2, gap="xlarge")
 
     with hr_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Human Resources operates with a workforce of 119 individuals across 74 unique job titles. These roles span recruitment, benefits administration, employee relations, training, compliance, and strategic workforce planning. Full-time employees make up nearly 54% of the department while part-time and hourly staff account for more than 46%. This creates an almost balanced split between full-time and part-time workers.")
 
         st.markdown(
             employment_type_table(
