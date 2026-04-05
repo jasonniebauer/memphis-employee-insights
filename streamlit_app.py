@@ -32,6 +32,14 @@ df = initialize_data()
 st.markdown(
     """
     <style>
+    /* Set info alert background color */
+    .stAlert [data-baseweb="notification"] {
+        background-color: #F1F3F4 !important;
+    }
+    /* Set info alert text color */
+    .st-al {
+        color: #202124;
+    }
     /* Set background color for active page link */
     [data-testid="stPageLink-NavLink"][href=""] {
         background-color: #DAE2E5 !important;
@@ -256,7 +264,7 @@ with st.spinner('Loading data and calculations...'):
     This site provides an interactive analysis of employee salaries for the City of Memphis, Tennessee. All data is sourced directly from publicly available records published by the City of Memphis and can be accessed via their official website.
     """
 
-    st.info('Use the sidebar navigation to explore detailed department breakdowns and workforce patterns by division.', icon=":material/side_navigation:")
+    st.info('Use the sidebar navigation to explore detailed department breakdowns and workforce patterns by division.', icon=":material/list_alt:")
     
     """
     The dataset includes 8,202 city employees and contains the following key details for each:
