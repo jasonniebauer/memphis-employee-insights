@@ -28,10 +28,6 @@ render_reusable_styles()
 # Load data
 df = initialize_data()
 
-# # Load data (cached)
-# if 'salary_data' not in st.session_state:
-#     st.session_state.salary_data = load_salary_data()
-
 # Page-specific CSS (only runs here on page)
 st.markdown(
     """
