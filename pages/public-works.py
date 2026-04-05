@@ -65,11 +65,6 @@ division_salary_totals.sort_values(
     inplace=True
 )
 
-# # Calculate division salary percentage of total
-# division_salary_totals['Percentage'] = (
-#     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
-# )
-
 # Get the total salary for Public Works workforce (in millions)
 public_works_total_salary = df['Annual Salary'].sum() / 1e6
 

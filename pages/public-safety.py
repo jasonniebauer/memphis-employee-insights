@@ -52,10 +52,6 @@ st.markdown(
 # Get data from session state
 df = initialize_data()
 
-# # Public Safety divisions
-# public_safety_divisions = ['Police Services', 'Fire Services']
-# df = df[df['Division Name'].isin(public_safety_divisions)]
-
 # Filter DataFrame to Public Safety divisions
 df = df[df['Division Category'] == 'Public Safety']
 
@@ -70,11 +66,6 @@ division_salary_totals.sort_values(
     ascending=False,
     inplace=True
 )
-
-# # Calculate division salary percentage of total
-# division_salary_totals['Percentage'] = (
-#     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
-# )
 
 # Get the total salary of Public Safety workforce (in millions)
 public_safety_total_salary = df['Annual Salary'].sum() / 1e6

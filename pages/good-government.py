@@ -50,20 +50,7 @@ st.markdown("""
 # Get data from session state
 df = initialize_data()
 
-# # Good Government divisions
-# good_government_divisions = [
-#     'Executive',
-#     'Finance and Administration',
-#     'Human Resources',
-#     'Information Technology',
-#     'City Attorney',
-#     'City Court Clerk',
-#     'Legislative',
-#     'Judicial',
-# ]
-
 # Filter DataFrame to Good Government divisions
-# df = df[df['Division Name'].isin(good_government_divisions)]
 df = df[df['Division Category'] == 'Good Government']
 
 def get_category(row):
@@ -98,11 +85,6 @@ division_salary_totals.sort_values(
     ascending=False,
     inplace=True
 )
-
-# # Calculate division salary percentage of total
-# division_salary_totals['Percentage'] = (
-#     division_salary_totals['Annual Salary'] / division_salary_totals['Annual Salary'].sum()
-# )
 
 # Get the total salary of Good Government workforce (in millions)
 good_government_total_salary = df['Annual Salary'].sum() / 1e6
