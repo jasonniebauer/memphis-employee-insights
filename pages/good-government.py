@@ -515,7 +515,8 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("The Finance department delivers essential fiscal leadership for the City of Memphis through budgeting, accounting, payroll, procurement, revenue collection, and financial reporting. Entry-level positions such as Finance Payroll Specialist typically start around $43,000 per year. Compensation increases significantly with experience and expertise, with senior and specialized financial roles exceeding $175,000 annually.")
+        st.text("Part-time and hourly pay generally begins at $15 per hour for entry-level support roles and can reach up to $34 per hour for specialized positions, such as Accountant III.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -553,7 +554,7 @@ with st.spinner('Loading data and calculations...'):
     finance_row2_cols = st.columns(2, gap="xlarge")
 
     with finance_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Finance maintains a lean workforce of 118 individuals across 64 unique job titles. These roles support critical city functions including budgeting, accounting, payroll processing, procurement, and financial analysis. Full-time staff make up more than 86% of the department, while part-time and hourly employees account for nearly 14%.")
 
         st.markdown(
             employment_type_table(
