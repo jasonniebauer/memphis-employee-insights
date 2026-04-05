@@ -279,22 +279,6 @@ employment_type_legal_totals_df = pd.DataFrame({
 ) = get_division_details('Finance and Administration')
 
 (
-    top_paying_legal_job,
-    max_legal_salary,
-    min_legal_salary,
-    top_paying_legal_part_time_job,
-    max_legal_hourly_rate,
-    min_legal_hourly_rate,
-    average_legal_salary,
-    average_legal_hourly_rate,
-    total_unique_legal_jobs,
-    total_legal_employees,
-    total_full_time_legal_employees,
-    total_part_time_legal_employees,
-    employment_type_legal_totals_df
-) = get_division_details('Legal')
-
-(
     top_paying_human_resources_job,
     max_human_resources_salary,
     min_human_resources_salary,
@@ -325,6 +309,22 @@ employment_type_legal_totals_df = pd.DataFrame({
     total_part_time_info_tech_employees,
     employment_type_info_tech_totals_df
 ) = get_division_details('Information Technology')
+
+(
+    top_paying_legal_job,
+    max_legal_salary,
+    min_legal_salary,
+    top_paying_legal_part_time_job,
+    max_legal_hourly_rate,
+    min_legal_hourly_rate,
+    average_legal_salary,
+    average_legal_hourly_rate,
+    total_unique_legal_jobs,
+    total_legal_employees,
+    total_full_time_legal_employees,
+    total_part_time_legal_employees,
+    employment_type_legal_totals_df
+) = get_division_details('Legal')
 
 ##################################################
 # UI Content
@@ -651,7 +651,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Information Technology plays a vital role in keeping the City of Memphis running efficiently through technology infrastructure, cybersecurity, system modernization, digital services, and technical support across all city departments. Entry-level positions such as Service Desk Agent typically start around $46,000 per year, with compensation rising significantly through experience and career progression to exceed $165,000 annually for senior technical, managerial, and director-level roles. Most positions in the department are full-time, with the only part-time or hourly opportunity being internships that generally start at $15 per hour.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -689,7 +689,7 @@ with st.spinner('Loading data and calculations...'):
     it_row2_cols = st.columns(2, gap="xlarge")
 
     with it_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("Information Technology operates with a compact team of 67 individuals across 47 unique job titles. These roles cover technology infrastructure, cybersecurity, application support, system administration, and digital service delivery for the entire city government. Full-time employees make up over 98% of the core workforce, with part-time and hourly staff representing just under 2%.")
 
         st.markdown(
             employment_type_table(
@@ -718,7 +718,7 @@ with st.spinner('Loading data and calculations...'):
     salary_cols = st.columns(2, gap="xlarge")
 
     with salary_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("The Legal division provides essential legal counsel and representation for the City of Memphis across a wide range of matters, including litigation, contract review, regulatory compliance, and advisory services to city departments and leadership. Entry-level positions typically start around $34,000 per year, while compensation can reach $175,000 annually for senior attorneys, managerial, and director-level roles with experience and career progression. Part-time and hourly positions are limited, generally starting at $15 per hour and rising only slightly to $16 per hour for the highest hourly roles.")
 
     with salary_cols[1]:
         with st.container(horizontal=True):
@@ -756,7 +756,7 @@ with st.spinner('Loading data and calculations...'):
     legal_row2_cols = st.columns(2, gap="xlarge")
 
     with legal_row2_cols[0]:
-        st.markdown("[ PLACEHOLDER FOR SUMMARY ]")
+        st.text("The Legal division operates with a compact team of 123 individuals across 38 unique job titles. These roles focus on litigation support, contract review, regulatory compliance, risk management, and legal advisory services for city leadership and departments. Full-time employees make up more than 90% of the core workforce, with part-time and hourly staff representing less than 10%.")
 
         st.markdown(
             employment_type_table(
