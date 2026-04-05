@@ -211,10 +211,6 @@ employment_type_housing_totals_df = pd.DataFrame({
 st.space()
 
 with st.spinner('Loading data and calculations...'):
-    st.info(
-        'Building Better Transparency: Under Active Development – Check Back for More Soon!',
-        icon=":material/build:"
-    )
     st.title("Stronger Neighborhoods")
     st.markdown('<h3 class="pt-0">Parks, Libraries, and Housing and Community Development</h3>', unsafe_allow_html=True)
 

@@ -252,10 +252,6 @@ print()
 st.space()
 
 with st.spinner('Loading data and calculations...'):
-    st.info(
-        'Building Better Transparency: Under Active Development – Check Back for More Soon!',
-        icon=":material/build:"
-    )
     st.title("Public Works")
     st.markdown('<h3 class="pt-0">Public Works, Solid Waste Management, City Engineering, and General Services</h3>', unsafe_allow_html=True)
 
