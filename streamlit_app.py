@@ -254,14 +254,18 @@ with st.spinner('Loading data and calculations...'):
 
     """
     This site provides an interactive analysis of employee salaries for the City of Memphis, Tennessee. All data is sourced directly from publicly available records published by the City of Memphis and can be accessed via their official website.
+    """
 
+    st.info('Use the sidebar navigation to explore detailed department breakdowns and workforce patterns by division.', icon=":material/side_navigation:")
+    
+    """
     The dataset includes 8,202 city employees and contains the following key details for each:
     - Job title
     - Division
     - Employment type (full-time or part-time)
     - Annual salary or hourly rate
 
-    The goal is to offer clear, transparent insights into salary distribution, departmental staffing, and compensation patterns across the city's workforce.
+    The goal of this site is to offer clear, transparent insights into salary distribution, departmental staffing, and compensation patterns across the city's workforce.
     """
 
     st.space()
