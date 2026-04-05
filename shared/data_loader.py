@@ -28,10 +28,6 @@ def load_salary_data() -> pd.DataFrame:
     """Load salary data - cached globally"""
     df = pd.read_csv('data/City of Memphis Employee Salaries 2025.csv')
     
-    # # Optimize data types for performance
-    # df['department'] = df['department'].astype('category')
-    # df['title'] = df['title'].astype('category')
-    
     # Categorize city divisions/departments
     df['Division Category'] = df.apply(get_city_division_category, axis=1)
 
@@ -56,54 +52,3 @@ def initialize_data():
     if 'salary_data' not in st.session_state:
         st.session_state.salary_data = load_salary_data()
     return st.session_state.salary_data
-
-"""
-import streamlit as st
-import pandas as pd
-from typing import Optional
-
-# ✅ PERFORMANCE TIP #5: Use @st.cache_data for data loading
-# - Use ttl for data that changes periodically
-# - Use show_spinner for better UX
-# - Use max_entries to limit cache size
-@st.cache_data(ttl=3600, show_spinner="Loading data...")
-def load_salary_data(filepath: str) -> pd.DataFrame:
-    '''Load salary data with caching'''
-    # For large files, consider using parquet instead of CSV
-    if filepath.endswith('.parquet'):
-        return pd.read_parquet(filepath)
-    elif filepath.endswith('.csv'):
-        # ✅ PERFORMANCE TIP #6: Use dtypes and usecols to reduce memory
-        dtypes = {
-            'employee_id': 'int32',
-            'department': 'category',
-            'salary': 'float32'
-        }
-        return pd.read_csv(filepath, dtype=dtypes)
-    else:
-        raise ValueError(f"Unsupported format: {filepath}")
-
-# ✅ PERFORMANCE TIP #7: Cache expensive computations separately
-@st.cache_data(ttl=3600)
-def compute_department_stats(df: pd.DataFrame) -> pd.DataFrame:
-    '''Compute aggregated statistics'''
-    return df.groupby('department').agg({
-        'salary': ['mean', 'median', 'count'],
-        'employee_id': 'count'
-    }).reset_index()
-
-# ✅ PERFORMANCE TIP #8: Use @st.cache_resource for connections/models
-@st.cache_resource
-def get_database_connection():
-    '''Maintain single DB connection across reruns'''
-    import sqlalchemy
-    return sqlalchemy.create_engine("postgresql://...")
-
-# ✅ PERFORMANCE TIP #9: Lazy load heavy dependencies
-def load_ml_model():
-    '''Only import when needed'''
-    if 'model' not in st.session_state:
-        import joblib
-        st.session_state.model = joblib.load('model.pkl')
-    return st.session_state.model
-"""
